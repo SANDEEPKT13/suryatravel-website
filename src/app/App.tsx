@@ -85,9 +85,9 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const yearsCount = useCounter(20, 2000, statsInView);
-  const customersCount = useCounter(50000, 2000, statsInView);
-  const vehiclesCount = useCounter(100, 2000, statsInView);
+  const yearsCount = useCounter(15, 2000, statsInView);
+  const customersCount = useCounter(10000, 2000, statsInView);
+  const vehiclesCount = useCounter(25, 2000, statsInView);
 
   return (
     <div className="min-h-screen bg-[#FFFDF8]">
@@ -101,7 +101,7 @@ export default function App() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  RidePlus Travels
+                  Surya Travels
                 </h1>
                 <p className="text-xs text-[#FFC107]">Your Journey, Our Priority</p>
               </div>
@@ -137,10 +137,10 @@ export default function App() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-5xl md:text-6xl mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                Trusted Taxi & Car Rental Services <span className="text-[#FFC107]">Across India</span>
+                Surya Travels - Taxi Service in Tajganj,<br></br> <span className="text-[#FFC107]">Agra</span>
               </h2>
               <p className="text-xl mb-8 text-gray-200">
-                15+ Years | Professional Drivers | Safe & Affordable
+                15+ Years | 🚗 Best Cars & Luxury Buses | Professional Drivers | Safe & Affordable |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking – Just FIll and Submit Form
               </p>
               
               <div className="grid grid-cols-3 gap-4 mb-8">
@@ -293,7 +293,7 @@ export default function App() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Why Choose <span className="text-[#FFC107]">RidePlus?</span>
+              Why Choose <span className="text-[#FFC107]">Us?</span>
             </h2>
             <p className="text-xl text-gray-600">
               Your Safety, Comfort & Satisfaction is Our Mission
@@ -311,7 +311,7 @@ export default function App() {
               {
                 icon: <Clock className="h-12 w-12" />,
                 title: '45-Minute Guaranteed Confirmation',
-                desc: 'Get instant confirmation within 45 minutes or your money back',
+                desc: 'Get instant confirmation within 45 minutes ',
                 color: 'bg-gradient-to-br from-[#1ABC9C] to-[#16A085]',
               },
               {
@@ -334,7 +334,7 @@ export default function App() {
               },
               {
                 icon: <Phone className="h-12 w-12" />,
-                title: '24×7 Customer Support',
+                title: 'On Call Customer Support',
                 desc: 'Round-the-clock support for all your queries and emergencies',
                 color: 'bg-gradient-to-br from-[#D32F2F] to-[#C62828]',
               },
@@ -379,37 +379,37 @@ export default function App() {
           <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
             {[
               {
-                name: 'Hatchback',
+                name: 'Ertiga',
                 image: 'https://images.unsplash.com/photo-1671053390750-524f723898a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXRjaGJhY2slMjBjYXIlMjBjaXR5fGVufDF8fHx8MTc2NTY0NzI0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '4 Seater',
+                seats: '✔️ 4 Seater 6-7 Passengers<br> ✔️ 4 Bags ✔️ 250 Km Perday.Minimum Running ✔️ Driver Allowance Rs.500/= ✔️ Toll, State Tax & Parking Extra',
                 price: '₹10/km',
                 color: 'bg-[#FFC107]',
               },
               {
                 name: 'Sedan',
                 image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '4 Seater',
+                seats: '4 Seater 6-7 Passengers 4 Bags 250 Km Perday. Minimum Running Driver Allowance Rs.500/= ✔️ Toll, State Tax & Parking Extra',
                 price: '₹12/km',
                 color: 'bg-[#1ABC9C]',
               },
               {
-                name: 'SUV',
+                name: 'Innova Crysta',
                 image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '6-7 Seater',
+                seats: '4 Seater 6-7 Passengers 4 Bags 250 Km Perday. Minimum Running Driver Allowance Rs.500/= Toll, State Tax & Parking Extra',
                 price: '₹16/km',
                 color: 'bg-[#0B3C5D]',
               },
               {
-                name: 'Tempo Traveller',
+                name: 'Kia Carens',
                 image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '12-17 Seater',
+                seats: '4 Seater 6-7 Passengers 4 Bags 250 Km Perday. Minimum Running Driver Allowance Rs.500/= Toll, State Tax & Parking Extra',
                 price: '₹25/km',
                 color: 'bg-[#FF6F00]',
               },
               {
-                name: 'Luxury Cars',
+                name: 'Dzire',
                 image: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '4 Seater',
+                seats: '4 Seater 6-7 Passengers 4 Bags 250 Km Perday. Minimum Running Driver Allowance Rs.500/= Toll, State Tax & Parking Extra',
                 price: '₹30/km',
                 color: 'bg-[#8E24AA]',
               },
