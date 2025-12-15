@@ -34,6 +34,32 @@ import {
   Menu,
   X,
 } from 'lucide-react';
+import mainlogo1 from "../assets/images/mainlogo1.png";
+import logo1 from "../assets/images/logo1.png";
+import cid1 from "../assets/images/cid1.png";
+import cid2 from "../assets/images/cid2.png";
+import cid3 from "../assets/images/cid3.png";
+import cid4 from "../assets/images/cid4.png";
+import wedding1 from "../assets/images/wedding1.png";
+import wedding2 from "../assets/images/wedding2.png";
+import film1 from "../assets/images/film1.png";
+import film2 from "../assets/images/film2.png";
+import film3 from "../assets/images/film3.png";
+import film4 from "../assets/images/film4.png";
+import film5 from "../assets/images/film5.png";
+import film6 from "../assets/images/film6.png";
+import film7 from "../assets/images/film7.png";
+import corp1 from "../assets/images/corp1.png";
+import post1 from "../assets/images/post1.png";
+import post2 from "../assets/images/post2.png";
+import post3 from "../assets/images/post3.png";
+import post4 from "../assets/images/post4.png";
+import dzire from "../assets/images/dzire.png";
+import innova from "../assets/images/innova.png";
+import bus from "../assets/images/bus.png";
+import ertiga from "../assets/images/ertiga.png";
+import traveller from "../assets/images/traveller.png";
+//import corp2 from "../assets/images/corp2.png";
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { PackageModal } from './components/PackageModal';
 import { GalleryModal } from './components/GalleryModal';
@@ -155,6 +181,7 @@ const packagesData = {
       { name: 'A/C SEDAN', price: '₹19,599', seats: '4 Passengers' },
       { name: 'A/C MUV'  , price: '₹21,599', seats: '6 Passengers' },
       { name: 'A/C SUV'  , price: '₹24,599', seats: '6 Passengers' },
+      { name: 'A/C Tempo Traveller', price: '₹39,999', seats: '12-15 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation', detail: 'AC Vehicle for 6 Days' },
@@ -291,20 +318,24 @@ const packagesData = {
 const galleryData = {
   cidShoot: {
     title: 'CID TV Show Transportation',
-    description: 'We had the honor of being the official transportation partner for the famous CID TV show. Our fleet provided reliable and professional services during multiple shooting schedules across different locations in North India.',
+    description: 'We had the honor of being the official transportation partner for the renowned CID TV show. Our well-maintained fleet supported multiple shooting schedules across various locations in North India, ensuring timely pickups, smooth logistics, and dependable service for the cast and production crew. With professional drivers and coordinated operations, we contributed to seamless on-ground mobility throughout the production.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: cid1,
         caption: 'Our luxury fleet provided for CID production crew',
       },
       {
-        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
+        url: cid2,
         caption: 'Professional sedans for cast transportation',
       },
       {
-        url: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: cid4,
         caption: 'SUVs for equipment and crew movement',
       },
+      {
+        url: cid3,  
+        caption: 'On-location shoot support vehicles',
+      }
     ],
   },
   weddings: {
@@ -312,11 +343,11 @@ const galleryData = {
     description: 'Over 1000+ weddings successfully coordinated! We specialize in providing comprehensive transportation solutions for weddings, ensuring all guests, family members, and VIPs arrive on time and in comfort. From small intimate gatherings to grand celebrations.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: wedding1,
         caption: 'Luxury cars for bride and groom transportation',
       },
       {
-        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
+        url: wedding2,
         caption: 'Guest transportation with decorated vehicles',
       },
       {
@@ -327,16 +358,37 @@ const galleryData = {
   },
   filmShoots: {
     title: 'Film & Media Production',
-    description: 'Trusted by Bollywood and regional film productions for on-location transportation. Our fleet has been part of numerous movie shoots, web series productions, and advertisement campaigns across India.',
+    description: 'Trusted by Bollywood and regional serials productions for on-location transportation. Our fleet has been part of numerous movie shoots, web series productions, and advertisement campaigns across India.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: film1,
         caption: 'On-set transportation for film crews',
       },
       {
-        url: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: film2,
         caption: 'Location scouting trips to scenic destinations',
       },
+      {
+        url: film3,
+        caption: 'Luxury vehicles for lead actors',
+      },
+      {
+        url: film4,
+        caption: 'Crew mobility during shoots',
+      },
+      {
+        url: film5,
+        caption: 'Equipment transport with spacious SUVs', 
+      },
+      {
+        url: film6,
+        caption: 'Comfortable rides for long shooting schedules',
+      },
+      {
+        url: film7,
+        caption: 'Reliable transport for production teams',
+      },
+
     ],
   },
   political: {
@@ -372,13 +424,13 @@ const galleryData = {
     description: 'Executive transportation services for Fortune 500 companies. We provide professional chauffeur services for business meetings, conferences, airport transfers, and corporate events with utmost punctuality and discretion.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: corp1,
         caption: 'Executive luxury transportation',
       },
-      {
-        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Professional chauffeur services',
-      },
+      // {
+      //   url: corp2,
+      //   caption: 'Professional chauffeur services',
+      // },
     ],
   },
   familyTours: {
@@ -496,8 +548,8 @@ export default function App() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="bg-[#FFC107] p-2 rounded-lg">
-                <Car className="h-6 w-6 md:h-8 md:w-8 text-[#0B3C5D]" />
+             <div className="p-2 flex items-center justify-center">
+            <img src={mainlogo1} alt="Main Logo" className="rounded-lg w-auto md:h-14 object-contain" />
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -814,7 +866,7 @@ export default function App() {
             {[
               {
                 name: 'Dzire',
-                image: 'https://images.unsplash.com/photo-1671053390750-524f723898a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXRjaGJhY2slMjBjYXIlMjBjaXR5fGVufDF8fHx8MTc2NTY0NzI0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                image: dzire,
                 seats: '4 Seater',
                 bags: '4 Bags',
                 running: '250 Km Per day',
@@ -823,18 +875,18 @@ export default function App() {
                 color: 'bg-[#FFC107]',
               },
               {
-                name: 'Sedan',
-                image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '4 Seater',
-                bags: '4 Bags',
+                name: 'Bus',
+                image: bus,
+                seats: '28 Seater',
+                bags: '6 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹12/km',
+                price: '₹20/km',
                 color: 'bg-[#1ABC9C]',
               },
               {
                 name: 'Ertiga',
-                image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                image: ertiga,
                 seats: '6-7 Passengers',
                 bags: '5 Bags',
                 running: '250 Km Per day',
@@ -843,8 +895,8 @@ export default function App() {
                 color: 'bg-[#0B3C5D]',
               },
               {
-                name: 'Kia Carens',
-                image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                name: 'Tempo Traveller',
+                image: traveller,
                 seats: '6 Passengers',
                 bags: '5 Bags',
                 running: '250 Km Per day',
@@ -854,7 +906,7 @@ export default function App() {
               },
               {
                 name: 'Innova Crysta',
-                image: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                image: innova,
                 seats: '6-7 Seater',
                 bags: '4 Bags',
                 running: '250 Km Per day',
@@ -1497,22 +1549,22 @@ export default function App() {
             >
               <div className="grid grid-cols-2 gap-4">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Our Fleet"
-                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover"
+                  src={post1}
+                  alt="my image"
+                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-fullcover"
                 />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={post2}
                   alt="Premium Cars"
                   className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover mt-8"
                 />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={post3}
                   alt="SUV Collection"
                   className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover -mt-8"
                 />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={post4}
                   alt="Luxury Cars"
                   className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover"
                 />
@@ -1523,7 +1575,7 @@ export default function App() {
       </section>
 
       {/* Final CTA */}
-      <section id="contact" className="py-16 md:py-20 bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] text-white">
+      <section id="contact" className="py-16 md:py-20 bg-gradient-to-r from-[#FF6F00] via-[#c8a94d] to-[#FF6F00] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1589,9 +1641,9 @@ export default function App() {
             {/* Company Info */}
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-[#FFC107] p-2 rounded-lg">
-                  <Car className="h-7 w-7 md:h-8 md:w-8 text-[#0B3C5D]" />
-                </div>
+                <div className="p-3 flex items-center justify-center">
+                  <img src={logo1} alt="Surya Travels Logo" className="h-14 rounded-md w-auto object-contain"/>
+                  </div>
                 <h3 className="text-3xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h3>
