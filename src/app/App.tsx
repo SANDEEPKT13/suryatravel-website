@@ -25,15 +25,395 @@ import {
   Calendar,
   Award,
   Zap,
-  ThumbsUp,
   Globe,
   ChevronRight,
   Instagram,
   Facebook,
   Twitter,
   Youtube,
+  Menu,
+  X,
 } from 'lucide-react';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
+import { PackageModal } from './components/PackageModal';
+import { GalleryModal } from './components/GalleryModal';
+
+// Package data for all tours
+const packagesData = {
+  agraLocal: {
+    name: 'Agra Local Taxi Service',
+    image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: 'Full Day',
+    price: '₹2,999',
+    overview: 'Explore the magnificent city of Agra with our comfortable local taxi service. Visit the iconic Taj Mahal, Agra Fort, and other historical monuments with ease. Our experienced drivers know the best routes and timings to avoid crowds and make your Agra experience memorable.',
+    carTypes: [
+      { name: 'Sedan', price: '₹2,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹3,999', seats: '6-7 Passengers' },
+      { name: 'Luxury Car', price: '₹5,999', seats: '4 Passengers' },
+    ],
+    pricing: [
+      { item: 'Full Day Service (8 Hours)', detail: 'Included' },
+      { item: 'Driver Allowance', detail: '₹500' },
+      { item: 'Fuel', detail: 'Included (80 Km)' },
+      { item: 'Parking & Tolls', detail: 'Extra' },
+      { item: 'Monument Entry Fees', detail: 'Extra' },
+    ],
+    whyChoose: [
+      'Expert local drivers with complete knowledge of Agra',
+      'Flexible timings and customizable itinerary',
+      'Clean and well-maintained vehicles',
+      'Hassle-free booking and instant confirmation',
+      ' 24/7 customer support during your trip',
+      'Best rates guaranteed with no hidden charges',
+    ],
+    highlights: [
+      'Visit Taj Mahal at sunrise for magical views',
+      'Explore Agra Fort and its stunning architecture',
+      'Stop at Mehtab Bagh for sunset Taj Mahal views',
+      'Visit Itmad-ud-Daulah (Baby Taj)',
+      'Shopping at local markets for marble handicrafts',
+      'Taste authentic Mughlai cuisine at famous restaurants',
+    ],
+  },
+  mathuraVrindavan: {
+    name: 'Delhi to Mathura Vrindavan Same Day Tour',
+    image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: '1 Day',
+    price: '₹4,999',
+    overview: 'Experience divine spirituality with our same-day tour from Delhi to Mathura and Vrindavan. Visit the holy birthplace of Lord Krishna and explore the numerous beautiful temples. This spiritual journey is perfect for families and devotees seeking blessings.',
+    carTypes: [
+      { name: 'Sedan', price: '₹4,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹6,499', seats: '6-7 Passengers' },
+      { name: 'Tempo Traveller', price: '₹9,999', seats: '12 Passengers' },
+    ],
+    pricing: [
+      { item: 'Round Trip from Delhi', detail: 'Included' },
+      { item: 'Distance Coverage', detail: '320 Km' },
+      { item: 'Driver Allowance', detail: '₹500' },
+      { item: 'Fuel Charges', detail: 'Included' },
+      { item: 'Parking & Tolls', detail: 'Extra (Approx ₹400)' },
+    ],
+    whyChoose: [
+      'Early morning departure for maximum temple coverage',
+      'Visit all major temples in both Mathura & Vrindavan',
+      'Experienced drivers familiar with religious sites',
+      'Comfortable air-conditioned vehicles',
+      'Flexible stop options for prasad and offerings',
+      'Return to Delhi by evening same day',
+    ],
+    highlights: [
+      'Shri Krishna Janmabhoomi Temple in Mathura',
+      'Dwarkadhish Temple - architectural marvel',
+      'Banke Bihari Temple in Vrindavan',
+      'ISKCON Temple with evening aarti',
+      'Prem Mandir - stunning illuminated temple',
+      'Nidhivan - the mysterious forest of Radha Krishna',
+    ],
+  },
+  delhiAgra: {
+    name: 'Delhi Agra One Day Tour',
+    image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: '1 Day',
+    price: '₹4,999',
+    overview: 'The most popular same-day tour from Delhi to Agra! Witness the breathtaking beauty of the Taj Mahal, one of the Seven Wonders of the World. This tour includes comfortable transportation, experienced guides, and ample time to explore Agra\'s UNESCO World Heritage Sites.',
+    carTypes: [
+      { name: 'Sedan', price: '₹4,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹6,499', seats: '6-7 Passengers' },
+      { name: 'Tempo Traveller', price: '₹10,999', seats: '12-17 Passengers' },
+    ],
+    pricing: [
+      { item: 'Delhi to Agra Round Trip', detail: '420 Km' },
+      { item: 'AC Vehicle with Fuel', detail: 'Included' },
+      { item: 'Driver Allowance', detail: '₹500' },
+      { item: 'Parking & Tolls', detail: 'Extra (Approx ₹600)' },
+      { item: 'Tour Guide (Optional)', detail: '₹1,500 per group' },
+    ],
+    whyChoose: [
+      'Early morning start to catch Taj Mahal at sunrise',
+      'Travel on comfortable Yamuna Expressway',
+      'Professional drivers with excellent track record',
+      'Flexible itinerary - customize as per your wish',
+      'Stop for breakfast and lunch at quality restaurants',
+      'Return to Delhi by evening with memories',
+    ],
+    highlights: [
+      'Taj Mahal - Symbol of eternal love',
+      'Agra Fort - UNESCO World Heritage Site',
+      'Itmad-ud-Daulah (Baby Taj)',
+      'Mehtab Bagh for Taj sunset view (if time permits)',
+      'Marble inlay workshop demonstration',
+      'Local cuisine tasting at famous Agra restaurants',
+    ],
+  },
+  goldenTriangle: {
+    name: 'Golden Triangle Tour (5 Nights / 6 Days)',
+    image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: '6 Days',
+    price: '₹29,999',
+    overview: 'Experience the essence of India with our comprehensive Golden Triangle Tour covering Delhi, Agra, and Jaipur. This 6-day journey takes you through India\'s rich cultural heritage, magnificent monuments, colorful markets, and royal palaces. Perfect for first-time visitors to India!',
+    carTypes: [
+      { name: 'Sedan', price: '₹29,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹39,999', seats: '6-7 Passengers' },
+      { name: 'Luxury Car', price: '₹59,999', seats: '4 Passengers' },
+    ],
+    pricing: [
+      { item: 'All Transportation', detail: 'AC Vehicle for 6 Days' },
+      { item: 'Total Distance', detail: 'Approx 900 Km' },
+      { item: 'Driver Charges', detail: 'Included' },
+      { item: 'Accommodation', detail: 'Not Included' },
+      { item: 'Meals & Monuments', detail: 'Not Included' },
+    ],
+    whyChoose: [
+      'Complete cultural immersion in North India',
+      'Visit 7+ UNESCO World Heritage Sites',
+      'Expert drivers with multi-day tour experience',
+      'Comfortable stays can be arranged on request',
+      'Perfect balance of sightseeing and relaxation',
+      'Best value for money tour package',
+    ],
+    highlights: [
+      'Delhi: Red Fort, Qutub Minar, India Gate, Lotus Temple',
+      'Agra: Taj Mahal, Agra Fort, Fatehpur Sikri',
+      'Jaipur: Amber Fort, City Palace, Hawa Mahal',
+      'Jantar Mantar - UNESCO Heritage Observatory',
+      'Local bazaar shopping in all three cities',
+      'Traditional Rajasthani cultural evening in Jaipur',
+    ],
+  },
+  delhiHaridwar: {
+    name: 'Delhi to Haridwar Same Day Trip by Taxi',
+    image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: '1 Day',
+    price: '₹6,999',
+    overview: 'Take a spiritual journey from Delhi to Haridwar, one of the seven holiest places in Hinduism. Experience the sacred Ganga Aarti at Har Ki Pauri, take a holy dip in the Ganges, and seek blessings at ancient temples. This same-day tour offers a perfect spiritual escape from city life.',
+    carTypes: [
+      { name: 'Sedan', price: '₹6,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹8,999', seats: '6-7 Passengers' },
+      { name: 'Tempo Traveller', price: '₹14,999', seats: '12 Passengers' },
+    ],
+    pricing: [
+      { item: 'Round Trip from Delhi', detail: '440 Km' },
+      { item: 'AC Vehicle & Fuel', detail: 'Included' },
+      { item: 'Driver Allowance', detail: '₹500' },
+      { item: 'Parking & Tolls', detail: 'Extra (Approx ₹500)' },
+      { item: 'Rishikesh Extension', detail: '+₹1,500' },
+    ],
+    whyChoose: [
+      'Early morning departure for full-day experience',
+      'Attend evening Ganga Aarti at Har Ki Pauri',
+      'Comfortable journey via National Highway',
+      'Option to extend to Rishikesh',
+      'Experienced drivers familiar with mountain roads',
+      'Return safely to Delhi by late night',
+    ],
+    highlights: [
+      'Har Ki Pauri - Most sacred ghat of Haridwar',
+      'Ganga Aarti ceremony at sunset',
+      'Mansa Devi Temple via cable car',
+      'Chandi Devi Temple darshan',
+      'Holy dip in River Ganges',
+      'Shopping for religious items and local sweets',
+    ],
+  },
+  delhiManali: {
+    name: 'Delhi to Manali Tour Package (3 Nights / 4 Days)',
+    image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: '4 Days',
+    price: '₹18,999',
+    overview: 'Escape to the mountains with our Manali tour package! Experience the breathtaking beauty of Himachal Pradesh, enjoy adventure activities, visit ancient temples, and relax in the lap of nature. Perfect for families, couples, and adventure enthusiasts.',
+    carTypes: [
+      { name: 'Sedan', price: '₹18,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹24,999', seats: '6-7 Passengers' },
+      { name: 'Tempo Traveller', price: '₹35,999', seats: '12 Passengers' },
+    ],
+    pricing: [
+      { item: 'All Transportation (4 Days)', detail: 'AC Vehicle' },
+      { item: 'Total Distance', detail: 'Approx 1,100 Km' },
+      { item: 'Driver Charges & Allowance', detail: 'Included' },
+      { item: 'Accommodation', detail: 'Not Included' },
+      { item: 'Meals & Activities', detail: 'Not Included' },
+    ],
+    whyChoose: [
+      'Scenic journey through mountains and valleys',
+      'Experienced hill drivers for safe journey',
+      'Flexible sightseeing schedule',
+      'Hotel booking assistance available',
+      'Visit both popular and offbeat locations',
+      'Perfect 4-day itinerary for Manali exploration',
+    ],
+    highlights: [
+      'Solang Valley - Adventure sports hub',
+      'Rohtang Pass (if open - seasonal)',
+      'Hadimba Devi Temple',
+      'Old Manali cafes and shopping',
+      'Vashisht Hot Water Springs',
+      'Mall Road evening walks and shopping',
+    ],
+  },
+  chardham: {
+    name: 'Chardham Yatra',
+    image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    duration: '10 Days',
+    price: '₹49,999',
+    overview: 'Embark on the sacred Chardham Yatra covering Yamunotri, Gangotri, Kedarnath, and Badrinath. This spiritual journey through the Himalayas is considered one of the most auspicious pilgrimages in Hinduism. Our experienced team ensures a safe, comfortable, and spiritually enriching experience.',
+    carTypes: [
+      { name: 'Sedan', price: '₹49,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹64,999', seats: '6-7 Passengers' },
+      { name: 'Tempo Traveller', price: '₹89,999', seats: '12 Passengers' },
+    ],
+    pricing: [
+      { item: 'All Transportation (10 Days)', detail: 'AC Vehicle' },
+      { item: 'Total Distance', detail: 'Approx 1,800 Km' },
+      { item: 'Experienced Hill Driver', detail: 'Included' },
+      { item: 'Driver Accommodation', detail: 'Included' },
+      { item: 'Your Stay & Meals', detail: 'Not Included' },
+    ],
+    whyChoose: [
+      'Specialized Chardham Yatra drivers with experience',
+      'Complete route planning and guidance',
+      'Safe driving on challenging mountain roads',
+      'Flexible darshan timings as per your preference',
+      'Assistance with hotel bookings and permits',
+      'Emergency support throughout the journey',
+    ],
+    highlights: [
+      'Yamunotri - Source of River Yamuna',
+      'Gangotri - Origin of holy River Ganga',
+      'Kedarnath - One of 12 Jyotirlingas (trek/helicopter)',
+      'Badrinath - Abode of Lord Vishnu',
+      'Rishikesh Ganga Aarti on return',
+      'Scenic Himalayan beauty throughout the journey',
+    ],
+  },
+};
+
+// Gallery data for trusted associations
+const galleryData = {
+  cidShoot: {
+    title: 'CID TV Show Transportation',
+    description: 'We had the honor of being the official transportation partner for the famous CID TV show. Our fleet provided reliable and professional services during multiple shooting schedules across different locations in North India.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Our luxury fleet provided for CID production crew',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Professional sedans for cast transportation',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'SUVs for equipment and crew movement',
+      },
+    ],
+  },
+  weddings: {
+    title: 'Wedding Events Transportation',
+    description: 'Over 1000+ weddings successfully coordinated! We specialize in providing comprehensive transportation solutions for weddings, ensuring all guests, family members, and VIPs arrive on time and in comfort. From small intimate gatherings to grand celebrations.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Luxury cars for bride and groom transportation',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Guest transportation with decorated vehicles',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Family transportation in premium SUVs',
+      },
+    ],
+  },
+  filmShoots: {
+    title: 'Film & Media Production',
+    description: 'Trusted by Bollywood and regional film productions for on-location transportation. Our fleet has been part of numerous movie shoots, web series productions, and advertisement campaigns across India.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'On-set transportation for film crews',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Location scouting trips to scenic destinations',
+      },
+    ],
+  },
+  political: {
+    title: 'Political Rally & Event Transport',
+    description: 'Expert convoy management for political events, rallies, and official visits. We have successfully managed large-scale transportation for political campaigns and government events with precision and security.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Convoy management for political events',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'VIP transportation with security protocols',
+      },
+    ],
+  },
+  yatra: {
+    title: 'Religious Yatra Group Tours',
+    description: 'Specialized in organizing transportation for religious pilgrimages including Chardham Yatra, Amarnath Yatra, Vaishno Devi, and other sacred destinations. Our experienced drivers ensure safe journey through challenging terrains.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Temple pilgrimage group transportation',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Himalayan pilgrimage journeys',
+      },
+    ],
+  },
+  corporate: {
+    title: 'Corporate Event Transportation',
+    description: 'Executive transportation services for Fortune 500 companies. We provide professional chauffeur services for business meetings, conferences, airport transfers, and corporate events with utmost punctuality and discretion.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Executive luxury transportation',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Professional chauffeur services',
+      },
+    ],
+  },
+  familyTours: {
+    title: 'Family Tour Memories',
+    description: 'Thousands of happy families have traveled with us across India. Creating beautiful memories, exploring new destinations, and experiencing comfort and safety on every journey.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1634351357279-c22fe1889467?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmYW1pbHklMjB0cmF2ZWx8ZW58MXx8fHwxNzY1NjQ3MjQyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Family vacations made comfortable',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Exploring India together',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Adventures in the mountains',
+      },
+    ],
+  },
+  international: {
+    title: 'International Tourist Services',
+    description: 'Welcoming tourists from over 50 countries! We provide guided tours with multilingual support, comfortable transportation, and curated itineraries showcasing the best of India.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Heritage tour experiences',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Iconic Indian landmarks tours',
+      },
+    ],
+  },
+};
 
 // Counter animation hook
 function useCounter(end: number, duration: number = 2000, shouldStart: boolean = false) {
@@ -66,6 +446,9 @@ function useCounter(end: number, duration: number = 2000, shouldStart: boolean =
 
 export default function App() {
   const [statsInView, setStatsInView] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<keyof typeof packagesData | null>(null);
+  const [selectedGallery, setSelectedGallery] = useState<keyof typeof galleryData | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -91,35 +474,85 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FFFDF8]">
+      {/* Modals */}
+      {selectedPackage && (
+        <PackageModal
+          isOpen={!!selectedPackage}
+          onClose={() => setSelectedPackage(null)}
+          packageData={packagesData[selectedPackage]}
+        />
+      )}
+      
+      {selectedGallery && (
+        <GalleryModal
+          isOpen={!!selectedGallery}
+          onClose={() => setSelectedGallery(null)}
+          galleryData={galleryData[selectedGallery]}
+        />
+      )}
+
       {/* Header */}
-      <header className="bg-[#0B3C5D] text-white py-3 sticky top-0 z-50 shadow-lg">
+      <header className="bg-[#0B3C5D] text-white py-4 md:py-3 sticky top-0 z-40 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               <div className="bg-[#FFC107] p-2 rounded-lg">
-                <Car className="h-8 w-8 text-[#0B3C5D]" />
+                <Car className="h-6 w-6 md:h-8 md:w-8 text-[#0B3C5D]" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   RidePlus Travels
                 </h1>
-                <p className="text-xs text-[#FFC107]">Your Journey, Our Priority</p>
+                <p className="text-xs text-[#FFC107] hidden sm:block">Your Journey, Our Priority</p>
               </div>
             </div>
-            <div className="hidden md:flex items-center gap-6">
+            
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex items-center gap-6 text-base">
               <a href="#services" className="hover:text-[#FFC107] transition-colors">Services</a>
               <a href="#fleet" className="hover:text-[#FFC107] transition-colors">Fleet</a>
               <a href="#packages" className="hover:text-[#FFC107] transition-colors">Tour Packages</a>
-              <a href="#contact" className="bg-[#FFC107] text-[#0B3C5D] px-6 py-2 rounded-full font-semibold hover:bg-[#FFD54F] transition-all">
+              <a href="#contact" className="bg-[#FFC107] text-[#0B3C5D] px-6 py-2.5 rounded-full font-semibold hover:bg-[#FFD54F] transition-all text-base">
                 Book Now
               </a>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden mt-4 pb-4 space-y-3"
+            >
+              <a href="#services" className="block py-2 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                Services
+              </a>
+              <a href="#fleet" className="block py-2 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                Fleet
+              </a>
+              <a href="#packages" className="block py-2 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                Tour Packages
+              </a>
+              <a href="#contact" className="block bg-[#FFC107] text-[#0B3C5D] px-6 py-2.5 rounded-full font-semibold text-center text-base" onClick={() => setMobileMenuOpen(false)}>
+                Book Now
+              </a>
+            </motion.div>
+          )}
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-16 md:py-20 lg:py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -129,32 +562,32 @@ export default function App() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl md:text-6xl mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Trusted Taxi & Car Rental Services <span className="text-[#FFC107]">Across India</span>
               </h2>
-              <p className="text-xl mb-8 text-gray-200">
+              <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
                 15+ Years | Professional Drivers | Safe & Affordable
               </p>
               
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border-2 border-[#1ABC9C]">
-                  <CheckCircle className="h-8 w-8 text-[#1ABC9C] mb-2" />
-                  <p className="text-sm">Verified Drivers</p>
+              <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
+                <div className="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-lg border-2 border-[#1ABC9C]">
+                  <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-[#1ABC9C] mb-2" />
+                  <p className="text-xs md:text-sm leading-snug">Verified Drivers</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border-2 border-[#1ABC9C]">
-                  <Navigation className="h-8 w-8 text-[#1ABC9C] mb-2" />
-                  <p className="text-sm">GPS Enabled</p>
+                <div className="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-lg border-2 border-[#1ABC9C]">
+                  <Navigation className="h-6 w-6 md:h-8 md:w-8 text-[#1ABC9C] mb-2" />
+                  <p className="text-xs md:text-sm leading-snug">GPS Enabled</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border-2 border-[#1ABC9C]">
-                  <Clock className="h-8 w-8 text-[#1ABC9C] mb-2" />
-                  <p className="text-sm">24×7 Service</p>
+                <div className="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-lg border-2 border-[#1ABC9C]">
+                  <Clock className="h-6 w-6 md:h-8 md:w-8 text-[#1ABC9C] mb-2" />
+                  <p className="text-xs md:text-sm leading-snug">24×7 Service</p>
                 </div>
               </div>
             </motion.div>
@@ -164,13 +597,13 @@ export default function App() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-2xl p-8"
+              className="bg-white rounded-2xl shadow-2xl p-6 md:p-8"
             >
-              <div className="bg-[#FFC107] text-[#0B3C5D] px-4 py-2 rounded-lg inline-block mb-6">
-                <p className="font-bold">🎉 Book Now & Get 10% OFF!</p>
+              <div className="bg-[#FFC107] text-[#0B3C5D] px-4 py-2.5 rounded-lg inline-block mb-6">
+                <p className="font-bold text-sm md:text-base">🎉 Book Now & Get 10% OFF!</p>
               </div>
               
-              <h3 className="text-2xl text-[#0B3C5D] mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <h3 className="text-2xl md:text-3xl text-[#0B3C5D] mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Quick Booking Form
               </h3>
               
@@ -178,24 +611,24 @@ export default function App() {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800"
+                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
                 />
                 <input
                   type="tel"
                   placeholder="Mobile Number"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800"
+                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
                 />
                 <input
                   type="text"
                   placeholder="Pickup Location"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800"
+                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
                 />
                 <input
                   type="text"
                   placeholder="Drop Location"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800"
+                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
                 />
-                <select className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800">
+                <select className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base">
                   <option>Select Car Type</option>
                   <option>Hatchback</option>
                   <option>Sedan</option>
@@ -204,17 +637,17 @@ export default function App() {
                 </select>
                 <input
                   type="date"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800"
+                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
                 />
                 <button
                   type="button"
-                  className="w-full bg-[#FFC107] text-[#0B3C5D] py-4 rounded-lg font-bold text-lg hover:bg-[#FFD54F] transition-all hover:scale-105 shadow-lg"
+                  className="w-full bg-[#FFC107] text-[#0B3C5D] py-4 md:py-5 rounded-lg font-bold text-lg md:text-xl hover:bg-[#FFD54F] transition-all hover:scale-105 shadow-lg"
                 >
                   Book Your Cab Now →
                 </button>
               </form>
               
-              <p className="text-center text-gray-500 text-sm mt-4">
+              <p className="text-center text-gray-500 text-sm md:text-base mt-4">
                 ⚡ 45-Minute Guaranteed Confirmation
               </p>
             </motion.div>
@@ -225,20 +658,20 @@ export default function App() {
       {/* Stats Bar */}
       <section
         ref={statsRef}
-        className="bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] py-12"
+        className="bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] py-12 md:py-14"
       >
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center text-white">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Trophy className="h-12 w-12 mx-auto mb-3" />
-              <p className="text-4xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <Trophy className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {yearsCount}+
               </p>
-              <p>Years Experience</p>
+              <p className="text-base md:text-lg">Years Experience</p>
             </motion.div>
             
             <motion.div
@@ -247,11 +680,11 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Smile className="h-12 w-12 mx-auto mb-3" />
-              <p className="text-4xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <Smile className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {customersCount.toLocaleString()}+
               </p>
-              <p>Happy Customers</p>
+              <p className="text-base md:text-lg">Happy Customers</p>
             </motion.div>
             
             <motion.div
@@ -260,11 +693,11 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Car className="h-12 w-12 mx-auto mb-3" />
-              <p className="text-4xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <Car className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {vehiclesCount}+
               </p>
-              <p>Vehicles</p>
+              <p className="text-base md:text-lg">Vehicles</p>
             </motion.div>
             
             <motion.div
@@ -273,67 +706,67 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Globe className="h-12 w-12 mx-auto mb-3" />
-              <p className="text-4xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <Globe className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Pan-India
               </p>
-              <p>Service Coverage</p>
+              <p className="text-base md:text-lg">Service Coverage</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Why Choose <span className="text-[#FFC107]">RidePlus?</span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">
               Your Safety, Comfort & Satisfaction is Our Mission
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
-                icon: <Zap className="h-12 w-12" />,
+                icon: <Zap className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Hassle-Free Online Booking',
                 desc: 'Book your cab in just 2 minutes with our simple online system',
                 color: 'bg-gradient-to-br from-[#FFC107] to-[#FF6F00]',
               },
               {
-                icon: <Clock className="h-12 w-12" />,
+                icon: <Clock className="h-10 w-10 md:h-12 md:w-12" />,
                 title: '45-Minute Guaranteed Confirmation',
                 desc: 'Get instant confirmation within 45 minutes or your money back',
                 color: 'bg-gradient-to-br from-[#1ABC9C] to-[#16A085]',
               },
               {
-                icon: <DollarSign className="h-12 w-12" />,
+                icon: <DollarSign className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Transparent Pricing',
                 desc: 'No hidden charges. What you see is what you pay',
                 color: 'bg-gradient-to-br from-[#0B3C5D] to-[#1565C0]',
               },
               {
-                icon: <Users className="h-12 w-12" />,
+                icon: <Users className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Professional & Polite Drivers',
                 desc: 'Verified, trained, and experienced drivers for your safety',
                 color: 'bg-gradient-to-br from-[#FF6F00] to-[#E65100]',
               },
               {
-                icon: <Sparkles className="h-12 w-12" />,
+                icon: <Sparkles className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Clean & Sanitized Cars',
                 desc: 'Regular cleaning and sanitization after every ride',
                 color: 'bg-gradient-to-br from-[#8E24AA] to-[#6A1B9A]',
               },
               {
-                icon: <Phone className="h-12 w-12" />,
+                icon: <Phone className="h-10 w-10 md:h-12 md:w-12" />,
                 title: '24×7 Customer Support',
                 desc: 'Round-the-clock support for all your queries and emergencies',
                 color: 'bg-gradient-to-br from-[#D32F2F] to-[#C62828]',
@@ -346,15 +779,15 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer"
+                className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer"
               >
-                <div className={`${item.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                <div className={`${item.color} text-white w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
                   {item.icon}
                 </div>
-                <h3 className="text-xl mb-3 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3 className="text-lg md:text-xl lg:text-2xl mb-3 text-[#0B3C5D] leading-snug" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {item.title}
                 </h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <p className="text-base md:text-lg text-gray-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -362,26 +795,29 @@ export default function App() {
       </section>
 
       {/* Our Fleet */}
-      <section id="fleet" className="py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
+      <section id="fleet" className="py-16 md:py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Premium Fleet</span>
             </h2>
-            <p className="text-xl text-gray-600">Choose the Perfect Ride for Your Journey</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Choose the Perfect Ride for Your Journey</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
             {[
               {
                 name: 'Hatchback',
                 image: 'https://images.unsplash.com/photo-1671053390750-524f723898a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXRjaGJhY2slMjBjYXIlMjBjaXR5fGVufDF8fHx8MTc2NTY0NzI0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
                 seats: '4 Seater',
+                bags: '2 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.400/=',
                 price: '₹10/km',
                 color: 'bg-[#FFC107]',
               },
@@ -389,20 +825,29 @@ export default function App() {
                 name: 'Sedan',
                 image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
                 seats: '4 Seater',
+                bags: '3 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
                 price: '₹12/km',
                 color: 'bg-[#1ABC9C]',
               },
               {
                 name: 'SUV',
                 image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '6-7 Seater',
+                seats: '6-7 Passengers',
+                bags: '4 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
                 price: '₹16/km',
                 color: 'bg-[#0B3C5D]',
               },
               {
                 name: 'Tempo Traveller',
                 image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '12-17 Seater',
+                seats: '12-17 Passengers',
+                bags: '8 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
                 price: '₹25/km',
                 color: 'bg-[#FF6F00]',
               },
@@ -410,6 +855,9 @@ export default function App() {
                 name: 'Luxury Cars',
                 image: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
                 seats: '4 Seater',
+                bags: '4 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
                 price: '₹30/km',
                 color: 'bg-[#8E24AA]',
               },
@@ -423,21 +871,45 @@ export default function App() {
                 whileHover={{ scale: 1.05 }}
                 className="bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer group"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-44 md:h-48 overflow-hidden">
                   <ImageWithFallback
                     src={vehicle.image}
                     alt={vehicle.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl mb-2 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <div className="p-5 md:p-6">
+                  <h3 className="text-lg md:text-xl lg:text-2xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     {vehicle.name}
                   </h3>
-                  <p className="text-gray-600 mb-2">{vehicle.seats}</p>
-                  <p className="text-2xl text-[#FFC107] mb-4">{vehicle.price}</p>
+                  
+                  {/* Specifications with red checkmarks */}
+                  <div className="space-y-2 mb-4 text-sm md:text-base text-gray-700">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                      <span className="leading-snug">{vehicle.seats}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                      <span className="leading-snug">{vehicle.bags}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                      <span className="leading-snug">{vehicle.running} Minimum Running</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                      <span className="leading-snug">Driver Allowance {vehicle.allowance}</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 md:h-5 md:w-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                      <span className="leading-snug">Toll, State Tax & Parking Extra</span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-2xl md:text-3xl text-[#FFC107] mb-4">{vehicle.price}</p>
                   <button
-                    className={`w-full ${vehicle.color} text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all transform group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100`}
+                    className={`w-full ${vehicle.color} text-white py-3 md:py-3.5 rounded-lg font-semibold text-base hover:opacity-90 transition-all transform group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100`}
                   >
                     Book Now
                   </button>
@@ -449,54 +921,54 @@ export default function App() {
       </section>
 
       {/* Our Services */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Services</span>
             </h2>
-            <p className="text-xl text-gray-600">Comprehensive Taxi & Rental Solutions</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Comprehensive Taxi & Rental Solutions</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
-                icon: <MapPin className="h-12 w-12" />,
+                icon: <MapPin className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Local Taxi Service',
                 desc: 'City tours, shopping, meetings, and local transportation',
                 gradient: 'from-[#FFC107] to-[#FF6F00]',
               },
               {
-                icon: <Navigation className="h-12 w-12" />,
+                icon: <Navigation className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'One-Way Taxi Service',
                 desc: 'Travel without worrying about return fare. Pay only one way',
                 gradient: 'from-[#1ABC9C] to-[#16A085]',
               },
               {
-                icon: <Car className="h-12 w-12" />,
+                icon: <Car className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Airport Taxi Service',
                 desc: 'Timely pickup & drop from all major airports',
                 gradient: 'from-[#0B3C5D] to-[#1565C0]',
               },
               {
-                icon: <Users className="h-12 w-12" />,
+                icon: <Users className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Corporate Taxi Service',
                 desc: 'Professional transportation for businesses and executives',
                 gradient: 'from-[#8E24AA] to-[#6A1B9A]',
               },
               {
-                icon: <Globe className="h-12 w-12" />,
+                icon: <Globe className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Outstation Taxi Service',
                 desc: 'Long-distance travel with comfortable and safe rides',
                 gradient: 'from-[#FF6F00] to-[#E65100]',
               },
               {
-                icon: <Heart className="h-12 w-12" />,
+                icon: <Heart className="h-10 w-10 md:h-12 md:w-12" />,
                 title: 'Wedding & Events',
                 desc: 'Special packages for weddings and celebrations',
                 gradient: 'from-[#D32F2F] to-[#C62828]',
@@ -509,16 +981,16 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer overflow-hidden group"
+                className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-6 md:p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer overflow-hidden group"
               >
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500`}></div>
-                <div className={`bg-gradient-to-br ${service.gradient} text-white w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                <div className={`bg-gradient-to-br ${service.gradient} text-white w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
                   {service.icon}
                 </div>
-                <h3 className="text-xl mb-3 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3 className="text-lg md:text-xl lg:text-2xl mb-3 text-[#0B3C5D] leading-snug" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {service.title}
                 </h3>
-                <p className="text-gray-600">{service.desc}</p>
+                <p className="text-base md:text-lg text-gray-600 leading-relaxed">{service.desc}</p>
                 <ChevronRight className="absolute bottom-4 right-4 h-6 w-6 text-[#FFC107] opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             ))}
@@ -527,69 +999,84 @@ export default function App() {
       </section>
 
       {/* Tour Packages */}
-      <section id="packages" className="py-20 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
+      <section id="packages" className="py-16 md:py-20 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Popular <span className="text-[#FFC107]">Tour Packages</span>
             </h2>
-            <p className="text-xl text-gray-200">Explore India with Our Curated Travel Packages</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200">Explore India with Our Curated Travel Packages</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
-                name: 'Delhi–Agra One Day Tour',
-                image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                key: 'delhiAgra',
+                name: 'Delhi Agra One Day Tour',
+                image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '1 Day',
                 price: '₹4,999',
                 badge: 'Best Seller',
                 badgeColor: 'bg-[#FF6F00]',
               },
               {
+                key: 'mathuraVrindavan',
                 name: 'Delhi–Mathura–Vrindavan',
-                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                duration: '2 Days',
-                price: '₹6,999',
+                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                duration: '1-2 Days',
+                price: '₹4,999',
                 badge: 'Popular',
                 badgeColor: 'bg-[#1ABC9C]',
               },
               {
+                key: 'goldenTriangle',
                 name: 'Golden Triangle (5N 6D)',
-                image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '6 Days',
                 price: '₹29,999',
                 badge: 'Trending',
                 badgeColor: 'bg-[#FFC107]',
               },
               {
+                key: 'delhiManali',
                 name: 'Delhi–Manali (3N 4D)',
-                image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '4 Days',
                 price: '₹18,999',
                 badge: 'Family Special',
                 badgeColor: 'bg-[#8E24AA]',
               },
               {
+                key: 'chardham',
                 name: 'Chardham Yatra',
-                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '10 Days',
                 price: '₹49,999',
                 badge: 'Sacred Journey',
                 badgeColor: 'bg-[#FF6F00]',
               },
               {
-                name: 'Rajasthan Heritage Tour',
-                image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                duration: '7 Days',
-                price: '₹35,999',
-                badge: 'Luxury',
+                key: 'delhiHaridwar',
+                name: 'Delhi to Haridwar Same Day',
+                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                duration: '1 Day',
+                price: '₹6,999',
+                badge: 'Spiritual',
                 badgeColor: 'bg-[#D32F2F]',
+              },
+              {
+                key: 'agraLocal',
+                name: 'Agra Local Taxi Service',
+                image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                duration: 'Full Day',
+                price: '₹2,999',
+                badge: 'Local Favorite',
+                badgeColor: 'bg-[#1ABC9C]',
               },
             ].map((pkg, index) => (
               <motion.div
@@ -601,7 +1088,7 @@ export default function App() {
                 whileHover={{ y: -10, scale: 1.02 }}
                 className="bg-white text-gray-800 rounded-2xl shadow-2xl overflow-hidden cursor-pointer group"
               >
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-48 md:h-56 overflow-hidden">
                   <ImageWithFallback
                     src={pkg.image}
                     alt={pkg.name}
@@ -611,22 +1098,25 @@ export default function App() {
                     {pkg.badge}
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <p className="text-white text-sm">
+                    <p className="text-white text-sm md:text-base">
                       <Calendar className="inline h-4 w-4 mr-1" />
                       {pkg.duration}
                     </p>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <div className="p-5 md:p-6">
+                  <h3 className="text-lg md:text-xl lg:text-2xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     {pkg.name}
                   </h3>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-gray-500 text-sm">Starting from</p>
-                      <p className="text-3xl text-[#FFC107]">{pkg.price}</p>
+                      <p className="text-gray-500 text-sm md:text-base">Starting from</p>
+                      <p className="text-2xl md:text-3xl text-[#FFC107]">{pkg.price}</p>
                     </div>
-                    <button className="bg-[#0B3C5D] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1565C0] transition-all">
+                    <button 
+                      onClick={() => setSelectedPackage(pkg.key as keyof typeof packagesData)}
+                      className="bg-[#0B3C5D] text-white px-5 md:px-6 py-3 md:py-3.5 rounded-lg font-semibold hover:bg-[#1565C0] transition-all text-sm md:text-base whitespace-nowrap"
+                    >
                       View Details
                     </button>
                   </div>
@@ -638,21 +1128,21 @@ export default function App() {
       </section>
 
       {/* Service Locations */}
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Service Locations</span>
             </h2>
-            <p className="text-xl text-gray-600">Serving Across Major Cities in India</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Serving Across Major Cities in India</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
             {[
               { name: 'Agra', icon: '🕌' },
               { name: 'Delhi', icon: '🏛️' },
@@ -674,10 +1164,10 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.1, backgroundColor: '#FFC107' }}
-                className="bg-gradient-to-br from-[#FFFDF8] to-white border-2 border-[#FFC107] rounded-xl p-6 text-center cursor-pointer transition-all hover:shadow-xl"
+                className="bg-gradient-to-br from-[#FFFDF8] to-white border-2 border-[#FFC107] rounded-xl p-5 md:p-6 text-center cursor-pointer transition-all hover:shadow-xl"
               >
-                <div className="text-4xl mb-2">{location.icon}</div>
-                <p className="text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <div className="text-3xl md:text-4xl mb-2">{location.icon}</div>
+                <p className="text-sm md:text-base lg:text-lg text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {location.name}
                 </p>
               </motion.div>
@@ -687,21 +1177,21 @@ export default function App() {
       </section>
 
       {/* Customer Reviews */}
-      <section className="py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               What Our <span className="text-[#FFC107]">Customers Say</span>
             </h2>
-            <p className="text-xl text-gray-600">Real Stories from Real Travelers</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Real Stories from Real Travelers</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 name: 'Rajesh Kumar',
@@ -753,23 +1243,23 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all"
+                className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all"
               >
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-[#FFC107] text-[#FFC107]" />
+                    <Star key={i} className="h-5 w-5 md:h-6 md:w-6 fill-[#FFC107] text-[#FFC107]" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-6 italic">"{review.review}"</p>
+                <p className="text-base md:text-lg text-gray-700 mb-6 italic leading-relaxed">"{review.review}"</p>
                 <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-full ${review.color} flex items-center justify-center text-white text-xl`}>
+                  <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full ${review.color} flex items-center justify-center text-white text-xl md:text-2xl`}>
                     {review.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <p className="text-base md:text-lg text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       {review.name}
                     </p>
-                    <p className="text-sm text-gray-500">{review.type}</p>
+                    <p className="text-sm md:text-base text-gray-500">{review.type}</p>
                   </div>
                 </div>
               </motion.div>
@@ -779,146 +1269,129 @@ export default function App() {
       </section>
 
       {/* We Are Trusted By */}
-      <section className="py-20 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               We Are <span className="text-[#FFC107]">Trusted By</span>
             </h2>
-            <p className="text-xl text-gray-200">Our Prestigious Associations & Clientele</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200">Our Prestigious Associations & Clientele</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               {
-                icon: <Camera className="h-16 w-16" />,
+                key: 'cidShoot',
+                icon: <Camera className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'CID TV Show Shoot',
                 desc: 'Official transport partner for CID TV production',
                 gradient: 'from-[#FFC107] to-[#FF6F00]',
               },
               {
-                icon: <Heart className="h-16 w-16" />,
+                key: 'weddings',
+                icon: <Heart className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'Wedding Events',
                 desc: 'Over 1000+ weddings with seamless coordination',
                 gradient: 'from-[#FF6F00] to-[#E65100]',
               },
               {
-                icon: <Film className="h-16 w-16" />,
+                key: 'filmShoots',
+                icon: <Film className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'Film & Media Shoots',
                 desc: 'Trusted by Bollywood and regional film productions',
                 gradient: 'from-[#8E24AA] to-[#6A1B9A]',
               },
               {
-                icon: <Bus className="h-16 w-16" />,
+                key: 'political',
+                icon: <Bus className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'Political Rally Transport',
                 desc: 'Convoy management for political events & rallies',
                 gradient: 'from-[#1ABC9C] to-[#16A085]',
               },
               {
-                icon: <Users className="h-16 w-16" />,
+                key: 'yatra',
+                icon: <Users className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'Religious Yatra Groups',
                 desc: 'Chardham, Amarnath, Vaishno Devi pilgrimages',
                 gradient: 'from-[#D32F2F] to-[#C62828]',
               },
               {
-                icon: <HeartHandshake className="h-16 w-16" />,
+                key: 'corporate',
+                icon: <HeartHandshake className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'Corporate Events',
                 desc: 'Executive transport for Fortune 500 companies',
                 gradient: 'from-[#0B3C5D] to-[#1565C0]',
               },
               {
-                icon: <Award className="h-16 w-16" />,
+                key: 'familyTours',
+                icon: <Award className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'Family Tours',
                 desc: 'Thousands of happy families across India',
                 gradient: 'from-[#FF6F00] to-[#FFC107]',
               },
               {
-                icon: <Globe className="h-16 w-16" />,
+                key: 'international',
+                icon: <Globe className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
                 title: 'International Tourists',
                 desc: 'Guided tours for tourists from 50+ countries',
                 gradient: 'from-[#1ABC9C] to-[#16A085]',
               },
             ].map((association, index) => (
-              <motion.div
+              <motion.button
                 key={index}
+                onClick={() => setSelectedGallery(association.key as keyof typeof galleryData)}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-white/20 hover:border-[#FFC107] transition-all cursor-pointer"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-white/20 hover:border-[#FFC107] transition-all cursor-pointer text-left"
               >
-                <div className={`bg-gradient-to-br ${association.gradient} w-24 h-24 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-2xl`}>
+                <div className={`bg-gradient-to-br ${association.gradient} w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-2xl`}>
                   {association.icon}
                 </div>
-                <h3 className="text-xl mb-3 text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3 className="text-lg md:text-xl lg:text-2xl mb-3 text-center leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {association.title}
                 </h3>
-                <p className="text-gray-200 text-center text-sm">{association.desc}</p>
-              </motion.div>
+                <p className="text-gray-200 text-center text-sm md:text-base leading-relaxed">{association.desc}</p>
+                <p className="text-[#FFC107] text-center text-sm mt-4">Click to view gallery →</p>
+              </motion.button>
             ))}
           </div>
         </div>
       </section>
 
       {/* Gallery & Memories */}
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-5xl mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our Journey & <span className="text-[#FFC107]">Travel Memories</span>
             </h2>
-            <p className="text-xl text-gray-600">Capturing Beautiful Moments with Our Customers</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Capturing Beautiful Moments with Our Customers</p>
           </motion.div>
 
-          <Masonry columnsCount={3} gutter="20px">
+          <Masonry columnsCount={window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3} gutter="20px">
             {[
-              {
-                image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Taj Mahal Tour',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Manali Adventure',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1634351357279-c22fe1889467?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmYW1pbHklMjB0cmF2ZWx8ZW58MXx8fHwxNzY1NjQ3MjQyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Family Trip',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Jaipur Heritage',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Mountain Road Trip',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Temple Pilgrimage',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Delhi Exploration',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'Luxury Fleet',
-              },
-              {
-                image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                title: 'SUV Collection',
-              },
+              { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
+              { image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Manali Adventure' },
+              { image: 'https://images.unsplash.com/photo-1634351357279-c22fe1889467?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmYW1pbHklMjB0cmF2ZWx8ZW58MXx8fHwxNzY1NjQ3MjQyfDA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Family Trip' },
+              { image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Jaipur Heritage' },
+              { image: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Mountain Road Trip' },
+              { image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Temple Pilgrimage' },
+              { image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Delhi Exploration' },
+              { image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080', title: 'Luxury Fleet' },
+              { image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080', title: 'SUV Collection' },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -935,11 +1408,11 @@ export default function App() {
                   className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-white text-xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <p className="text-white text-lg md:text-xl lg:text-2xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       {item.title}
                     </p>
-                    <p className="text-[#FFC107] text-sm">View Journey →</p>
+                    <p className="text-[#FFC107] text-sm md:text-base">View Journey →</p>
                   </div>
                 </div>
               </motion.div>
@@ -949,70 +1422,70 @@ export default function App() {
       </section>
 
       {/* About Us */}
-      <section className="py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-5xl mb-6 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Our <span className="text-[#FFC107]">Story</span>
               </h2>
               
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="bg-[#FFC107] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <Trophy className="h-6 w-6 text-white" />
+                  <div className="bg-[#FFC107] rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center flex-shrink-0">
+                    <Trophy className="h-6 w-6 md:h-7 md:w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl mb-2 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <h3 className="text-lg md:text-xl lg:text-2xl mb-2 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Established in 2000
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       Started with just 3 vehicles, now operating a fleet of 100+ premium cars across India.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="bg-[#1ABC9C] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-6 w-6 text-white" />
+                  <div className="bg-[#1ABC9C] rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center flex-shrink-0">
+                    <Shield className="h-6 w-6 md:h-7 md:w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl mb-2 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <h3 className="text-lg md:text-xl lg:text-2xl mb-2 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Safe & Reliable
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       All drivers undergo rigorous background checks and training. GPS tracking and 24/7 monitoring for your safety.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="bg-[#0B3C5D] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <Users className="h-6 w-6 text-white" />
+                  <div className="bg-[#0B3C5D] rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center flex-shrink-0">
+                    <Users className="h-6 w-6 md:h-7 md:w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl mb-2 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <h3 className="text-lg md:text-xl lg:text-2xl mb-2 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Corporate & VIP Services
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       Trusted by government officials, celebrities, and major corporations for executive transportation.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="bg-[#FF6F00] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <Globe className="h-6 w-6 text-white" />
+                  <div className="bg-[#FF6F00] rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center flex-shrink-0">
+                    <Globe className="h-6 w-6 md:h-7 md:w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl mb-2 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <h3 className="text-lg md:text-xl lg:text-2xl mb-2 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Nationwide Coverage
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                       From Kashmir to Kanyakumari, we provide seamless travel solutions across India.
                     </p>
                   </div>
@@ -1028,24 +1501,24 @@ export default function App() {
             >
               <div className="grid grid-cols-2 gap-4">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080"
                   alt="Our Fleet"
-                  className="rounded-2xl shadow-lg h-48 w-full object-cover"
+                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover"
                 />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080"
                   alt="Premium Cars"
-                  className="rounded-2xl shadow-lg h-48 w-full object-cover mt-8"
+                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover mt-8"
                 />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
                   alt="SUV Collection"
-                  className="rounded-2xl shadow-lg h-48 w-full object-cover -mt-8"
+                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover -mt-8"
                 />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080"
                   alt="Luxury Cars"
-                  className="rounded-2xl shadow-lg h-48 w-full object-cover"
+                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover"
                 />
               </div>
             </motion.div>
@@ -1054,26 +1527,26 @@ export default function App() {
       </section>
 
       {/* Final CTA */}
-      <section id="contact" className="py-20 bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] text-white">
+      <section id="contact" className="py-16 md:py-20 bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Looking for a Reliable Cab?
             </h2>
-            <p className="text-2xl mb-12">
+            <p className="text-xl sm:text-2xl md:text-3xl mb-12">
               Book Now & Travel <span className="font-bold">Stress-Free!</span>
             </p>
 
-            <div className="flex flex-wrap gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center">
               <motion.a
                 href="tel:+919319507736"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#0B3C5D] px-8 py-4 rounded-full font-bold text-lg shadow-2xl flex items-center gap-3 hover:bg-gray-100 transition-all"
+                className="bg-white text-[#0B3C5D] px-6 md:px-8 py-4 md:py-5 rounded-full font-bold text-base md:text-lg shadow-2xl flex items-center justify-center gap-3 hover:bg-gray-100 transition-all"
               >
                 <Phone className="h-6 w-6" />
                 Call Now: +91 9319507736
@@ -1085,7 +1558,7 @@ export default function App() {
                 whileTap={{ scale: 0.95 }}
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl flex items-center gap-3 hover:bg-[#20BA5A] transition-all"
+                className="bg-[#25D366] text-white px-6 md:px-8 py-4 md:py-5 rounded-full font-bold text-base md:text-lg shadow-2xl flex items-center justify-center gap-3 hover:bg-[#20BA5A] transition-all"
               >
                 <MessageCircle className="h-6 w-6" />
                 Book Now
@@ -1114,20 +1587,20 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0B3C5D] text-white py-16">
+      <footer className="bg-[#0B3C5D] text-white py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
             {/* Company Info */}
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-[#FFC107] p-2 rounded-lg">
-                  <Car className="h-8 w-8 text-[#0B3C5D]" />
+                  <Car className="h-7 w-7 md:h-8 md:w-8 text-[#0B3C5D]" />
                 </div>
                 <h3 className="text-3xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h3>
               </div>
-              <p className="text-gray-300 mb-6">
+              <p className="text-sm md:text-base text-gray-300 mb-6 leading-relaxed">
                 Your trusted partner for safe, reliable, and comfortable travel across India since 2000.
               </p>
               <div className="flex gap-4">
@@ -1148,10 +1621,10 @@ export default function App() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-xl mb-6 text-[#FFC107]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <h4 className="text-lg md:text-xl mb-6 text-[#FFC107]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Quick Links
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-sm md:text-base">
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">About Us</a></li>
                 <li><a href="#services" className="text-gray-300 hover:text-[#FFC107] transition-colors">Our Services</a></li>
                 <li><a href="#fleet" className="text-gray-300 hover:text-[#FFC107] transition-colors">Our Fleet</a></li>
@@ -1162,10 +1635,10 @@ export default function App() {
 
             {/* Services */}
             <div>
-              <h4 className="text-xl mb-6 text-[#FFC107]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <h4 className="text-lg md:text-xl mb-6 text-[#FFC107]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Our Services
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-sm md:text-base">
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Local Taxi</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Outstation Cab</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Airport Transfer</a></li>
@@ -1177,10 +1650,10 @@ export default function App() {
 
             {/* Popular Locations */}
             <div>
-              <h4 className="text-xl mb-6 text-[#FFC107]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <h4 className="text-lg md:text-xl mb-6 text-[#FFC107]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Popular Locations
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-sm md:text-base">
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Delhi</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Agra</a></li>
                 <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Jaipur</a></li>
@@ -1192,11 +1665,11 @@ export default function App() {
           </div>
 
           <div className="border-t border-white/20 pt-8">
-            <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm md:text-base">
               <p className="text-gray-300">
                 © 2026 SuryaTravels Travels. All Rights Reserved.
               </p>
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-6 justify-center">
                 <a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Privacy Policy</a>
                 <a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Terms & Conditions</a>
                 <a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Cancellation Policy</a>
