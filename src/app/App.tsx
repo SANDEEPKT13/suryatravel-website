@@ -1070,17 +1070,17 @@ export default function App() {
 
             <div className="flex flex-wrap gap-6 justify-center">
               <motion.a
-                href="tel:+919999999999"
+                href="tel:+919319507736"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-[#0B3C5D] px-8 py-4 rounded-full font-bold text-lg shadow-2xl flex items-center gap-3 hover:bg-gray-100 transition-all"
               >
                 <Phone className="h-6 w-6" />
-                Call Now: +91 99999 99999
+                Call Now: +91 9319507736
               </motion.a>
 
               <motion.a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/9319507736"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{ scale: [1, 1.05, 1] }}
@@ -1088,35 +1088,25 @@ export default function App() {
                 className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl flex items-center gap-3 hover:bg-[#20BA5A] transition-all"
               >
                 <MessageCircle className="h-6 w-6" />
-                WhatsApp Booking
-              </motion.a>
-
-              <motion.a
-                href="mailto:info@rideplustravels.com"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#0B3C5D] text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl flex items-center gap-3 hover:bg-[#1565C0] transition-all"
-              >
-                <Mail className="h-6 w-6" />
-                Instant Enquiry
+                Book Now
               </motion.a>
             </div>
 
             <div className="mt-12 flex flex-wrap gap-8 justify-center text-left">
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border-2 border-white/20">
                 <Phone className="h-8 w-8 mb-3" />
-                <p className="text-sm">24/7 Helpline</p>
-                <p className="text-xl">+91 99999 99999</p>
+                <p className="text-md">24/7 Helpline</p>
+                <p className="text-xl">+91 8534067086</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border-2 border-white/20">
                 <Mail className="h-8 w-8 mb-3" />
-                <p className="text-sm">Email Us</p>
-                <p className="text-xl">info@rideplustravels.com</p>
+                <p className="text-md">Email Us</p>
+                <p className="text-xl">suryatravels_dk@rediffmail.com</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border-2 border-white/20">
                 <MapPin className="h-8 w-8 mb-3" />
-                <p className="text-sm">Head Office</p>
-                <p className="text-xl">Delhi, India</p>
+                <p className="text-md">Head Office</p>
+                <p className="text-xl">Minto Rd Shahid Nagar,Vibhav Nagar,Tajganj, Agra-282001</p>
               </div>
             </div>
           </motion.div>
@@ -1133,22 +1123,22 @@ export default function App() {
                 <div className="bg-[#FFC107] p-2 rounded-lg">
                   <Car className="h-8 w-8 text-[#0B3C5D]" />
                 </div>
-                <h3 className="text-2xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  RidePlus Travels
+                <h3 className="text-3xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  Surya Travels
                 </h3>
               </div>
               <p className="text-gray-300 mb-6">
                 Your trusted partner for safe, reliable, and comfortable travel across India since 2000.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
+                <a href="https://www.facebook.com/profile.php?id=61581724743306" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
+                <a href="https://www.instagram.com/surya_travels__/?fbclid=IwY2xjawOrkExleHRuA2FlbQIxMABicmlkETA2c00wcWdCMmxJWWFlTWlYc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtlCnCvqTP2CpmsvdukJ069CiqrbbBby8TOBqxEYpVKU-fWXjAOOkPrRAlQS_aem_Cx1amo2rQoBAtOrSPDxh-g&brid=2tcnUJa9pAUyUIte3NMZ8A#" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
-                  <Twitter className="h-5 w-5" />
+                <a href="suryatravelsd.k24@gmail.com" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
+                  <Mail className="h-5 w-5" />
                 </a>
                 <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
                   <Youtube className="h-5 w-5" />
@@ -1167,7 +1157,6 @@ export default function App() {
                 <li><a href="#fleet" className="text-gray-300 hover:text-[#FFC107] transition-colors">Our Fleet</a></li>
                 <li><a href="#packages" className="text-gray-300 hover:text-[#FFC107] transition-colors">Tour Packages</a></li>
                 <li><a href="#contact" className="text-gray-300 hover:text-[#FFC107] transition-colors">Contact Us</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Careers</a></li>
               </ul>
             </div>
 
@@ -1205,7 +1194,7 @@ export default function App() {
           <div className="border-t border-white/20 pt-8">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <p className="text-gray-300">
-                © 2024 RidePlus Travels. All Rights Reserved.
+                © 2026 SuryaTravels Travels. All Rights Reserved.
               </p>
               <div className="flex gap-6">
                 <a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Privacy Policy</a>
