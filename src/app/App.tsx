@@ -44,12 +44,12 @@ const packagesData = {
     name: 'Agra Local Taxi Service',
     image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: 'Full Day',
-    price: '₹2,999',
+    price: '₹1,600-2,200',
     overview: 'Explore the magnificent city of Agra with our comfortable local taxi service. Visit the iconic Taj Mahal, Agra Fort, and other historical monuments with ease. Our experienced drivers know the best routes and timings to avoid crowds and make your Agra experience memorable.',
     carTypes: [
-      { name: 'Sedan', price: '₹2,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹3,999', seats: '6-7 Passengers' },
-      { name: 'Luxury Car', price: '₹5,999', seats: '4 Passengers' },
+      { name: 'Sedan', price: '₹------', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹-------', seats: '6-7 Passengers' },
+      { name: 'MUV', price: '------', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'Full Day Service (8 Hours)', detail: 'Included' },
@@ -79,12 +79,12 @@ const packagesData = {
     name: 'Delhi to Mathura Vrindavan Same Day Tour',
     image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '1 Day',
-    price: '₹4,999',
+    price: '₹5,499',
     overview: 'Experience divine spirituality with our same-day tour from Delhi to Mathura and Vrindavan. Visit the holy birthplace of Lord Krishna and explore the numerous beautiful temples. This spiritual journey is perfect for families and devotees seeking blessings.',
     carTypes: [
-      { name: 'Sedan', price: '₹4,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹6,499', seats: '6-7 Passengers' },
-      { name: 'Tempo Traveller', price: '₹9,999', seats: '12 Passengers' },
+      { name: 'A/C SEDAN', price: '₹5,499', seats: '4 Passengers' },
+      { name: 'A/C MUV'  , price: '₹6,499', seats: '6-7 Passengers' },
+      { name: 'A/C SUV'  , price: '₹7,999', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'Round Trip from Delhi', detail: 'Included' },
@@ -114,12 +114,12 @@ const packagesData = {
     name: 'Delhi Agra One Day Tour',
     image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '1 Day',
-    price: '₹4,999',
+    price: '₹5,499',
     overview: 'The most popular same-day tour from Delhi to Agra! Witness the breathtaking beauty of the Taj Mahal, one of the Seven Wonders of the World. This tour includes comfortable transportation, experienced guides, and ample time to explore Agra\'s UNESCO World Heritage Sites.',
     carTypes: [
-      { name: 'Sedan', price: '₹4,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹6,499', seats: '6-7 Passengers' },
-      { name: 'Tempo Traveller', price: '₹10,999', seats: '12-17 Passengers' },
+      { name: 'Sedan', price: '₹5,499', seats: '4 Passengers' },
+      { name: 'Innova/ Marazzo', price: '₹8,499', seats: '6-7 Passengers' },
+      { name: 'Innova Crysta', price: '₹9,499', seats: '6-7 Passengers' },
     ],
     pricing: [
       { item: 'Delhi to Agra Round Trip', detail: '420 Km' },
@@ -149,12 +149,12 @@ const packagesData = {
     name: 'Golden Triangle Tour (5 Nights / 6 Days)',
     image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '6 Days',
-    price: '₹29,999',
+    price: '₹19,599',
     overview: 'Experience the essence of India with our comprehensive Golden Triangle Tour covering Delhi, Agra, and Jaipur. This 6-day journey takes you through India\'s rich cultural heritage, magnificent monuments, colorful markets, and royal palaces. Perfect for first-time visitors to India!',
     carTypes: [
-      { name: 'Sedan', price: '₹29,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹39,999', seats: '6-7 Passengers' },
-      { name: 'Luxury Car', price: '₹59,999', seats: '4 Passengers' },
+      { name: 'A/C SEDAN', price: '₹19,599', seats: '4 Passengers' },
+      { name: 'A/C MUV'  , price: '₹21,599', seats: '6 Passengers' },
+      { name: 'A/C SUV'  , price: '₹24,599', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation', detail: 'AC Vehicle for 6 Days' },
@@ -184,12 +184,12 @@ const packagesData = {
     name: 'Delhi to Haridwar Same Day Trip by Taxi',
     image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '1 Day',
-    price: '₹6,999',
+    price: '₹5,499',
     overview: 'Take a spiritual journey from Delhi to Haridwar, one of the seven holiest places in Hinduism. Experience the sacred Ganga Aarti at Har Ki Pauri, take a holy dip in the Ganges, and seek blessings at ancient temples. This same-day tour offers a perfect spiritual escape from city life.',
     carTypes: [
-      { name: 'Sedan', price: '₹6,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹8,999', seats: '6-7 Passengers' },
-      { name: 'Tempo Traveller', price: '₹14,999', seats: '12 Passengers' },
+      { name: 'A/C SEDAN', price: '₹5,499', seats: '4 Passengers' },
+      { name: 'A/C MUV'  , price: '₹7,499', seats: '6-7 Passengers' },
+      { name: 'A/C SUV'  , price: '₹8,999', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'Round Trip from Delhi', detail: '440 Km' },
@@ -219,12 +219,12 @@ const packagesData = {
     name: 'Delhi to Manali Tour Package (3 Nights / 4 Days)',
     image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '4 Days',
-    price: '₹18,999',
+    price: '₹------',
     overview: 'Escape to the mountains with our Manali tour package! Experience the breathtaking beauty of Himachal Pradesh, enjoy adventure activities, visit ancient temples, and relax in the lap of nature. Perfect for families, couples, and adventure enthusiasts.',
     carTypes: [
-      { name: 'Sedan', price: '₹18,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹24,999', seats: '6-7 Passengers' },
-      { name: 'Tempo Traveller', price: '₹35,999', seats: '12 Passengers' },
+      { name: 'Sedan', price: '₹------', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹-------', seats: '6-7 Passengers' },
+      { name: 'MUV', price: '------', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation (4 Days)', detail: 'AC Vehicle' },
@@ -259,7 +259,7 @@ const packagesData = {
     carTypes: [
       { name: 'Sedan', price: '₹49,999', seats: '4 Passengers' },
       { name: 'SUV', price: '₹64,999', seats: '6-7 Passengers' },
-      { name: 'Tempo Traveller', price: '₹89,999', seats: '12 Passengers' },
+      { name: 'MUV', price: '₹89,999', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation (10 Days)', detail: 'AC Vehicle' },
@@ -468,9 +468,9 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const yearsCount = useCounter(20, 2000, statsInView);
-  const customersCount = useCounter(50000, 2000, statsInView);
-  const vehiclesCount = useCounter(100, 2000, statsInView);
+  const yearsCount = useCounter(15, 2000, statsInView);
+  const customersCount = useCounter(10000, 2000, statsInView);
+  const vehiclesCount = useCounter(25, 2000, statsInView);
 
   return (
     <div className="min-h-screen bg-[#FFFDF8]">
@@ -501,7 +501,7 @@ export default function App() {
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  RidePlus Travels
+                  Surya Travels
                 </h1>
                 <p className="text-xs text-[#FFC107] hidden sm:block">Your Journey, Our Priority</p>
               </div>
@@ -570,10 +570,10 @@ export default function App() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                Trusted Taxi & Car Rental Services <span className="text-[#FFC107]">Across India</span>
+                Surya Travels - Taxi Service in Tajganj,<br></br> <span className="text-[#FFC107]">Agra</span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                15+ Years | Professional Drivers | Safe & Affordable
+                15+ Years | Safe & Affordable |🚗 Best Cars & Luxury Buses 👨‍✈️ Experienced Drivers (15+ Years) |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking | Owner Name: D.K. SHARMA
               </p>
               
               <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
@@ -630,10 +630,11 @@ export default function App() {
                 />
                 <select className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base">
                   <option>Select Car Type</option>
-                  <option>Hatchback</option>
+                  <option>Dzire</option>
                   <option>Sedan</option>
-                  <option>SUV</option>
-                  <option>Luxury</option>
+                  <option>Ertiga</option>
+                  <option>Kia Carens</option>
+                  <option>Innova Crysta</option>
                 </select>
                 <input
                   type="date"
@@ -744,7 +745,7 @@ export default function App() {
               {
                 icon: <Clock className="h-10 w-10 md:h-12 md:w-12" />,
                 title: '45-Minute Guaranteed Confirmation',
-                desc: 'Get instant confirmation within 45 minutes or your money back',
+                desc: 'Get instant confirmation within 45 minutes ',
                 color: 'bg-gradient-to-br from-[#1ABC9C] to-[#16A085]',
               },
               {
@@ -767,7 +768,7 @@ export default function App() {
               },
               {
                 icon: <Phone className="h-10 w-10 md:h-12 md:w-12" />,
-                title: '24×7 Customer Support',
+                title: 'On Call Customer Support',
                 desc: 'Round-the-clock support for all your queries and emergencies',
                 color: 'bg-gradient-to-br from-[#D32F2F] to-[#C62828]',
               },
@@ -812,53 +813,53 @@ export default function App() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
             {[
               {
-                name: 'Hatchback',
+                name: 'Dzire',
                 image: 'https://images.unsplash.com/photo-1671053390750-524f723898a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXRjaGJhY2slMjBjYXIlMjBjaXR5fGVufDF8fHx8MTc2NTY0NzI0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
                 seats: '4 Seater',
-                bags: '2 Bags',
+                bags: '4 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.400/=',
-                price: '₹10/km',
+                allowance: 'Rs.500/=',
+                price: '₹11/km',
                 color: 'bg-[#FFC107]',
               },
               {
                 name: 'Sedan',
                 image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
                 seats: '4 Seater',
-                bags: '3 Bags',
+                bags: '4 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
                 price: '₹12/km',
                 color: 'bg-[#1ABC9C]',
               },
               {
-                name: 'SUV',
+                name: 'Ertiga',
                 image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
                 seats: '6-7 Passengers',
-                bags: '4 Bags',
+                bags: '5 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
                 price: '₹16/km',
                 color: 'bg-[#0B3C5D]',
               },
               {
-                name: 'Tempo Traveller',
+                name: 'Kia Carens',
                 image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '12-17 Passengers',
-                bags: '8 Bags',
+                seats: '6 Passengers',
+                bags: '5 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹25/km',
+                price: '₹15/km',
                 color: 'bg-[#FF6F00]',
               },
               {
-                name: 'Luxury Cars',
+                name: 'Innova Crysta',
                 image: 'https://images.unsplash.com/photo-1619026006598-48adcab69152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-                seats: '4 Seater',
+                seats: '6-7 Seater',
                 bags: '4 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹30/km',
+                price: '₹18/km',
                 color: 'bg-[#8E24AA]',
               },
             ].map((vehicle, index) => (
@@ -1020,7 +1021,7 @@ export default function App() {
                 name: 'Delhi Agra One Day Tour',
                 image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '1 Day',
-                price: '₹4,999',
+                price: '₹5,499',
                 badge: 'Best Seller',
                 badgeColor: 'bg-[#FF6F00]',
               },
@@ -1029,7 +1030,7 @@ export default function App() {
                 name: 'Delhi–Mathura–Vrindavan',
                 image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '1-2 Days',
-                price: '₹4,999',
+                price: '₹5,499',
                 badge: 'Popular',
                 badgeColor: 'bg-[#1ABC9C]',
               },
@@ -1038,7 +1039,7 @@ export default function App() {
                 name: 'Golden Triangle (5N 6D)',
                 image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '6 Days',
-                price: '₹29,999',
+                price: '₹19,599',
                 badge: 'Trending',
                 badgeColor: 'bg-[#FFC107]',
               },
@@ -1047,7 +1048,7 @@ export default function App() {
                 name: 'Delhi–Manali (3N 4D)',
                 image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '4 Days',
-                price: '₹18,999',
+                price: '₹-----',
                 badge: 'Family Special',
                 badgeColor: 'bg-[#8E24AA]',
               },
@@ -1065,7 +1066,7 @@ export default function App() {
                 name: 'Delhi to Haridwar Same Day',
                 image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: '1 Day',
-                price: '₹6,999',
+                price: '₹5,499',
                 badge: 'Spiritual',
                 badgeColor: 'bg-[#D32F2F]',
               },
@@ -1074,7 +1075,7 @@ export default function App() {
                 name: 'Agra Local Taxi Service',
                 image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
                 duration: 'Full Day',
-                price: '₹2,999',
+                price: '₹1,699',
                 badge: 'Local Favorite',
                 badgeColor: 'bg-[#1ABC9C]',
               },
@@ -1150,12 +1151,7 @@ export default function App() {
               { name: 'Himachal', icon: '🏔️' },
               { name: 'Uttarakhand', icon: '🗻' },
               { name: 'Chandigarh', icon: '🌳' },
-              { name: 'Mumbai', icon: '🌆' },
-              { name: 'Goa', icon: '🏖️' },
-              { name: 'Kerala', icon: '🌴' },
-              { name: 'Bangalore', icon: '💼' },
-              { name: 'Hyderabad', icon: '🏙️' },
-              { name: 'Pune', icon: '🎓' },
+
             ].map((location, index) => (
               <motion.div
                 key={index}
@@ -1196,7 +1192,7 @@ export default function App() {
               {
                 name: 'Rajesh Kumar',
                 type: 'Family Tour',
-                rating: 5,
+                rating: 4,
                 review: 'Excellent service! The driver was professional and the car was spotless. Our family trip to Agra was memorable.',
                 color: 'bg-gradient-to-br from-[#FFC107] to-[#FFD54F]',
               },
@@ -1217,7 +1213,7 @@ export default function App() {
               {
                 name: 'Sunita Reddy',
                 type: 'Chardham Yatra',
-                rating: 5,
+                rating: 4,
                 review: 'Safe and comfortable journey throughout our pilgrimage. The driver was respectful and knowledgeable.',
                 color: 'bg-gradient-to-br from-[#8E24AA] to-[#6A1B9A]',
               },
@@ -1231,7 +1227,7 @@ export default function App() {
               {
                 name: 'Neha Gupta',
                 type: 'Airport Transfer',
-                rating: 5,
+                rating: 4,
                 review: 'Quick booking, timely pickup, and professional service. Will definitely use again for airport transfers!',
                 color: 'bg-gradient-to-br from-[#D32F2F] to-[#C62828]',
               },
