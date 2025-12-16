@@ -42,6 +42,7 @@ import cid3 from "../assets/images/cid3.png";
 import cid4 from "../assets/images/cid4.png";
 import wedding1 from "../assets/images/wedding1.png";
 import wedding2 from "../assets/images/wedding2.png";
+import wedding3 from "../assets/images/wedding3.png";
 import film1 from "../assets/images/film1.png";
 import film2 from "../assets/images/film2.png";
 import film3 from "../assets/images/film3.png";
@@ -54,6 +55,11 @@ import post1 from "../assets/images/post1.png";
 import post2 from "../assets/images/post2.png";
 import post3 from "../assets/images/post3.png";
 import post4 from "../assets/images/post4.png";
+import post5 from "../assets/images/post5.png";
+import post6 from "../assets/images/post6.png";
+import post7 from "../assets/images/post7.png";
+import post8 from "../assets/images/post8.png";
+import post9 from "../assets/images/post9.png";
 import dzire from "../assets/images/dzire.png";
 import innova from "../assets/images/innova.png";
 import bus from "../assets/images/bus.png";
@@ -1432,14 +1438,21 @@ export default function App() {
           <Masonry columnsCount={window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3} gutter="20px">
             {[
               { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
-              { image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Manali Adventure' },
-              { image: 'https://images.unsplash.com/photo-1634351357279-c22fe1889467?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmYW1pbHklMjB0cmF2ZWx8ZW58MXx8fHwxNzY1NjQ3MjQyfDA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Family Trip' },
-              { image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Jaipur Heritage' },
+              { image: cid1, title: 'CID TV Show Shoot'},
+              { image: post6, title: 'Happy Customers' },
+              { image: post7, title: 'Trusted by Government' },
+               { image: post5, title: 'SUV Collection' },
               { image: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Mountain Road Trip' },
+               { image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Delhi Exploration' },
+              {image: wedding3, title: 'Wedding Events' },
               { image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Temple Pilgrimage' },
-              { image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Delhi Exploration' },
-              { image: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080', title: 'Luxury Fleet' },
-              { image: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080', title: 'SUV Collection' },
+              { image: post9, title: 'Visting Card' },
+              {image :film1, title: 'TV & Film Shoots' },
+              { image: post4, title: 'Luxury Fleet' },
+              { image: post8, title: 'Daily Use' },
+             
+             
+              
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -1460,7 +1473,6 @@ export default function App() {
                     <p className="text-white text-lg md:text-xl lg:text-2xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       {item.title}
                     </p>
-                    <p className="text-[#FFC107] text-sm md:text-base">View Journey →</p>
                   </div>
                 </div>
               </motion.div>
