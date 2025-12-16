@@ -57,7 +57,7 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
                 </div>
                 <button
                   onClick={onClose}
-                  className="bg-white/90 hover:bg-white p-2 md:p-3 rounded-full transition-all hover:scale-110 flex-shrink-0"
+                  className="bg-white/90 hover:bg-white p-2 md:p-4 rounded-full transition-all hover:scale-110 flex-shrink-0"
                 >
                   <X className="h-5 w-5 md:h-6 md:w-6 text-gray-800" />
                 </button>
@@ -65,7 +65,7 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
             </div>
 
             {/* Main Image Display */}
-            <div className="flex-1 flex items-center justify-center p-4 md:p-8 relative">
+            <div className="flex-1 flex items-center justify-center p-3 md:p-4 relative">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentImageIndex}
@@ -73,12 +73,12 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.3 }}
-                  className="relative w-full h-full flex flex-col items-center justify-center"
+                  className="relative w-11/12 md:w-4/5 lg:w-3/4 flex flex-col items-center justify-center"
                 >
                   <img
                     src={galleryData.images[currentImageIndex].url}
                     alt={galleryData.images[currentImageIndex].caption}
-                    className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
+                    className="max-w-full max-h-96 object-contain rounded-2xl shadow-2xl"
                   />
                   <p className="mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white text-center px-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     {galleryData.images[currentImageIndex].caption}
