@@ -509,6 +509,10 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
+  // Header show/hide on scroll (hide on scroll down, show on scroll up)
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -525,6 +529,41 @@ export default function App() {
 
     return () => observer.disconnect();
   }, []);
+
+  // Hide header when scrolling down, show when scrolling up
+  useEffect(() => {
+    let ticking = false;
+
+    function onScroll() {
+      const current = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (mobileMenuOpen) {
+            setShowHeader(true);
+          } else if (current <= 50) {
+            // near top
+            setShowHeader(true);
+          } else if (current > lastScrollY.current) {
+            // scrolling down
+            setShowHeader(false);
+          } else {
+            // scrolling up
+            setShowHeader(true);
+          }
+
+          lastScrollY.current = current;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [mobileMenuOpen]);
 
   const yearsCount = useCounter(15, 2000, statsInView);
   const customersCount = useCounter(10000, 2000, statsInView);
@@ -550,7 +589,7 @@ export default function App() {
       )}
 
       {/* Header */}
-      <header className="bg-[#0B3C5D] text-white py-2 md:py-1.5 fixed top-0 left-0 right-0 z-40 shadow-lg">
+      <header className={`bg-[#0B3C5D] text-white py-2 md:py-1.5 fixed top-0 left-0 right-0 z-40 shadow-lg transform transition-transform duration-300 ${showHeader ? 'translate-y-0' : '-translate-y-full'}`} aria-hidden={!showHeader}>
         <div className="container mx-auto px-3 site-container">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
@@ -717,17 +756,17 @@ export default function App() {
       {/* Stats Bar */}
       <section
         ref={statsRef}
-        className="bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] py-6 md:py-8"
+        className="bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] py-4 sm:py-5 md:py-7"
       >
         <div className="container mx-auto px-3 site-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center text-white">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-5 text-center text-white">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
               <Trophy className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
-              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {yearsCount}+
               </p>
               <p className="text-base md:text-lg">Years Experience</p>
@@ -740,7 +779,7 @@ export default function App() {
               transition={{ delay: 0.1 }}
             >
               <Smile className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
-              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {customersCount.toLocaleString()}+
               </p>
               <p className="text-base md:text-lg">Happy Customers</p>
@@ -753,7 +792,7 @@ export default function App() {
               transition={{ delay: 0.2 }}
             >
               <Car className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
-              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {vehiclesCount}+
               </p>
               <p className="text-base md:text-lg">Vehicles</p>
@@ -766,7 +805,7 @@ export default function App() {
               transition={{ delay: 0.3 }}
             >
               <Globe className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
-              <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Pan-India
               </p>
               <p className="text-base md:text-lg">Service Coverage</p>
@@ -784,10 +823,10 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Why Choose <span className="text-[#FFC107]">RidePlus?</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              Why Choose <span className="text-[#FFC107]">Surya Travels?</span>
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">
               Your Safety, Comfort & Satisfaction is Our Mission
             </p>
           </motion.div>
@@ -865,7 +904,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Premium Fleet</span>
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Choose the Perfect Ride for Your Journey</p>
@@ -991,10 +1030,10 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Services</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600">Comprehensive Taxi & Rental Solutions</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Comprehensive Taxi & Rental Solutions</p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -1198,10 +1237,10 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Service Locations</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600">Serving Across Major Cities in India</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Serving Across Major Cities in India</p>
           </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
@@ -1242,10 +1281,10 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               What Our <span className="text-[#FFC107]">Customers Say</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600">Real Stories from Real Travelers</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Real Stories from Real Travelers</p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -1432,7 +1471,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our Journey & <span className="text-[#FFC107]">Travel Memories</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600">Capturing Beautiful Moments with Our Customers</p>
