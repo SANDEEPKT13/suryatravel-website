@@ -40,7 +40,7 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
             className="fixed inset-4 md:inset-8 lg:inset-16 z-50 bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col"
           >
             {/* Header with Image */}
-            <div className="relative h-48 md:h-64 flex-shrink-0">
+            <div className="relative h-32 md:h-48 flex-shrink-0">
               <img
                 src={packageData.image}
                 alt={packageData.name}
@@ -179,12 +179,12 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
 
                 {/* Book Now Button */}
                 <div className="flex gap-4 pt-4">
-                  <button className="flex-1 bg-gradient-to-r from-[#FFC107] to-[#FF6F00] text-white py-3 md:py-4 px-6 md:px-8 rounded-xl text-base md:text-lg font-semibold hover:shadow-xl transition-all hover:scale-105">
+                  <button className="flex-1 bg-gradient-to-r from-[#FFC107] to-[#FF6F00] text-white py-2 md:py-3 px-4 md:px-6 rounded-xl text-sm md:text-base font-semibold hover:shadow-xl transition-all hover:scale-105">
                     Book This Package Now
                   </button>
                   <button 
                     onClick={onClose}
-                    className="px-6 md:px-8 py-3 md:py-4 border-2 border-gray-300 text-gray-700 rounded-xl text-base md:text-lg font-semibold hover:bg-gray-100 transition-all"
+                    className="px-4 md:px-6 py-2 md:py-3 border-2 border-gray-300 text-gray-700 rounded-xl text-sm md:text-base font-semibold hover:bg-gray-100 transition-all"
                   >
                     Close
                   </button>

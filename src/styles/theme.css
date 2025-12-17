@@ -1,7 +1,15 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-size: 16px;
+  /* Fine-tune compact scale — set root to 13.5px */
+  --font-size: 13.5px;
+
+  /* Normalized typographic scale (based on 13.5px root) */
+  --text-2xl: 1.25rem;    /* ~16.9px */
+  --text-xl: 1.0714rem;   /* ~14.5px */
+  --text-lg: 1rem;        /* 13.5px */
+  --text-base: 0.9375rem; /* ~12.6px */
+
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -30,7 +38,10 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
+
+  /* Tighter radius for compact visual */
+  --radius: 0.3rem;
+
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #030213;
@@ -39,6 +50,23 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Site container to normalize max-width and horizontal padding */
+.site-container {
+  max-width: 68rem; /* 1088px */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* Also normalize common Tailwind container usage that appears in templates */
+.container.mx-auto.px-3 {
+  max-width: 68rem; /* 1088px */
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .dark {
@@ -105,10 +133,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 0.25rem);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -126,6 +154,14 @@
 
   body {
     @apply bg-background text-foreground;
+    font-size: 1rem; /* 14px */
+    line-height: 1.6;
+  }
+
+  /* Make images scale responsively */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   /**

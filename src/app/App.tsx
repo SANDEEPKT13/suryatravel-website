@@ -531,7 +531,7 @@ export default function App() {
   const vehiclesCount = useCounter(25, 2000, statsInView);
 
   return (
-    <div className="min-h-screen bg-[#FFFDF8]">
+    <div className="min-h-screen bg-[#FFFDF8] pt-12 md:pt-14">
       {/* Modals */}
       {selectedPackage && (
         <PackageModal
@@ -550,12 +550,12 @@ export default function App() {
       )}
 
       {/* Header */}
-      <header className="bg-[#0B3C5D] text-white py-4 md:py-3 sticky top-0 z-40 shadow-lg">
-        <div className="container mx-auto px-4">
+      <header className="bg-[#0B3C5D] text-white py-2 md:py-1.5 fixed top-0 left-0 right-0 z-40 shadow-lg">
+        <div className="container mx-auto px-3 site-container">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
-             <div className="p-2 flex items-center justify-center">
-            <img src={mainlogo1} alt="Main Logo" className="rounded-lg w-auto md:h-14 object-contain" />
+             <div className="p-1 flex items-center justify-center">
+            <img src={mainlogo1} alt="Main Logo" className="rounded-lg h-8 md:h-14 w-auto object-contain" />
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -570,7 +570,7 @@ export default function App() {
               <a href="#services" className="hover:text-[#FFC107] transition-colors">Services</a>
               <a href="#fleet" className="hover:text-[#FFC107] transition-colors">Fleet</a>
               <a href="#packages" className="hover:text-[#FFC107] transition-colors">Tour Packages</a>
-              <a href="#contact" className="bg-[#FFC107] text-[#0B3C5D] px-6 py-2.5 rounded-full font-semibold hover:bg-[#FFD54F] transition-all text-base">
+              <a href="#contact" className="bg-[#FFC107] text-[#0B3C5D] px-3 py-1.5 rounded-full font-semibold hover:bg-[#FFD54F] transition-all text-xs">
                 Book Now
               </a>
             </div>
@@ -580,7 +580,7 @@ export default function App() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
 
@@ -592,16 +592,16 @@ export default function App() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden mt-4 pb-4 space-y-3"
             >
-              <a href="#services" className="block py-2 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#services" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Services
               </a>
-              <a href="#fleet" className="block py-2 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#fleet" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Fleet
               </a>
-              <a href="#packages" className="block py-2 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#packages" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Tour Packages
               </a>
-              <a href="#contact" className="block bg-[#FFC107] text-[#0B3C5D] px-6 py-2.5 rounded-full font-semibold text-center text-base" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#contact" className="block bg-[#FFC107] text-[#0B3C5D] px-4 py-1.5 rounded-full font-semibold text-center text-sm" onClick={() => setMobileMenuOpen(false)}>
                 Book Now
               </a>
             </motion.div>
@@ -619,7 +619,7 @@ export default function App() {
           />
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-3 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <motion.div
@@ -657,7 +657,7 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white rounded-2xl shadow-2xl p-6 md:p-8"
             >
-              <div className="bg-[#FFC107] text-[#0B3C5D] px-4 py-2.5 rounded-lg inline-block mb-6">
+              <div className="bg-[#FFC107] text-[#0B3C5D] px-3 py-2 rounded-lg inline-block mb-4">
                 <p className="font-bold text-sm md:text-base">🎉 Book Now & Get 10% OFF!</p>
               </div>
               
@@ -669,24 +669,24 @@ export default function App() {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <input
                   type="tel"
                   placeholder="Mobile Number"
-                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <input
                   type="text"
                   placeholder="Pickup Location"
-                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <input
                   type="text"
                   placeholder="Drop Location"
-                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
-                <select className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base">
+                <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
                   <option>Select Car Type</option>
                   <option>Dzire</option>
                   <option>Sedan</option>
@@ -696,11 +696,11 @@ export default function App() {
                 </select>
                 <input
                   type="date"
-                  className="w-full px-4 py-3.5 md:py-4 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-base"
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <button
                   type="button"
-                  className="w-full bg-[#FFC107] text-[#0B3C5D] py-4 md:py-5 rounded-lg font-bold text-lg md:text-xl hover:bg-[#FFD54F] transition-all hover:scale-105 shadow-lg"
+                  className="w-full bg-[#FFC107] text-[#0B3C5D] py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm hover:bg-[#FFD54F] transition-all hover:scale-105 shadow-lg"
                 >
                   Book Your Cab Now →
                 </button>
@@ -717,16 +717,16 @@ export default function App() {
       {/* Stats Bar */}
       <section
         ref={statsRef}
-        className="bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] py-12 md:py-14"
+        className="bg-gradient-to-r from-[#FF6F00] via-[#FFC107] to-[#FF6F00] py-6 md:py-8"
       >
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center text-white">
+        <div className="container mx-auto px-3 site-container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center text-white">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Trophy className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <Trophy className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
               <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {yearsCount}+
               </p>
@@ -739,7 +739,7 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Smile className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <Smile className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
               <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {customersCount.toLocaleString()}+
               </p>
@@ -752,7 +752,7 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Car className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <Car className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
               <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {vehiclesCount}+
               </p>
@@ -765,7 +765,7 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Globe className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-3" />
+              <Globe className="h-8 w-8 md:h-10 md:w-10 mx-auto mb-1" />
               <p className="text-3xl md:text-4xl lg:text-5xl mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Pan-India
               </p>
@@ -776,60 +776,63 @@ export default function App() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-10 md:py-12 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Why Choose <span className="text-[#FFC107]">RidePlus?</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">
+            <p className="text-xs sm:text-sm md:text-base text-gray-600">
               Your Safety, Comfort & Satisfaction is Our Mission
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
-                icon: <Zap className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <Zap className="h-6 w-6 md:h-8 md:w-8" />,
                 title: 'Hassle-Free Online Booking',
                 desc: 'Book your cab in just 2 minutes with our simple online system',
                 color: 'bg-gradient-to-br from-[#FFC107] to-[#FF6F00]',
               },
               {
-                icon: <Clock className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <Clock className="h-5 w-5 md:h-6 md:w-6" />,
                 title: '45-Minute Guaranteed Confirmation',
                 desc: 'Get instant confirmation within 45 minutes ',
                 color: 'bg-gradient-to-br from-[#1ABC9C] to-[#16A085]',
               },
               {
-                icon: <DollarSign className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <DollarSign className="h-5 w-5 md:h-6 md:w-6" />,
                 title: 'Transparent Pricing',
                 desc: 'No hidden charges. What you see is what you pay',
                 color: 'bg-gradient-to-br from-[#0B3C5D] to-[#1565C0]',
               },
               {
-                icon: <Users className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <Users className="h-5 w-5 md:h-6 md:w-6" />,
                 title: 'Professional & Polite Drivers',
                 desc: 'Verified, trained, and experienced drivers for your safety',
                 color: 'bg-gradient-to-br from-[#FF6F00] to-[#E65100]',
               },
+
               {
-                icon: <Sparkles className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <Sparkles className="h-5 w-5 md:h-6 md:w-6" />,
                 title: 'Clean & Sanitized Cars',
                 desc: 'Regular cleaning and sanitization after every ride',
                 color: 'bg-gradient-to-br from-[#8E24AA] to-[#6A1B9A]',
               },
+
               {
-                icon: <Phone className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <Phone className="h-5 w-5 md:h-6 md:w-6" />,
                 title: 'On Call Customer Support',
                 desc: 'Round-the-clock support for all your queries and emergencies',
                 color: 'bg-gradient-to-br from-[#D32F2F] to-[#C62828]',
               },
+
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -837,16 +840,16 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer"
+                whileHover={{ y: -8, scale: 1.01 }}
+                className="bg-white rounded-2xl shadow p-4 md:p-6 border border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer"
               >
-                <div className={`${item.color} text-white w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                <div className={`${item.color} text-white w-8 h-8 md:w-10 md:h-10 rounded-2xl flex items-center justify-center mb-4 shadow`}>
                   {item.icon}
                 </div>
-                <h3 className="text-lg md:text-xl lg:text-2xl mb-3 text-[#0B3C5D] leading-snug" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3 className="text-sm md:text-base lg:text-lg mb-2 text-[#0B3C5D] leading-snug" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {item.title}
                 </h3>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">{item.desc}</p>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -862,7 +865,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Premium Fleet</span>
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Choose the Perfect Ride for Your Journey</p>
@@ -930,7 +933,7 @@ export default function App() {
                 whileHover={{ scale: 1.05 }}
                 className="bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer group"
               >
-                <div className="relative h-44 md:h-48 overflow-hidden">
+                <div className="relative h-32 md:h-40 overflow-hidden">
                   <ImageWithFallback
                     src={vehicle.image}
                     alt={vehicle.name}
@@ -968,7 +971,7 @@ export default function App() {
                   
                   <p className="text-2xl md:text-3xl text-[#FFC107] mb-4">{vehicle.price}</p>
                   <button
-                    className={`w-full ${vehicle.color} text-white py-3 md:py-3.5 rounded-lg font-semibold text-base hover:opacity-90 transition-all transform group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100`}
+                    className={`w-full ${vehicle.color} text-white py-2 md:py-2.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-all transform group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100`}
                   >
                     Book Now
                   </button>
@@ -980,24 +983,24 @@ export default function App() {
       </section>
 
       {/* Our Services */}
-      <section id="services" className="py-16 md:py-20 bg-white">
+      <section id="services" className="py-10 md:py-12 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Services</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Comprehensive Taxi & Rental Solutions</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Comprehensive Taxi & Rental Solutions</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
-                icon: <MapPin className="h-10 w-10 md:h-12 md:w-12" />,
+                icon: <MapPin className="h-8 w-8 md:h-10 md:w-10" />,
                 title: 'Local Taxi Service',
                 desc: 'City tours, shopping, meetings, and local transportation',
                 gradient: 'from-[#FFC107] to-[#FF6F00]',
@@ -1040,16 +1043,16 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-6 md:p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer overflow-hidden group"
+                className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-4 md:p-6 border-2 border-gray-100 hover:border-[#FFC107] transition-all cursor-pointer overflow-hidden group"
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500`}></div>
-                <div className={`bg-gradient-to-br ${service.gradient} text-white w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500`}></div>
+                <div className={`bg-gradient-to-br ${service.gradient} text-white w-8 h-8 md:w-10 md:h-10 rounded-2xl flex items-center justify-center mb-4 shadow-lg`}>
                   {service.icon}
                 </div>
-                <h3 className="text-lg md:text-xl lg:text-2xl mb-3 text-[#0B3C5D] leading-snug" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3 className="text-sm md:text-base lg:text-lg mb-2 text-[#0B3C5D] leading-snug" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {service.title}
                 </h3>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">{service.desc}</p>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">{service.desc}</p>
                 <ChevronRight className="absolute bottom-4 right-4 h-6 w-6 text-[#FFC107] opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             ))}
@@ -1058,21 +1061,21 @@ export default function App() {
       </section>
 
       {/* Tour Packages */}
-      <section id="packages" className="py-16 md:py-20 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
+      <section id="packages" className="py-10 md:py-12 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Popular <span className="text-[#FFC107]">Tour Packages</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-200">Explore India with Our Curated Travel Packages</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-200">Explore India with Our Curated Travel Packages</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 key: 'delhiAgra',
@@ -1145,36 +1148,36 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white text-gray-800 rounded-2xl shadow-2xl overflow-hidden cursor-pointer group"
+                className="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
               >
-                <div className="relative h-48 md:h-56 overflow-hidden">
+                <div className="relative h-28 md:h-32 overflow-hidden">
                   <ImageWithFallback
                     src={pkg.image}
                     alt={pkg.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className={`absolute top-4 right-4 ${pkg.badgeColor} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg`}>
+                  <div className={`absolute top-3 right-3 ${pkg.badgeColor} text-white px-2.5 py-1 rounded-full text-xs font-bold shadow-lg`}>
                     {pkg.badge}
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <p className="text-white text-sm md:text-base">
-                      <Calendar className="inline h-4 w-4 mr-1" />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                    <p className="text-white text-xs md:text-sm">
+                      <Calendar className="inline h-3 w-3 mr-1" />
                       {pkg.duration}
                     </p>
                   </div>
                 </div>
-                <div className="p-5 md:p-6">
-                  <h3 className="text-lg md:text-xl lg:text-2xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <div className="p-4 md:p-5">
+                  <h3 className="text-base md:text-lg lg:text-xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     {pkg.name}
                   </h3>
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-gray-500 text-sm md:text-base">Starting from</p>
-                      <p className="text-2xl md:text-3xl text-[#FFC107]">{pkg.price}</p>
+                      <p className="text-gray-500 text-sm md:text-sm">Starting from</p>
+                      <p className="text-xl md:text-2xl text-[#FFC107]">{pkg.price}</p>
                     </div>
                     <button 
                       onClick={() => setSelectedPackage(pkg.key as keyof typeof packagesData)}
-                      className="bg-[#0B3C5D] text-white px-5 md:px-6 py-3 md:py-3.5 rounded-lg font-semibold hover:bg-[#1565C0] transition-all text-sm md:text-base whitespace-nowrap"
+                      className="bg-[#0B3C5D] text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-semibold hover:bg-[#1565C0] transition-all text-xs md:text-sm whitespace-nowrap"
                     >
                       View Details
                     </button>
@@ -1187,21 +1190,21 @@ export default function App() {
       </section>
 
       {/* Service Locations */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-10 md:py-12 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our <span className="text-[#FFC107]">Service Locations</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Serving Across Major Cities in India</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Serving Across Major Cities in India</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
             {[
               { name: 'Agra', icon: '🕌' },
               { name: 'Delhi', icon: '🏛️' },
@@ -1218,10 +1221,10 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.1, backgroundColor: '#FFC107' }}
-                className="bg-gradient-to-br from-[#FFFDF8] to-white border-2 border-[#FFC107] rounded-xl p-5 md:p-6 text-center cursor-pointer transition-all hover:shadow-xl"
+                className="bg-gradient-to-br from-[#FFFDF8] to-white border-2 border-[#FFC107] rounded-xl p-3 md:p-4 text-center cursor-pointer transition-all hover:shadow-xl"
               >
-                <div className="text-3xl md:text-4xl mb-2">{location.icon}</div>
-                <p className="text-sm md:text-base lg:text-lg text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <div className="text-2xl md:text-3xl mb-1">{location.icon}</div>
+                <p className="text-sm md:text-sm lg:text-base text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {location.name}
                 </p>
               </motion.div>
@@ -1231,21 +1234,21 @@ export default function App() {
       </section>
 
       {/* Customer Reviews */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
+      <section className="py-10 md:py-12 bg-gradient-to-br from-[#FFFDF8] to-[#FFF8E1]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               What Our <span className="text-[#FFC107]">Customers Say</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Real Stories from Real Travelers</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Real Stories from Real Travelers</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 name: 'Rajesh Kumar',
@@ -1297,16 +1300,16 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-gray-100 hover:border-[#FFC107] transition-all"
+                className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border-2 border-gray-100 hover:border-[#FFC107] transition-all"
               >
-                <div className="flex items-center gap-1 mb-4">
+                <div className="flex items-center gap-1 mb-3">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 md:h-6 md:w-6 fill-[#FFC107] text-[#FFC107]" />
+                    <Star key={i} className="h-4 w-4 md:h-5 md:w-5 fill-[#FFC107] text-[#FFC107]" />
                   ))}
                 </div>
-                <p className="text-base md:text-lg text-gray-700 mb-6 italic leading-relaxed">"{review.review}"</p>
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full ${review.color} flex items-center justify-center text-white text-xl md:text-2xl`}>
+                <p className="text-sm md:text-base text-gray-700 mb-4 italic leading-relaxed">"{review.review}"</p>
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full ${review.color} flex items-center justify-center text-white text-lg md:text-xl`}>
                     {review.name.charAt(0)}
                   </div>
                   <div>
@@ -1323,74 +1326,74 @@ export default function App() {
       </section>
 
       {/* We Are Trusted By */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
+      <section className="py-10 md:py-12 bg-gradient-to-br from-[#0B3C5D] to-[#1565C0] text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               We Are <span className="text-[#FFC107]">Trusted By</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-200">Our Prestigious Associations & Clientele</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-200">Our Prestigious Associations & Clientele</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               {
                 key: 'cidShoot',
-                icon: <Camera className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Camera className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'CID TV Show Shoot',
                 desc: 'Official transport partner for CID TV production',
                 gradient: 'from-[#FFC107] to-[#FF6F00]',
               },
               {
                 key: 'weddings',
-                icon: <Heart className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Heart className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Wedding Events',
                 desc: 'Over 1000+ weddings with seamless coordination',
                 gradient: 'from-[#FF6F00] to-[#E65100]',
               },
               {
                 key: 'filmShoots',
-                icon: <Film className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Film className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Film & Media Shoots',
                 desc: 'Trusted by Bollywood and regional film productions',
                 gradient: 'from-[#8E24AA] to-[#6A1B9A]',
               },
               {
                 key: 'political',
-                icon: <Bus className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Bus className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Political Rally Transport',
                 desc: 'Convoy management for political events & rallies',
                 gradient: 'from-[#1ABC9C] to-[#16A085]',
               },
               {
                 key: 'yatra',
-                icon: <Users className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Users className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Religious Yatra Groups',
                 desc: 'Chardham, Amarnath, Vaishno Devi pilgrimages',
                 gradient: 'from-[#D32F2F] to-[#C62828]',
               },
               {
                 key: 'corporate',
-                icon: <HeartHandshake className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <HeartHandshake className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Corporate Events',
                 desc: 'Executive transport for Fortune 500 companies',
                 gradient: 'from-[#0B3C5D] to-[#1565C0]',
               },
               {
                 key: 'familyTours',
-                icon: <Award className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Award className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Family Tours',
                 desc: 'Thousands of happy families across India',
                 gradient: 'from-[#FF6F00] to-[#FFC107]',
               },
               {
                 key: 'international',
-                icon: <Globe className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16" />,
+                icon: <Globe className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'International Tourists',
                 desc: 'Guided tours for tourists from 50+ countries',
                 gradient: 'from-[#1ABC9C] to-[#16A085]',
@@ -1404,16 +1407,16 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-white/20 hover:border-[#FFC107] transition-all cursor-pointer text-left"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border-2 border-white/20 hover:border-[#FFC107] transition-all cursor-pointer text-left"
               >
-                <div className={`bg-gradient-to-br ${association.gradient} w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-2xl`}>
+                <div className={`bg-gradient-to-br ${association.gradient} w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-2xl`}>
                   {association.icon}
                 </div>
-                <h3 className="text-lg md:text-xl lg:text-2xl mb-3 text-center leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h3 className="text-base md:text-lg lg:text-xl mb-2 text-center leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {association.title}
                 </h3>
-                <p className="text-gray-200 text-center text-sm md:text-base leading-relaxed">{association.desc}</p>
-                <p className="text-[#FFC107] text-center text-sm mt-4">Click to view gallery →</p>
+                <p className="text-gray-200 text-center text-sm md:text-sm leading-relaxed">{association.desc}</p>
+                <p className="text-[#FFC107] text-center text-xs md:text-sm mt-3">Click to view gallery →</p>
               </motion.button>
             ))}
           </div>
@@ -1421,21 +1424,21 @@ export default function App() {
       </section>
 
       {/* Gallery & Memories */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-10 md:py-12 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Our Journey & <span className="text-[#FFC107]">Travel Memories</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Capturing Beautiful Moments with Our Customers</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Capturing Beautiful Moments with Our Customers</p>
           </motion.div>
 
-          <Masonry columnsCount={window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3} gutter="20px">
+          <Masonry columnsCount={window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3} gutter="0.5rem">
             {[
               { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
               { image: cid1, title: 'CID TV Show Shoot'},
@@ -1469,8 +1472,8 @@ export default function App() {
                   className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                    <p className="text-white text-lg md:text-xl lg:text-2xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                    <p className="text-white text-sm md:text-base lg:text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       {item.title}
                     </p>
                   </div>
@@ -1563,22 +1566,22 @@ export default function App() {
                 <ImageWithFallback
                   src={post1}
                   alt="my image"
-                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-fullcover"
+                  className="rounded-2xl shadow-lg h-32 md:h-40 w-full object-fullcover"
                 />
                 <ImageWithFallback
                   src={post2}
                   alt="Premium Cars"
-                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover mt-8"
+                  className="rounded-2xl shadow-lg h-28 md:h-36 w-full object-cover mt-6"
                 />
                 <ImageWithFallback
                   src={post3}
                   alt="SUV Collection"
-                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover -mt-8"
+                  className="rounded-2xl shadow-lg h-28 md:h-36 w-full object-cover -mt-4"
                 />
                 <ImageWithFallback
                   src={post4}
                   alt="Luxury Cars"
-                  className="rounded-2xl shadow-lg h-40 md:h-48 w-full object-cover"
+                  className="rounded-2xl shadow-lg h-32 md:h-40 w-full object-cover"
                 />
               </div>
             </motion.div>
@@ -1588,7 +1591,7 @@ export default function App() {
 
       {/* Final CTA */}
       <section id="contact" className="py-16 md:py-20 bg-gradient-to-r from-[#FF6F00] via-[#c8a94d] to-[#FF6F00] text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-3 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1606,7 +1609,7 @@ export default function App() {
                 href="tel:+919319507736"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#0B3C5D] px-6 md:px-8 py-4 md:py-5 rounded-full font-bold text-base md:text-lg shadow-2xl flex items-center justify-center gap-3 hover:bg-gray-100 transition-all"
+                className="bg-white text-[#0B3C5D] px-3 md:px-4 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-2xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all"
               >
                 <Phone className="h-6 w-6" />
                 Call Now: +91 9319507736
@@ -1618,7 +1621,7 @@ export default function App() {
                 whileTap={{ scale: 0.95 }}
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                className="bg-[#25D366] text-white px-6 md:px-8 py-4 md:py-5 rounded-full font-bold text-base md:text-lg shadow-2xl flex items-center justify-center gap-3 hover:bg-[#20BA5A] transition-all"
+                className="bg-[#25D366] text-white px-3 md:px-4 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-2xl flex items-center justify-center gap-2 hover:bg-[#20BA5A] transition-all"
               >
                 <MessageCircle className="h-6 w-6" />
                 Book Now

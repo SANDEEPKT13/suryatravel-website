@@ -80,7 +80,10 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
                     alt={galleryData.images[currentImageIndex].caption}
                     className="max-w-full max-h-96 object-contain rounded-2xl shadow-2xl"
                   />
-                  <p className="mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white text-center px-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  <p
+  className="mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white text-center px-3"
+  style={{ fontFamily: 'Poppins, sans-serif' }}
+>
                     {galleryData.images[currentImageIndex].caption}
                   </p>
                 </motion.div>
@@ -113,7 +116,7 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                      className={`flex-shrink-0 w-8 h-8 md:w-12 md:h-12 rounded-lg overflow-hidden border-2 transition-all ${
                         currentImageIndex === index
                           ? 'border-[#FFC107] scale-110'
                           : 'border-white/30 opacity-60 hover:opacity-100'
