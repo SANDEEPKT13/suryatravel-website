@@ -68,7 +68,7 @@ import traveller from "../assets/images/traveller.png";
 //import corp2 from "../assets/images/corp2.png";
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { PackageModal } from './components/PackageModal';
-import { GalleryModal } from './components/GalleryModal';
+import { GalleryModal } from './components/GalleryModal.tsx';
 
 // Package data for all tours
 const packagesData = {
