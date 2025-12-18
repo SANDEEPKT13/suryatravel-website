@@ -565,7 +565,7 @@ export default function App() {
     };
   }, [mobileMenuOpen]);
 
-  const yearsCount = useCounter(15, 2000, statsInView);
+  const yearsCount = useCounter(25, 2000, statsInView);
   const customersCount = useCounter(10000, 2000, statsInView);
   const vehiclesCount = useCounter(25, 2000, statsInView);
 
@@ -670,7 +670,7 @@ export default function App() {
                 Surya Travels - Taxi Service in Tajganj,<br></br> <span className="text-[#FFC107]">Agra</span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                15+ Years | Safe & Affordable |🚗 Best Cars & Luxury Buses 👨‍✈️ Experienced Drivers (15+ Years) |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking | Owner Name: D.K. SHARMA
+                25+ Years | Safe & Affordable |🚗 Best Cars & Luxury Buses 👨‍✈️ Experienced Drivers (25+ Years) |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking | Owner Name: D.K. SHARMA
               </p>
               
               <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
@@ -732,6 +732,8 @@ export default function App() {
                   <option>Ertiga</option>
                   <option>Kia Carens</option>
                   <option>Innova Crysta</option>
+                  <option>Bus</option>
+                  <option>Tempo Travellor</option>
                 </select>
                 <input
                   type="date"
@@ -1714,9 +1716,6 @@ export default function App() {
                 </a>
                 <a href="suryatravelsd.k24@gmail.com" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
                   <Mail className="h-5 w-5" />
-                </a>
-                <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-[#FFC107] transition-all">
-                  <Youtube className="h-5 w-5" />
                 </a>
               </div>
             </div>
