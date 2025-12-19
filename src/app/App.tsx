@@ -8,6 +8,7 @@ import {
   Users,
   MapPin,
   Star,
+  StarHalf,
   Phone,
   Mail,
   CheckCircle,
@@ -510,6 +511,65 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
+  // Travel memories: selected image modal + mobile auto-scroll control
+  const [selectedMemory, setSelectedMemory] = useState<string | null>(null);
+  const memoryContainerRef = useRef<HTMLDivElement | null>(null);
+  const autoScrollTimerRef = useRef<number | null>(null);
+  const autoScrollRestartTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    // Only activate mobile auto-scroll (slow) on small screens
+    if (typeof window === 'undefined') return;
+    if (window.innerWidth >= 640) return;
+    const el = memoryContainerRef.current;
+    if (!el) return;
+
+    const startAutoScroll = () => {
+      if (autoScrollTimerRef.current) return;
+      autoScrollTimerRef.current = window.setInterval(() => {
+        if (!el) return;
+        const next = el.scrollLeft + Math.round(el.offsetWidth * 0.9);
+        if (next + 10 >= el.scrollWidth) {
+          el.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          el.scrollTo({ left: next, behavior: 'smooth' });
+        }
+      }, 4500); // slower: 4.5s per slide
+    };
+
+    const stopAutoScroll = () => {
+      if (autoScrollTimerRef.current) {
+        clearInterval(autoScrollTimerRef.current);
+        autoScrollTimerRef.current = null;
+      }
+      if (autoScrollRestartTimeoutRef.current) {
+        clearTimeout(autoScrollRestartTimeoutRef.current);
+        autoScrollRestartTimeoutRef.current = null;
+      }
+      autoScrollRestartTimeoutRef.current = window.setTimeout(() => {
+        startAutoScroll();
+      }, 6000); // restart after 6s of inactivity
+    };
+
+    startAutoScroll();
+
+    el.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    el.addEventListener('mousedown', stopAutoScroll);
+
+    return () => {
+      if (autoScrollTimerRef.current) {
+        clearInterval(autoScrollTimerRef.current);
+        autoScrollTimerRef.current = null;
+      }
+      if (autoScrollRestartTimeoutRef.current) {
+        clearTimeout(autoScrollRestartTimeoutRef.current);
+        autoScrollRestartTimeoutRef.current = null;
+      }
+      el.removeEventListener('touchstart', stopAutoScroll);
+      el.removeEventListener('mousedown', stopAutoScroll);
+    };
+  }, []);
+
   // Header show/hide on scroll (hide on scroll down, show on scroll up)
   const [showHeader, setShowHeader] = useState(true);
   const lastScrollY = useRef(0);
@@ -630,7 +690,7 @@ export default function App() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 pb-4 space-y-3"
+              className="lg:hidden mt-4 pb-4 space-y-3 max-w-full overflow-x-hidden"
             >
               <a href="#services" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Services
@@ -656,7 +716,7 @@ export default function App() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-4 right-20 md:right-2 z-50 bg-[#25D366] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#20BA5A] hover:shadow-amber-300/40 transition-all animate-pulse"
+        className={`fixed ${mobileMenuOpen ? 'top-[6.5rem]' : 'top-16'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#16a34a] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#0f7a34] hover:shadow-amber-400/30 transition-all animate-pulse`}
         aria-label="Call Surya Travels"
         role="button"
         title="Call Surya Travels"
@@ -695,7 +755,7 @@ export default function App() {
                 </span>
                 <span className="inline-flex items-center gap-2 text-lg sm:text-xl md:text-2xl text-[#FFC107] mt-3">
                   <Sparkles className="h-5 w-5" />
-                  <span>Across Agra & Beyond</span>
+                  <span>Agra & Beyond</span>
                 </span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
@@ -771,10 +831,92 @@ export default function App() {
                   <option>Bus</option>
                   <option>Tempo Travellor</option>
                 </select>
-                <input
-                  type="date"
-                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
-                />
+                <div className="relative">
+                  <div className="flex items-center w-full">
+                    <input
+                      id="bookingDateVisible"
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={8}
+                      placeholder="DD-MM-YY"
+                      aria-label="Booking date (DD-MM-YY)"
+                      pattern="\\d{2}-\\d{2}-\\d{2}"
+                      title="Enter date as DD-MM-YY"
+                      onInput={(e) => {
+                        const input = e.currentTarget as HTMLInputElement;
+                        const digits = input.value.replace(/\D/g, '').slice(0, 6);
+                        let out = '';
+                        if (digits.length <= 2) out = digits;
+                        else if (digits.length <= 4) out = digits.slice(0,2) + '-' + digits.slice(2);
+                        else out = digits.slice(0,2) + '-' + digits.slice(2,4) + '-' + digits.slice(4);
+                        input.value = out;
+                      }}
+                      onBlur={(e) => {
+                        const input = e.currentTarget as HTMLInputElement;
+                        const v = input.value;
+                        const re = /^(\d{2})-(\d{2})-(\d{2})$/;
+                        const m = v.match(re);
+                        if (!m) {
+                          if (v) {
+                            input.setCustomValidity('Please enter date as DD-MM-YY (e.g., 25-06-25)');
+                          } else {
+                            input.setCustomValidity('');
+                          }
+                        } else {
+                          const day = parseInt(m[1], 10);
+                          const month = parseInt(m[2], 10);
+                          if (month < 1 || month > 12) {
+                            input.setCustomValidity('Month must be between 01 and 12');
+                          } else if (day < 1 || day > 31) {
+                            input.setCustomValidity('Invalid day for the given month');
+                          } else if (month === 2 && day > 29) {
+                            input.setCustomValidity('February can have at most 29 days');
+                          } else if ([4,6,9,11].includes(month) && day > 30) {
+                            input.setCustomValidity('This month has only 30 days');
+                          } else {
+                            input.setCustomValidity('');
+                          }
+                        }
+                        input.reportValidity();
+                      }}
+                      className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-l-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const hidden = document.getElementById('bookingDateHidden') as HTMLInputElement | null;
+                        if (!hidden) return;
+                        if (typeof (hidden as any).showPicker === 'function') {
+                          try { (hidden as any).showPicker(); return; } catch (err) { /* ignore */ }
+                        }
+                        hidden.click();
+                      }}
+                      className="bg-white border-2 border-l-0 border-gray-200 rounded-r-lg px-3 py-2 flex items-center justify-center text-gray-700 hover:bg-gray-50"
+                      aria-label="Open calendar"
+                    >
+                      <Calendar className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <input
+                    id="bookingDateHidden"
+                    type="date"
+                    className="sr-only"
+                    onChange={(e) => {
+                      const val = e.currentTarget.value; // YYYY-MM-DD
+                      if (!val) return;
+                      const parts = val.split('-');
+                      if (parts.length !== 3) return;
+                      const y = parts[0].slice(2); // last two digits
+                      const m = parts[1];
+                      const d = parts[2];
+                      const visible = document.getElementById('bookingDateVisible') as HTMLInputElement | null;
+                      if (visible) visible.value = `${d}-${m}-${y}`;
+                    }}
+                  />
+                  
+                </div>
                 <button
                   type="button"
                   className="w-full bg-[#FFC107] text-[#0B3C5D] py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm hover:bg-[#FFD54F] transition-all hover:scale-105 shadow-lg"
@@ -1292,8 +1434,9 @@ export default function App() {
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600">Real Stories from Real Travelers</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {[
+          {/* Reviews data and Google-style rating */}
+          {(() => {
+            const reviews = [
               {
                 name: 'Rajesh Kumar',
                 type: 'Family Tour',
@@ -1336,36 +1479,70 @@ export default function App() {
                 review: 'Quick booking, timely pickup, and professional service. Will definitely use again for airport transfers!',
                 color: 'bg-gradient-to-br from-[#D32F2F] to-[#C62828]',
               },
-            ].map((review, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border-2 border-gray-100 hover:border-[#FFC107] transition-all"
-              >
-                <div className="flex items-center gap-1 mb-3">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 md:h-5 md:w-5 fill-[#FFC107] text-[#FFC107]" />
+            ];
+
+            const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+            const roundedAvg = Math.round(avg * 10) / 10;
+            const full = Math.floor(avg);
+            const hasHalf = avg - full >= 0.5;
+
+            return (
+              <>
+                <div className="flex items-center justify-center mb-6">
+                  <div className="inline-flex items-center gap-3 bg-white rounded-full px-4 py-2 shadow-sm">
+                    <div className="flex items-center gap-1">
+                      {[0,1,2,3,4].map((i) => (
+                        i < full ? (
+                          <Star key={i} className="h-4 w-4 fill-[#FFC107] text-[#FFC107]" />
+                        ) : i === full && hasHalf ? (
+                          <StarHalf key={i} className="h-4 w-4 fill-[#FFC107] text-[#FFC107]" />
+                        ) : (
+                          <Star key={i} className="h-4 w-4 text-gray-300" />
+                        )
+                      ))}
+                    </div>
+                    <div className="text-left">
+                      <div className="text-lg font-bold text-[#0B3C5D]">{roundedAvg}</div>
+                      <div className="text-xs text-gray-500">{reviews.length} reviews</div>
+                    </div>
+                    <div className="text-xs text-gray-400 ml-2">• Google</div>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  {reviews.map((review, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ y: -5 }}
+                      className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border-2 border-gray-100 hover:border-[#FFC107] transition-all"
+                    >
+                      <div className="flex items-center gap-1 mb-3">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 md:h-5 md:w-5 fill-[#FFC107] text-[#FFC107]" />
+                        ))}
+                      </div>
+                      <p className="text-sm md:text-base text-gray-700 mb-4 italic leading-relaxed">"{review.review}"</p>
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full ${review.color} flex items-center justify-center text-white text-lg md:text-xl`}>
+                          {review.name.charAt(0)}
+                        </div>
+                        <div>
+                          <p className="text-base md:text-lg text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            {review.name}
+                          </p>
+                          <p className="text-sm md:text-base text-gray-500">{review.type}</p>
+                        </div>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
-                <p className="text-sm md:text-base text-gray-700 mb-4 italic leading-relaxed">"{review.review}"</p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full ${review.color} flex items-center justify-center text-white text-lg md:text-xl`}>
-                    {review.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="text-base md:text-lg text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                      {review.name}
-                    </p>
-                    <p className="text-sm md:text-base text-gray-500">{review.type}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              </>
+            );
+          })() }
         </div>
       </section>
 
@@ -1482,49 +1659,139 @@ export default function App() {
             <p className="text-base sm:text-lg md:text-xl text-gray-600">Capturing Beautiful Moments with Our Customers</p>
           </motion.div>
 
-          <Masonry columnsCount={window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3} gutter="0.5rem">
-            {[
-              { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
-              { image: cid1, title: 'CID TV Show Shoot'},
-              { image: post6, title: 'Happy Customers' },
-              { image: post7, title: 'Trusted by Government' },
-               { image: post5, title: 'SUV Collection' },
-              { image: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Mountain Road Trip' },
-               { image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Delhi Exploration' },
-              {image: wedding3, title: 'Wedding Events' },
-              { image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Temple Pilgrimage' },
-              { image: post9, title: 'Visting Card' },
-              {image :film1, title: 'TV & Film Shoots' },
-              { image: post4, title: 'Luxury Fleet' },
-              { image: post8, title: 'Daily Use' },
-             
-             
-              
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
-                className="relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
+          {/* On mobile use a horizontal slider; on larger screens keep Masonry */}
+          {window.innerWidth < 640 ? (
+            <div className="-mx-4 px-4 pb-4">
+              <div
+                ref={memoryContainerRef}
+                className="flex gap-4 overflow-x-auto snap-x snap-mandatory touch-pan-x -mx-2 py-2"
+                onMouseEnter={() => {
+                  if (autoScrollTimerRef.current) {
+                    clearInterval(autoScrollTimerRef.current);
+                    autoScrollTimerRef.current = null;
+                  }
+                  if (autoScrollRestartTimeoutRef.current) {
+                    clearTimeout(autoScrollRestartTimeoutRef.current);
+                    autoScrollRestartTimeoutRef.current = null;
+                  }
+                  autoScrollRestartTimeoutRef.current = window.setTimeout(() => {
+                    const el = memoryContainerRef.current;
+                    if (!el) return;
+                    if (autoScrollTimerRef.current) return;
+                    autoScrollTimerRef.current = window.setInterval(() => {
+                      const next = el.scrollLeft + Math.round(el.offsetWidth * 0.9);
+                      if (next + 10 >= el.scrollWidth) el.scrollTo({ left: 0, behavior: 'smooth' });
+                      else el.scrollTo({ left: next, behavior: 'smooth' });
+                    }, 4500);
+                  }, 6000);
+                }}
               >
-                <ImageWithFallback
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
-                    <p className="text-white text-sm md:text-base lg:text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                      {item.title}
-                    </p>
+                {[
+                  { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
+                  { image: cid1, title: 'CID TV Show Shoot'},
+                  { image: post6, title: 'Happy Customers' },
+                  { image: post7, title: 'Trusted by Government' },
+                  { image: post5, title: 'SUV Collection' },
+                  { image: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Mountain Road Trip' },
+                  { image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Delhi Exploration' },
+                  {image: wedding3, title: 'Wedding Events' },
+                  { image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Temple Pilgrimage' },
+                  { image: post9, title: 'Visting Card' },
+                  {image :film1, title: 'TV & Film Shoots' },
+                  { image: post4, title: 'Luxury Fleet' },
+                  { image: post8, title: 'Daily Use' },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={{ scale: 1.02 }}
+                    onClick={() => setSelectedMemory(item.image)}
+                    className="min-w-[82%] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group snap-center"
+                  >
+                    <ImageWithFallback
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-3">
+                        <p className="text-white text-sm md:text-base lg:text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          {item.title}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+
+                {selectedMemory && (
+                  <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+                    role="dialog"
+                    aria-modal="true"
+                    onClick={() => setSelectedMemory(null)}
+                  >
+                    <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+                      <button
+                        aria-label="Close"
+                        onClick={() => setSelectedMemory(null)}
+                        className="absolute -top-3 -right-3 bg-white rounded-full p-1 shadow-lg"
+                      >
+                        <X className="h-5 w-5 text-[#0B3C5D]" />
+                      </button>
+                      <img src={selectedMemory} alt="Travel memory" className="rounded-lg shadow-lg object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto" />
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </Masonry>
+                )}
+              </div>
+            </div>
+          ) : (
+            <Masonry columnsCount={window.innerWidth < 1024 ? 2 : 3} gutter="0.5rem">
+              {[
+                { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
+                { image: cid1, title: 'CID TV Show Shoot'},
+                { image: post6, title: 'Happy Customers' },
+                { image: post7, title: 'Trusted by Government' },
+                 { image: post5, title: 'SUV Collection' },
+                { image: 'https://images.unsplash.com/photo-1611086287080-d3823629dd77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwdHJpcCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Mountain Road Trip' },
+                 { image: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Delhi Exploration' },
+                {image: wedding3, title: 'Wedding Events' },
+                { image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Temple Pilgrimage' },
+                { image: post9, title: 'Visting Card' },
+                {image :film1, title: 'TV & Film Shoots' },
+                { image: post4, title: 'Luxury Fleet' },
+                { image: post8, title: 'Daily Use' },
+               
+              
+               
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
+                >
+                  <ImageWithFallback
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                      <p className="text-white text-sm md:text-base lg:text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        {item.title}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </Masonry>
+          )}
         </div>
       </section>
 
