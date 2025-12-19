@@ -755,7 +755,7 @@ export default function App() {
                 </span>
                 <span className="inline-flex items-center gap-2 text-lg sm:text-xl md:text-2xl text-[#FFC107] mt-3">
                   <Sparkles className="h-5 w-5" />
-                  <span>Agra & Beyond</span>
+                  <span>INDIA & Beyond</span>
                 </span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
