@@ -695,11 +695,11 @@ export default function App() {
                 </span>
                 <span className="inline-flex items-center gap-2 text-lg sm:text-xl md:text-2xl text-[#FFC107] mt-3">
                   <Sparkles className="h-5 w-5" />
-                  <span>📍 Across Agra & Beyond</span>
+                  <span>Across Agra & Beyond</span>
                 </span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                25+ Years | Safe & Affordable |🚗 Best Cars & Luxury Buses 👨‍✈️ Experienced Drivers (25+ Years) |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking |
+                25+ Years | Safe & Affordable |Best Cars & Luxury Buses Experienced Drivers (25+ Years) | Friendly, Safe & Comfortable Service | On-Time Every Time | Easy Booking |
                 <span className="ml-2 inline-flex items-center gap-2">
                   <span className="text-white/80">Owner:</span>
                   <span className="uppercase tracking-wide font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] via-[#FFD54F] to-white drop-shadow-[0_2px_12px_rgba(255,193,7,0.35)]">
