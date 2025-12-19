@@ -62,8 +62,10 @@ import post8 from "../assets/images/post8.png";
 import post9 from "../assets/images/post9.png";
 import dzire from "../assets/images/dzire.png";
 import innova from "../assets/images/innova.png";
-import bus from "../assets/images/bus.png";
+import bus2 from "../assets/images/bus2.png";
 import ertiga from "../assets/images/ertiga.png";
+import carens from "../assets/images/carens.png";
+import urbania from "../assets/images/urbania.png";
 import traveller from "../assets/images/traveller.png";
 //import corp2 from "../assets/images/corp2.png";
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
@@ -649,6 +651,21 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
+      {/* Floating Call Button */}
+      <motion.a
+        href="tel:+919412157562"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-4 right-20 md:right-2 z-50 bg-[#25D366] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#20BA5A] hover:shadow-amber-300/40 transition-all animate-pulse"
+        aria-label="Call Surya Travels"
+        role="button"
+        title="Call Surya Travels"
+      >
+        <Phone className="h-5 w-5 " />
+        <span className="hidden sm:inline font-semibold">Call Now</span>
+      </motion.a>
+
       <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-16 md:py-20 lg:py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <ImageWithFallback
@@ -666,11 +683,30 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                Surya Travels - Taxi Service in Tajganj,<br></br> <span className="text-[#FFC107]">Agra</span>
+              <div className="inline-flex items-center gap-3 mb-3">
+                <span className="h-1 w-10 bg-[#FFC107] rounded-full" />
+                <span className="uppercase tracking-[0.25em] text-sm sm:text-base md:text-lg font-semibold text-white/80">Since 2000</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight font-black" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] via-[#FFD54F] to-white drop-shadow-[0_4px_24px_rgba(255,193,7,0.35)]">
+                  Surya Travels
+                </span>
+                <span className="block text-white/85 text-2xl sm:text-3xl md:text-4xl lg:text-4xl mt-2">
+                 24 Hours Taxi Service Company in
+                </span>
+                <span className="inline-flex items-center gap-2 text-lg sm:text-xl md:text-2xl text-[#FFC107] mt-3">
+                  <Sparkles className="h-5 w-5" />
+                  <span>📍 Across Agra & Beyond</span>
+                </span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                25+ Years | Safe & Affordable |🚗 Best Cars & Luxury Buses 👨‍✈️ Experienced Drivers (25+ Years) |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking | Owner Name: D.K. SHARMA
+                25+ Years | Safe & Affordable |🚗 Best Cars & Luxury Buses 👨‍✈️ Experienced Drivers (25+ Years) |🤝 Friendly, Safe & Comfortable Service | 🕒 On-Time Every Time | 📞 Easy Booking |
+                <span className="ml-2 inline-flex items-center gap-2">
+                  <span className="text-white/80">Owner:</span>
+                  <span className="uppercase tracking-wide font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] via-[#FFD54F] to-white drop-shadow-[0_2px_12px_rgba(255,193,7,0.35)]">
+                    D.K SHARMA
+                  </span>
+                </span>
               </p>
               
               <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
@@ -925,16 +961,6 @@ export default function App() {
                 color: 'bg-[#FFC107]',
               },
               {
-                name: 'Bus',
-                image: bus,
-                seats: '28 Seater',
-                bags: '6 Bags',
-                running: '250 Km Per day',
-                allowance: 'Rs.500/=',
-                price: '₹20/km',
-                color: 'bg-[#1ABC9C]',
-              },
-              {
                 name: 'Ertiga',
                 image: ertiga,
                 seats: '6-7 Passengers',
@@ -943,16 +969,6 @@ export default function App() {
                 allowance: 'Rs.500/=',
                 price: '₹16/km',
                 color: 'bg-[#0B3C5D]',
-              },
-              {
-                name: 'Tempo Traveller',
-                image: traveller,
-                seats: '6 Passengers',
-                bags: '5 Bags',
-                running: '250 Km Per day',
-                allowance: 'Rs.500/=',
-                price: '₹15/km',
-                color: 'bg-[#FF6F00]',
               },
               {
                 name: 'Innova Crysta',
@@ -964,6 +980,46 @@ export default function App() {
                 price: '₹18/km',
                 color: 'bg-[#8E24AA]',
               },
+              {
+                name: 'Kia Carens',
+                image: carens,
+                seats: '7 Seater',
+                bags: '4 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
+                price: '₹15/km',
+                color: 'bg-[#D32F2F]',
+              },
+              {
+                name: 'Urbania',
+                image: urbania,
+                seats: '17 Seater',
+                bags: '8 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
+                price: '₹22/km',
+                color: 'bg-[#1976D2]',
+                },
+                 {
+                name: 'Mini Bus',
+                image: traveller,
+                seats: '12-30 Seater',
+                bags: '5 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
+                price: '₹15/km',
+                color: 'bg-[#FF6F00]',
+              },
+                {
+                name: 'Bus',
+                image: bus2,
+                seats: '28 Seater',
+                bags: '6 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
+                price: '₹20/km',
+                color: 'bg-[#1ABC9C]',
+              },
             ].map((vehicle, index) => (
               <motion.div
                 key={index}
@@ -974,11 +1030,11 @@ export default function App() {
                 whileHover={{ scale: 1.05 }}
                 className="bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer group"
               >
-                <div className="relative h-32 md:h-40 overflow-hidden">
+                <div className="relative h-36 sm:h-40 md:h-48 flex items-center justify-center bg-gray-50 overflow-hidden">
                   <ImageWithFallback
                     src={vehicle.image}
                     alt={vehicle.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-contain p-3 md:p-4 group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-5 md:p-6">
@@ -1647,17 +1703,17 @@ export default function App() {
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center">
               <motion.a
-                href="tel:+919319507736"
+                href="tel:+919412157562"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-[#0B3C5D] px-3 md:px-4 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-2xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all"
               >
                 <Phone className="h-6 w-6" />
-                Call Now: +91 9319507736
+                Call Now: +91 9412157562
               </motion.a>
 
               <motion.a
-                href="https://wa.me/9319507736"
+                href="https://wa.me/9412157562"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{ scale: [1, 1.05, 1] }}
