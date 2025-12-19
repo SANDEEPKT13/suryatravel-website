@@ -78,12 +78,12 @@ const packagesData = {
     name: 'Agra Local Taxi Service',
     image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: 'Full Day',
-    price: '₹1,600-2,200',
+    price: '₹2000',
     overview: 'Explore the magnificent city of Agra with our comfortable local taxi service. Visit the iconic Taj Mahal, Agra Fort, and other historical monuments with ease. Our experienced drivers know the best routes and timings to avoid crowds and make your Agra experience memorable.',
     carTypes: [
-      { name: 'Sedan', price: '₹------', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹-------', seats: '6-7 Passengers' },
-      { name: 'MUV', price: '------', seats: '6 Passengers' },
+      { name: 'Sedan', price: '₹ 2500', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹ 3000', seats: '6-7 Passengers' },
+      { name: 'Urbania', price: '₹ 5000', seats: '14 Passengers' },
     ],
     pricing: [
       { item: 'Full Day Service (8 Hours)', detail: 'Included' },
@@ -111,7 +111,7 @@ const packagesData = {
   },
   mathuraVrindavan: {
     name: 'Delhi to Mathura Vrindavan Same Day Tour',
-    image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: 'https://images.unsplash.com/photo-1660280037297-a3b5e79a3d20?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     duration: '1 Day',
     price: '₹5,499',
     overview: 'Experience divine spirituality with our same-day tour from Delhi to Mathura and Vrindavan. Visit the holy birthplace of Lord Krishna and explore the numerous beautiful temples. This spiritual journey is perfect for families and devotees seeking blessings.',
@@ -146,14 +146,13 @@ const packagesData = {
   },
   delhiAgra: {
     name: 'Delhi Agra One Day Tour',
-    image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    duration: '1 Day',
+    image: 'https://images.unsplash.com/photo-1609258678760-ba05d9b95bb9?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: '₹5,499',
     overview: 'The most popular same-day tour from Delhi to Agra! Witness the breathtaking beauty of the Taj Mahal, one of the Seven Wonders of the World. This tour includes comfortable transportation, experienced guides, and ample time to explore Agra\'s UNESCO World Heritage Sites.',
     carTypes: [
       { name: 'Sedan', price: '₹5,499', seats: '4 Passengers' },
       { name: 'Innova/ Marazzo', price: '₹8,499', seats: '6-7 Passengers' },
-      { name: 'Innova Crysta', price: '₹9,499', seats: '6-7 Passengers' },
+      { name: 'Innova Crysta', price: '₹8,499', seats: '6-7 Passengers' },
     ],
     pricing: [
       { item: 'Delhi to Agra Round Trip', detail: '420 Km' },
@@ -181,15 +180,15 @@ const packagesData = {
   },
   goldenTriangle: {
     name: 'Golden Triangle Tour (5 Nights / 6 Days)',
-    image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: 'https://images.unsplash.com/photo-1602643163983-ed0babc39797?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     duration: '6 Days',
     price: '₹19,599',
     overview: 'Experience the essence of India with our comprehensive Golden Triangle Tour covering Delhi, Agra, and Jaipur. This 6-day journey takes you through India\'s rich cultural heritage, magnificent monuments, colorful markets, and royal palaces. Perfect for first-time visitors to India!',
     carTypes: [
-      { name: 'A/C SEDAN', price: '₹19,599', seats: '4 Passengers' },
-      { name: 'A/C MUV'  , price: '₹21,599', seats: '6 Passengers' },
-      { name: 'A/C SUV'  , price: '₹24,599', seats: '6 Passengers' },
-      { name: 'A/C Tempo Traveller', price: '₹39,999', seats: '12-15 Passengers' },
+      { name: 'A/C SEDAN', price: '₹11,599', seats: '4 Passengers' },
+      { name: 'A/C MUV'  , price: '₹11,599', seats: '6 Passengers' },
+      { name: 'A/C SUV'  , price: '₹14,599', seats: '6 Passengers' },
+      { name: 'A/C Tempo Traveller', price: '₹29,999', seats: '12-30 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation', detail: 'AC Vehicle for 6 Days' },
@@ -217,7 +216,7 @@ const packagesData = {
   },
   delhiHaridwar: {
     name: 'Delhi to Haridwar Same Day Trip by Taxi',
-    image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: 'https://images.unsplash.com/photo-1622611908679-cbeda47d9404?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     duration: '1 Day',
     price: '₹5,499',
     overview: 'Take a spiritual journey from Delhi to Haridwar, one of the seven holiest places in Hinduism. Experience the sacred Ganga Aarti at Har Ki Pauri, take a holy dip in the Ganges, and seek blessings at ancient temples. This same-day tour offers a perfect spiritual escape from city life.',
@@ -254,12 +253,12 @@ const packagesData = {
     name: 'Delhi to Manali Tour Package (3 Nights / 4 Days)',
     image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '4 Days',
-    price: '₹------',
+    price: '₹10,999',
     overview: 'Escape to the mountains with our Manali tour package! Experience the breathtaking beauty of Himachal Pradesh, enjoy adventure activities, visit ancient temples, and relax in the lap of nature. Perfect for families, couples, and adventure enthusiasts.',
     carTypes: [
-      { name: 'Sedan', price: '₹------', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹-------', seats: '6-7 Passengers' },
-      { name: 'MUV', price: '------', seats: '6 Passengers' },
+      { name: 'Sedan', price: '₹10,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹15,999', seats: '6-7 Passengers' },
+      { name: 'MUV', price: '₹17,999', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation (4 Days)', detail: 'AC Vehicle' },
@@ -287,7 +286,7 @@ const packagesData = {
   },
   chardham: {
     name: 'Chardham Yatra',
-    image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: 'https://images.unsplash.com/photo-1612438214708-f428a707dd4e?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     duration: '10 Days',
     price: '₹49,999',
     overview: 'Embark on the sacred Chardham Yatra covering Yamunotri, Gangotri, Kedarnath, and Badrinath. This spiritual journey through the Himalayas is considered one of the most auspicious pilgrimages in Hinduism. Our experienced team ensures a safe, comfortable, and spiritually enriching experience.',
@@ -572,7 +571,7 @@ export default function App() {
   const vehiclesCount = useCounter(25, 2000, statsInView);
 
   return (
-    <div className="min-h-screen bg-[#FFFDF8] pt-12 md:pt-14">
+    <div className="min-h-screen bg-[#FFFDF8] pt-12 md:pt-14 overflow-x-hidden">
       {/* Modals */}
       {selectedPackage && (
         <PackageModal
@@ -611,7 +610,7 @@ export default function App() {
               <a href="#services" className="hover:text-[#FFC107] transition-colors">Services</a>
               <a href="#fleet" className="hover:text-[#FFC107] transition-colors">Fleet</a>
               <a href="#packages" className="hover:text-[#FFC107] transition-colors">Tour Packages</a>
-              <a href="#contact" className="bg-[#FFC107] text-[#0B3C5D] px-3 py-1.5 rounded-full font-semibold hover:bg-[#FFD54F] transition-all text-xs">
+              <a href="#booking" className="bg-[#FFC107] text-[#0B3C5D] px-3 py-1.5 rounded-full font-semibold hover:bg-[#FFD54F] transition-all text-xs">
                 Book Now
               </a>
             </div>
@@ -642,7 +641,7 @@ export default function App() {
               <a href="#packages" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Tour Packages
               </a>
-              <a href="#contact" className="block bg-[#FFC107] text-[#0B3C5D] px-4 py-1.5 rounded-full font-semibold text-center text-sm" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#booking" className="block bg-[#FFC107] text-[#0B3C5D] px-4 py-1.5 rounded-full font-semibold text-center text-sm" onClick={() => setMobileMenuOpen(false)}>
                 Book Now
               </a>
             </motion.div>
@@ -727,6 +726,7 @@ export default function App() {
 
             {/* Right Booking Form */}
             <motion.div
+              id="booking"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -1017,7 +1017,7 @@ export default function App() {
                 bags: '6 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹20/km',
+                price: '₹35/km',
                 color: 'bg-[#1ABC9C]',
               },
             ].map((vehicle, index) => (
@@ -1174,114 +1174,61 @@ export default function App() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
-              {
-                key: 'delhiAgra',
-                name: 'Delhi Agra One Day Tour',
-                image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: '1 Day',
-                price: '₹5,499',
-                badge: 'Best Seller',
-                badgeColor: 'bg-[#FF6F00]',
-              },
-              {
-                key: 'mathuraVrindavan',
-                name: 'Delhi–Mathura–Vrindavan',
-                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: '1-2 Days',
-                price: '₹5,499',
-                badge: 'Popular',
-                badgeColor: 'bg-[#1ABC9C]',
-              },
-              {
-                key: 'goldenTriangle',
-                name: 'Golden Triangle (5N 6D)',
-                image: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: '6 Days',
-                price: '₹19,599',
-                badge: 'Trending',
-                badgeColor: 'bg-[#FFC107]',
-              },
-              {
-                key: 'delhiManali',
-                name: 'Delhi–Manali (3N 4D)',
-                image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: '4 Days',
-                price: '₹-----',
-                badge: 'Family Special',
-                badgeColor: 'bg-[#8E24AA]',
-              },
-              {
-                key: 'chardham',
-                name: 'Chardham Yatra',
-                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: '10 Days',
-                price: '₹49,999',
-                badge: 'Sacred Journey',
-                badgeColor: 'bg-[#FF6F00]',
-              },
-              {
-                key: 'delhiHaridwar',
-                name: 'Delhi to Haridwar Same Day',
-                image: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: '1 Day',
-                price: '₹5,499',
-                badge: 'Spiritual',
-                badgeColor: 'bg-[#D32F2F]',
-              },
-              {
-                key: 'agraLocal',
-                name: 'Agra Local Taxi Service',
-                image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-                duration: 'Full Day',
-                price: '₹1,699',
-                badge: 'Local Favorite',
-                badgeColor: 'bg-[#1ABC9C]',
-              },
-            ].map((pkg, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
-              >
-                <div className="relative h-28 md:h-32 overflow-hidden">
-                  <ImageWithFallback
-                    src={pkg.image}
-                    alt={pkg.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className={`absolute top-3 right-3 ${pkg.badgeColor} text-white px-2.5 py-1 rounded-full text-xs font-bold shadow-lg`}>
-                    {pkg.badge}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                    <p className="text-white text-xs md:text-sm">
-                      <Calendar className="inline h-3 w-3 mr-1" />
-                      {pkg.duration}
-                    </p>
-                  </div>
-                </div>
-                <div className="p-4 md:p-5">
-                  <h3 className="text-base md:text-lg lg:text-xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                    {pkg.name}
-                  </h3>
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-gray-500 text-sm md:text-sm">Starting from</p>
-                      <p className="text-xl md:text-2xl text-[#FFC107]">{pkg.price}</p>
+              { key: 'agraLocal', badge: 'Local Favorite', badgeColor: 'bg-[#1ABC9C]' },
+              { key: 'delhiAgra', badge: 'Best Seller', badgeColor: 'bg-[#FF6F00]' },
+              { key: 'mathuraVrindavan', badge: 'Popular', badgeColor: 'bg-[#1ABC9C]' },
+              { key: 'goldenTriangle', badge: 'Trending', badgeColor: 'bg-[#FFC107]' },
+              { key: 'delhiManali', badge: 'Family Special', badgeColor: 'bg-[#8E24AA]' },
+              { key: 'chardham', badge: 'Sacred Journey', badgeColor: 'bg-[#FF6F00]' },
+              { key: 'delhiHaridwar', badge: 'Spiritual', badgeColor: 'bg-[#D32F2F]' },
+            ].map((meta, index) => {
+              const data = packagesData[meta.key as keyof typeof packagesData];
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
+                >
+                  <div className="relative h-48 sm:h-52 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                    <ImageWithFallback
+                      src={data.image}
+                      alt={data.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className={`absolute top-3 right-3 ${meta.badgeColor} text-white px-2.5 py-1 rounded-full text-xs font-bold shadow-lg`}>
+                      {meta.badge}
                     </div>
-                    <button 
-                      onClick={() => setSelectedPackage(pkg.key as keyof typeof packagesData)}
-                      className="bg-[#0B3C5D] text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-semibold hover:bg-[#1565C0] transition-all text-xs md:text-sm whitespace-nowrap"
-                    >
-                      View Details
-                    </button>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                      <p className="text-white text-xs md:text-sm">
+                        <Calendar className="inline h-3 w-3 mr-1" />
+                        {data.duration}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="p-4 md:p-5">
+                    <h3 className="text-base md:text-lg lg:text-xl mb-3 text-[#0B3C5D] leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      {data.name}
+                    </h3>
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <p className="text-gray-500 text-sm md:text-sm">Starting from</p>
+                        <p className="text-xl md:text-2xl text-[#FFC107]">{data.price}</p>
+                      </div>
+                      <button 
+                        onClick={() => setSelectedPackage(meta.key as keyof typeof packagesData)}
+                        className="bg-[#0B3C5D] text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-semibold hover:bg-[#1565C0] transition-all text-xs md:text-sm whitespace-nowrap"
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1713,12 +1660,10 @@ export default function App() {
               </motion.a>
 
               <motion.a
-                href="https://wa.me/9412157562"
+                href="#booking"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="bg-[#25D366] text-white px-3 md:px-4 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-2xl flex items-center justify-center gap-2 hover:bg-[#20BA5A] transition-all"
+                className="bg-[#FFC107] text-[#0B3C5D] px-3 md:px-4 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-2xl flex items-center justify-center gap-2 hover:bg-[#FFD54F] transition-all"
               >
                 <MessageCircle className="h-6 w-6" />
                 Book Now

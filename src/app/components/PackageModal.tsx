@@ -37,46 +37,47 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', duration: 0.5 }}
-            className="fixed inset-4 md:inset-8 lg:inset-16 z-50 bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+            className="fixed inset-4 md:inset-8 lg:inset-16 z-50 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+            style={{
+              backgroundImage: `url(${packageData.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
-            {/* Header with Image */}
-            <div className="relative h-32 md:h-48 flex-shrink-0">
-              <img
-                src={packageData.image}
-                alt={packageData.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8">
-                <h2 className="text-2xl md:text-4xl lg:text-5xl text-white mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  {packageData.name}
-                </h2>
-                <div className="flex flex-wrap gap-4 text-white text-sm md:text-base">
-                  <span className="flex items-center gap-2">
-                    <Clock className="h-5 w-5" />
-                    {packageData.duration}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <DollarSign className="h-5 w-5" />
-                    Starting {packageData.price}
-                  </span>
-                </div>
+            {/* Background Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80 pointer-events-none" />
+            
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 md:p-3 rounded-full transition-all hover:scale-110 z-20 cursor-pointer"
+              type="button"
+            >
+              <X className="h-5 w-5 md:h-6 md:w-6 text-gray-800" />
+            </button>
+
+            {/* Header Section */}
+            <div className="relative z-10 pt-6 md:pt-8 px-4 md:px-8">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl text-white mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                {packageData.name}
+              </h2>
+              <div className="flex flex-wrap gap-4 text-white text-sm md:text-base">
+                <span className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  {packageData.duration}
+                </span>
+                <span className="flex items-center gap-2">
+                  <DollarSign className="h-5 w-5" />
+                  Starting {packageData.price}
+                </span>
               </div>
-              
-              {/* Close Button */}
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 md:p-3 rounded-full transition-all hover:scale-110"
-              >
-                <X className="h-5 w-5 md:h-6 md:w-6 text-gray-800" />
-              </button>
             </div>
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-8">
+            {/* Scrollable Content with Glass Effect */}
+            <div className="flex-1 overflow-y-auto p-4 md:p-8 relative z-10 mt-4">
               <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
                 {/* Overview */}
-                <section>
+                <section className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl lg:text-3xl mb-3 md:mb-4 text-[#0B3C5D]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     Package Overview
                   </h3>
@@ -86,7 +87,7 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
                 </section>
 
                 {/* Car Types Available */}
-                <section>
+                <section className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 text-[#0B3C5D] flex items-center gap-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     <Car className="h-6 w-6 md:h-8 md:w-8 text-[#FFC107]" />
                     Available Car Options
@@ -114,7 +115,7 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
                 </section>
 
                 {/* Pricing Details */}
-                <section>
+                <section className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 text-[#0B3C5D] flex items-center gap-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     <DollarSign className="h-6 w-6 md:h-8 md:w-8 text-[#1ABC9C]" />
                     Pricing Details
@@ -132,7 +133,7 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
                 </section>
 
                 {/* Why Choose This Package */}
-                <section>
+                <section className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 text-[#0B3C5D] flex items-center gap-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     <Star className="h-6 w-6 md:h-8 md:w-8 text-[#FF6F00]" />
                     Why Choose This Package
@@ -154,7 +155,7 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
                 </section>
 
                 {/* Tour Highlights */}
-                <section>
+                <section className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 text-[#0B3C5D] flex items-center gap-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     <Sparkles className="h-6 w-6 md:h-8 md:w-8 text-[#FFC107]" />
                     Tour Highlights
@@ -178,13 +179,13 @@ export function PackageModal({ isOpen, onClose, packageData }: PackageModalProps
                 </section>
 
                 {/* Book Now Button */}
-                <div className="flex gap-4 pt-4">
+                <div className="flex gap-4 pt-4 pb-4">
                   <button className="flex-1 bg-gradient-to-r from-[#FFC107] to-[#FF6F00] text-white py-2 md:py-3 px-4 md:px-6 rounded-xl text-sm md:text-base font-semibold hover:shadow-xl transition-all hover:scale-105">
                     Book This Package Now
                   </button>
                   <button 
                     onClick={onClose}
-                    className="px-4 md:px-6 py-2 md:py-3 border-2 border-gray-300 text-gray-700 rounded-xl text-sm md:text-base font-semibold hover:bg-gray-100 transition-all"
+                    className="px-4 md:px-6 py-2 md:py-3 border-2 border-white text-white rounded-xl text-sm md:text-base font-semibold hover:bg-white/20 transition-all"
                   >
                     Close
                   </button>
