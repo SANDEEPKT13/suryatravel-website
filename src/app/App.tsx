@@ -34,8 +34,9 @@ import {
   Youtube,
   Menu,
   X,
+  FlameKindling,
 } from 'lucide-react';
-import mainlogo1 from "../assets/images/mainlogo1.png";
+import finallogo from "../assets/images/finallogo.png";
 import logo1 from "../assets/images/logo1.png";
 import cid1 from "../assets/images/cid1.png";
 import cid2 from "../assets/images/cid2.png";
@@ -44,6 +45,9 @@ import cid4 from "../assets/images/cid4.png";
 import wedding1 from "../assets/images/wedding1.png";
 import wedding2 from "../assets/images/wedding2.png";
 import wedding3 from "../assets/images/wedding3.png";
+import wedding4 from "../assets/images/wedding4.png";
+import wedding5 from "../assets/images/wedding5.png";
+import wedding6 from "../assets/images/wedding6.png";
 import film1 from "../assets/images/film1.png";
 import film2 from "../assets/images/film2.png";
 import film3 from "../assets/images/film3.png";
@@ -68,6 +72,14 @@ import ertiga from "../assets/images/ertiga.png";
 import carens from "../assets/images/carens.png";
 import urbania from "../assets/images/urbania.png";
 import traveller from "../assets/images/traveller.png";
+import whatsapp from "../assets/images/whatsapp.png";
+import intourist from "../assets/images/intourist.png";
+import family1 from "../assets/images/family1.png";
+import family2 from "../assets/images/family2.png";
+import family3 from "../assets/images/family3.png";
+import family4 from "../assets/images/family4.png";
+import family5 from "../assets/images/family5.png";
+import yatri from "../assets/images/yatri.png";
 //import corp2 from "../assets/images/corp2.png";
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { PackageModal } from './components/PackageModal';
@@ -186,7 +198,7 @@ const packagesData = {
     price: '₹19,599',
     overview: 'Experience the essence of India with our comprehensive Golden Triangle Tour covering Delhi, Agra, and Jaipur. This 6-day journey takes you through India\'s rich cultural heritage, magnificent monuments, colorful markets, and royal palaces. Perfect for first-time visitors to India!',
     carTypes: [
-      { name: 'A/C SEDAN', price: '₹11,599', seats: '4 Passengers' },
+      { name: 'A/C SEDAN', price: '₹10,599', seats: '4 Passengers' },
       { name: 'A/C MUV'  , price: '₹11,599', seats: '6 Passengers' },
       { name: 'A/C SUV'  , price: '₹14,599', seats: '6 Passengers' },
       { name: 'A/C Tempo Traveller', price: '₹29,999', seats: '12-30 Passengers' },
@@ -257,9 +269,9 @@ const packagesData = {
     price: '₹10,999',
     overview: 'Escape to the mountains with our Manali tour package! Experience the breathtaking beauty of Himachal Pradesh, enjoy adventure activities, visit ancient temples, and relax in the lap of nature. Perfect for families, couples, and adventure enthusiasts.',
     carTypes: [
-      { name: 'Sedan', price: '₹10,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹15,999', seats: '6-7 Passengers' },
-      { name: 'MUV', price: '₹17,999', seats: '6 Passengers' },
+      { name: 'Sedan', price: '------', seats: '4 Passengers' },
+      { name: 'SUV', price: '------', seats: '6-7 Passengers' },
+      { name: 'MUV', price: '------', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation (4 Days)', detail: 'AC Vehicle' },
@@ -292,9 +304,9 @@ const packagesData = {
     price: '₹49,999',
     overview: 'Embark on the sacred Chardham Yatra covering Yamunotri, Gangotri, Kedarnath, and Badrinath. This spiritual journey through the Himalayas is considered one of the most auspicious pilgrimages in Hinduism. Our experienced team ensures a safe, comfortable, and spiritually enriching experience.',
     carTypes: [
-      { name: 'Sedan', price: '₹49,999', seats: '4 Passengers' },
-      { name: 'SUV', price: '₹64,999', seats: '6-7 Passengers' },
-      { name: 'MUV', price: '₹89,999', seats: '6 Passengers' },
+      { name: 'Sedan', price: '₹41,999', seats: '4 Passengers' },
+      { name: 'SUV', price: '₹48,999', seats: '6-7 Passengers' },
+      { name: 'MUV', price: '₹81,999', seats: '6 Passengers' },
     ],
     pricing: [
       { item: 'All Transportation (10 Days)', detail: 'AC Vehicle' },
@@ -359,8 +371,16 @@ const galleryData = {
         caption: 'Guest transportation with decorated vehicles',
       },
       {
-        url: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: wedding4,
         caption: 'Family transportation in premium SUVs',
+      },
+      {
+        url: wedding5,
+        caption: 'Coordinated fleet for wedding events',
+      },
+      {
+        url: wedding6,
+        caption: 'Elegant wedding car decorations on vehicles',
       },
     ],
   },
@@ -399,34 +419,6 @@ const galleryData = {
 
     ],
   },
-  political: {
-    title: 'Political Rally & Event Transport',
-    description: 'Expert convoy management for political events, rallies, and official visits. We have successfully managed large-scale transportation for political campaigns and government events with precision and security.',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1758411898280-2dc7c95e0ba7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjBjYXIlMjBtb2Rlcm58ZW58MXx8fHwxNzY1NTMxOTMxfDA&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Convoy management for political events',
-      },
-      {
-        url: 'https://images.unsplash.com/photo-1720248800225-78d6bc3442de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWRhbiUyMGNhciUyMHdoaXRlfGVufDF8fHx8MTc2NTYwMTE4NXww&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'VIP transportation with security protocols',
-      },
-    ],
-  },
-  yatra: {
-    title: 'Religious Yatra Group Tours',
-    description: 'Specialized in organizing transportation for religious pilgrimages including Chardham Yatra, Amarnath Yatra, Vaishno Devi, and other sacred destinations. Our experienced drivers ensure safe journey through challenging terrains.',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Temple pilgrimage group transportation',
-      },
-      {
-        url: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Himalayan pilgrimage journeys',
-      },
-    ],
-  },
   corporate: {
     title: 'Corporate Event Transportation',
     description: 'Executive transportation services for Fortune 500 companies. We provide professional chauffeur services for business meetings, conferences, airport transfers, and corporate events with utmost punctuality and discretion.',
@@ -441,22 +433,55 @@ const galleryData = {
       // },
     ],
   },
+  yatra: {
+    title: 'Religious Yatra Group Tours',
+    description: 'Specialized in organizing transportation for religious pilgrimages including Chardham Yatra, Amarnath Yatra, Vaishno Devi, and other sacred destinations. Our experienced drivers ensure safe journey through challenging terrains.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        caption: 'Temple pilgrimage group transportation',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1706186839147-0d708602587b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        caption: 'Kashi Vishwanath temple visits',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1663744616477-54978241a2ed?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        caption: 'Himalayan temple tours',
+      },
+      {
+        url: yatri,
+        caption: 'Devotees on spiritual journeys',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1662376107358-21296a9234f1?q=80&w=1226&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        caption: 'Worship at sacred sites',
+      }
+    ],
+  },
   familyTours: {
     title: 'Family Tour Memories',
     description: 'Thousands of happy families have traveled with us across India. Creating beautiful memories, exploring new destinations, and experiencing comfort and safety on every journey.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1634351357279-c22fe1889467?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmYW1pbHklMjB0cmF2ZWx8ZW58MXx8fHwxNzY1NjQ3MjQyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: family1,
         caption: 'Family vacations made comfortable',
       },
       {
-        url: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: family2,
         caption: 'Exploring India together',
       },
+      {        url: family4,
+        caption: 'Joyful family & friends road trips',
+      },
       {
-        url: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        url: family3,
         caption: 'Adventures in the mountains',
       },
+      {
+        url: family5,
+        caption: 'Cherished moments on the road',
+      }
     ],
   },
   international: {
@@ -464,12 +489,20 @@ const galleryData = {
     description: 'Welcoming tourists from over 50 countries! We provide guided tours with multilingual support, comfortable transportation, and curated itineraries showcasing the best of India.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1534406589251-8bd571e55d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWlwdXIlMjBwaW5rJTIwY2l0eXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Heritage tour experiences',
+          url: intourist,
+        caption: 'Welcoming international visitors',
       },
       {
-        url: 'https://images.unsplash.com/photo-1734851561126-75ed6a55a5ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWxoaSUyMGluZGlhJTIwZ2F0ZXxlbnwxfHx8fDE3NjU2NDIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Iconic Indian landmarks tours',
+        url: 'https://images.unsplash.com/photo-1758797316117-8d133af25f8c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        caption: 'Cultural tours for international visitors',
+      },
+       {
+        url: 'https://plus.unsplash.com/premium_photo-1716999413626-19db20a0d2f0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        caption:'Guided tours for international travelers',
+      },
+      {
+        url: 'https://plus.unsplash.com/premium_photo-1664303009721-cdfb470fec5c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        caption: 'Exploring India\'s heritage sites',
       },
     ],
   },
@@ -654,14 +687,12 @@ export default function App() {
         <div className="container mx-auto px-3 site-container">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
-             <div className="p-1 flex items-center justify-center">
-            <img src={mainlogo1} alt="Main Logo" className="rounded-lg h-8 md:h-14 w-auto object-contain" />
-              </div>
+            <img src={finallogo} alt="Main Logo" className="h-10 md:h-16 w-auto object-contain [mix-blend-mode:screen]" />
               <div>
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h1>
-                <p className="text-xs text-[#FFC107] hidden sm:block">Your Journey, Our Priority</p>
+                <p className="text-xs text-[#FFC107] hidden sm:block">From Dreams to Destinations</p>
               </div>
             </div>
             
@@ -716,7 +747,7 @@ export default function App() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed ${mobileMenuOpen ? 'top-[6.5rem]' : 'top-16'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#16a34a] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#0f7a34] hover:shadow-amber-400/30 transition-all animate-pulse`}
+        className={`fixed ${mobileMenuOpen ? 'top-[10rem]' : 'top-32'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#16a34a] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#0f7a34] hover:shadow-amber-400/30 transition-all animate-pulse`}
         aria-label="Call Surya Travels"
         role="button"
         title="Call Surya Travels"
@@ -725,7 +756,38 @@ export default function App() {
         <span className="hidden sm:inline font-semibold">Call Now</span>
       </motion.a>
 
-      <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-16 md:py-20 lg:py-24 overflow-hidden">
+      {/* Floating Book Now Button */}
+      <motion.a
+        href="#booking"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.05 }}
+        className={`fixed ${mobileMenuOpen ? 'top-[13.5rem]' : 'top-48'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#FFC107] text-[#0B3C5D] shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#FFD54F] hover:shadow-yellow-400/30 transition-all animate-pulse`}
+        aria-label="Book Now"
+        role="button"
+        title="Book Now"
+      >
+        <Calendar className="h-5 w-5" />
+        <span className="hidden sm:inline font-semibold">Book Now</span>
+      </motion.a>
+
+      {/* Floating WhatsApp Button */}
+      <motion.a
+        href="https://wa.me/919412157562"
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className={`fixed ${mobileMenuOpen ? 'top-[17rem]' : 'top-64'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 shadow-2xl rounded-full hover:shadow-green-400/50 transition-all animate-pulse`}
+        aria-label="WhatsApp Surya Travels"
+        role="button"
+        title="WhatsApp Surya Travels"
+      >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/200px-WhatsApp.svg.png" alt="WhatsApp" className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
+      </motion.a>
+
+      <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-12 md:py-16 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -819,6 +881,20 @@ export default function App() {
                 <input
                   type="text"
                   placeholder="Drop Location"
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
+                />
+                <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
+                  <option>Select Trip Type</option>
+                  <option>One Way</option>
+                  <option>Round Trip</option>
+                  <option>Local</option>
+                  <option>Outstation</option>
+                </select>
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  placeholder="Number of Passengers"
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
@@ -1105,7 +1181,7 @@ export default function App() {
               {
                 name: 'Ertiga',
                 image: ertiga,
-                seats: '6-7 Passengers',
+                seats: '6-7 Seater',
                 bags: '5 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
@@ -1149,7 +1225,7 @@ export default function App() {
                 bags: '5 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹15/km',
+                price: '₹30/km',
                 color: 'bg-[#FF6F00]',
               },
                 {
@@ -1561,7 +1637,7 @@ export default function App() {
             <p className="text-base sm:text-lg md:text-xl text-gray-200">Our Prestigious Associations & Clientele</p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 key: 'cidShoot',
@@ -1585,25 +1661,11 @@ export default function App() {
                 gradient: 'from-[#8E24AA] to-[#6A1B9A]',
               },
               {
-                key: 'political',
-                icon: <Bus className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
-                title: 'Political Rally Transport',
-                desc: 'Convoy management for political events & rallies',
-                gradient: 'from-[#1ABC9C] to-[#16A085]',
-              },
-              {
                 key: 'yatra',
                 icon: <Users className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
                 title: 'Religious Yatra Groups',
                 desc: 'Chardham, Amarnath, Vaishno Devi pilgrimages',
                 gradient: 'from-[#D32F2F] to-[#C62828]',
-              },
-              {
-                key: 'corporate',
-                icon: <HeartHandshake className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
-                title: 'Corporate Events',
-                desc: 'Executive transport for Fortune 500 companies',
-                gradient: 'from-[#0B3C5D] to-[#1565C0]',
               },
               {
                 key: 'familyTours',
