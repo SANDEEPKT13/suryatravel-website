@@ -1184,7 +1184,7 @@ export default function App() {
                 seats: '6-7 Seater',
                 bags: '5 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹16/km',
                 color: 'bg-[#0B3C5D]',
               },
