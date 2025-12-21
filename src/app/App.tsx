@@ -722,7 +722,7 @@ export default function App() {
                   placeholder="Drop Location"
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
-                <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
+                {/* <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
                   <option>Select Trip Type</option>
                   <option>One Way</option>
                   <option>Round Trip</option>
@@ -735,7 +735,7 @@ export default function App() {
                   max="50"
                   placeholder="Number of Passengers"
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
-                />
+                /> */}
                 <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
                   <option>Select Car Type</option>
                   <option>Dzire</option>
@@ -1512,27 +1512,27 @@ export default function App() {
                 desc: 'Trusted by Bollywood and regional film productions',
                 gradient: 'from-[#8E24AA] to-[#6A1B9A]',
               },
-              {
-                key: 'yatra',
-                icon: <Users className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
-                title: 'Religious Yatra Groups',
-                desc: 'Chardham, Amarnath, Vaishno Devi pilgrimages',
-                gradient: 'from-[#D32F2F] to-[#C62828]',
-              },
-              {
-                key: 'familyTours',
-                icon: <Award className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
-                title: 'Family Tours',
-                desc: 'Thousands of happy families across India',
-                gradient: 'from-[#FF6F00] to-[#FFC107]',
-              },
-              {
-                key: 'international',
-                icon: <Globe className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
-                title: 'International Tourists',
-                desc: 'Guided tours for tourists from 50+ countries',
-                gradient: 'from-[#1ABC9C] to-[#16A085]',
-              },
+              // {
+              //   key: 'yatra',
+              //   icon: <Users className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
+              //   title: 'Religious Yatra Groups',
+              //   desc: 'Chardham, Amarnath, Vaishno Devi pilgrimages',
+              //   gradient: 'from-[#D32F2F] to-[#C62828]',
+              // },
+              // {
+              //   key: 'familyTours',
+              //   icon: <Award className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
+              //   title: 'Family Tours',
+              //   desc: 'Thousands of happy families across India',
+              //   gradient: 'from-[#FF6F00] to-[#FFC107]',
+              // },
+              // {
+              //   key: 'international',
+              //   icon: <Globe className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12" />,
+              //   title: 'International Tourists',
+              //   desc: 'Guided tours for tourists from 50+ countries',
+              //   gradient: 'from-[#1ABC9C] to-[#16A085]',
+              // },
             ].map((association, index) => (
               <motion.button
                 key={index}
@@ -1787,7 +1787,7 @@ export default function App() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="grid grid-cols-2 gap-4">
+              {/* <div className="grid grid-cols-2 gap-4">
                 <ImageWithFallback
                   src={post1}
                   alt="my image"
@@ -1808,7 +1808,28 @@ export default function App() {
                   alt="Luxury Cars"
                   className="rounded-2xl shadow-lg h-32 md:h-40 w-full object-cover"
                 />
-              </div>
+              </div> */}
+              <div className="grid grid-cols-2 gap-4">
+  <div className="rounded-2xl shadow-lg overflow-hidden h-52 md:h-64 w-full">
+    <ImageWithFallback
+      src={post1}
+      alt="My image"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  <div className="rounded-2xl shadow-lg overflow-hidden h-52 md:h-64 w-full">
+    <ImageWithFallback
+      src={post2}
+      alt="Premium Cars"
+      className="w-full h-full object-cover"
+    />
+  </div>
+</div>
+
+
+
+
             </motion.div>
           </div>
         </div>
