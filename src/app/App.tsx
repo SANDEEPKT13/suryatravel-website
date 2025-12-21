@@ -66,6 +66,7 @@ import post7 from "../assets/images/post7.png";
 import post8 from "../assets/images/post8.png";
 import post9 from "../assets/images/post9.png";
 import dzire from "../assets/images/dzire.png";
+import etios from "../assets/images/etios.png";
 import innova from "../assets/images/innova.png";
 import bus2 from "../assets/images/bus2.png";
 import ertiga from "../assets/images/ertiga.png";
@@ -266,7 +267,7 @@ const packagesData = {
     name: 'Delhi to Manali Tour Package (3 Nights / 4 Days)',
     image: 'https://images.unsplash.com/photo-1743634360054-63490c53da40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW5hbGklMjBoaW1hY2hhbCUyMG1vdW50YWluc3xlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
     duration: '4 Days',
-    price: '₹10,999',
+    price: '------',
     overview: 'Escape to the mountains with our Manali tour package! Experience the breathtaking beauty of Himachal Pradesh, enjoy adventure activities, visit ancient temples, and relax in the lap of nature. Perfect for families, couples, and adventure enthusiasts.',
     carTypes: [
       { name: 'Sedan', price: '------', seats: '4 Passengers' },
@@ -692,7 +693,7 @@ export default function App() {
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h1>
-                <p className="text-xs text-[#FFC107] hidden sm:block">From Dreams to Destinations</p>
+                <p className="text-xs text-[#FFC107] hidden sm:block">COMFORT. SAFETY. RELIABILITY</p>
               </div>
             </div>
             
@@ -916,10 +917,13 @@ export default function App() {
                       maxLength={8}
                       placeholder="DD-MM-YY"
                       aria-label="Booking date (DD-MM-YY)"
-                      pattern="\\d{2}-\\d{2}-\\d{2}"
+                      pattern="\d{2}-\d{2}-\d{2}"
                       title="Enter date as DD-MM-YY"
                       onInput={(e) => {
                         const input = e.currentTarget as HTMLInputElement;
+                        // Clear any previous custom validity messages
+                        input.setCustomValidity('');
+                        
                         const digits = input.value.replace(/\D/g, '').slice(0, 6);
                         let out = '';
                         if (digits.length <= 2) out = digits;
@@ -1179,6 +1183,16 @@ export default function App() {
                 color: 'bg-[#FFC107]',
               },
               {
+                name: 'Etios',
+                image: etios,
+                seats: '4 Seater',
+                bags: '4 Bags',
+                running: '250 Km Per day',
+                allowance: 'Rs.500/=',
+                price: '₹11/km',
+                color: 'bg-[#FFC107]',
+              },
+              {
                 name: 'Ertiga',
                 image: ertiga,
                 seats: '6-7 Seater',
@@ -1215,13 +1229,13 @@ export default function App() {
                 bags: '8 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹22/km',
+                price: '₹32/km',
                 color: 'bg-[#1976D2]',
                 },
                  {
                 name: 'Mini Bus',
                 image: traveller,
-                seats: '12-30 Seater',
+                seats: '12-20 Passenger',
                 bags: '5 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
