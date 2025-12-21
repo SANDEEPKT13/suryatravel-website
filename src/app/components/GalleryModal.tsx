@@ -78,6 +78,8 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
                   <img
                     src={galleryData.images[currentImageIndex].url}
                     alt={galleryData.images[currentImageIndex].caption}
+                    loading="lazy"
+                    decoding="async"
                     className="max-w-full max-h-96 object-contain rounded-2xl shadow-2xl"
                   />
                   <p
@@ -125,6 +127,8 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
                       <img
                         src={image.url}
                         alt={image.caption}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </button>

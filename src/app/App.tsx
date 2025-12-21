@@ -693,7 +693,7 @@ export default function App() {
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h1>
-                <p className="text-xs text-[#FFC107] hidden sm:block">COMFORT. SAFETY. RELIABILITY</p>
+                <p className="text-xs text-[#FFC107] hidden sm:block">From Dreams to Destinations</p>
               </div>
             </div>
             
@@ -785,7 +785,7 @@ export default function App() {
         role="button"
         title="WhatsApp Surya Travels"
       >
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/200px-WhatsApp.svg.png" alt="WhatsApp" className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/200px-WhatsApp.svg.png" alt="WhatsApp" loading="lazy" decoding="async" className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
       </motion.a>
 
       <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-12 md:py-16 lg:py-20 overflow-hidden">
@@ -1178,7 +1178,7 @@ export default function App() {
                 seats: '4 Seater',
                 bags: '4 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹11/km',
                 color: 'bg-[#FFC107]',
               },
@@ -1198,7 +1198,7 @@ export default function App() {
                 seats: '6-7 Seater',
                 bags: '5 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹16/km',
                 color: 'bg-[#0B3C5D]',
               },
@@ -1208,7 +1208,7 @@ export default function App() {
                 seats: '6-7 Seater',
                 bags: '4 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹18/km',
                 color: 'bg-[#8E24AA]',
               },
@@ -1218,7 +1218,7 @@ export default function App() {
                 seats: '7 Seater',
                 bags: '4 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹15/km',
                 color: 'bg-[#D32F2F]',
               },
@@ -1229,7 +1229,7 @@ export default function App() {
                 bags: '8 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹32/km',
+                price: '₹22/km',
                 color: 'bg-[#1976D2]',
                 },
                  {
@@ -1238,7 +1238,7 @@ export default function App() {
                 seats: '12-20 Passenger',
                 bags: '5 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹30/km',
                 color: 'bg-[#FF6F00]',
               },
@@ -1248,7 +1248,7 @@ export default function App() {
                 seats: '28 Seater',
                 bags: '6 Bags',
                 running: '250 Km Per day',
-                allowance: 'Rs.500/=',
+                allowance: 'Rs.500/-',
                 price: '₹35/km',
                 color: 'bg-[#1ABC9C]',
               },
@@ -1817,7 +1817,7 @@ export default function App() {
                       >
                         <X className="h-5 w-5 text-[#0B3C5D]" />
                       </button>
-                      <img src={selectedMemory} alt="Travel memory" className="rounded-lg shadow-lg object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto" />
+                      <img src={selectedMemory} alt="Travel memory" loading="lazy" decoding="async" className="rounded-lg shadow-lg object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto" />
                     </div>
                   </div>
                 )}
