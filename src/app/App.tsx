@@ -1229,7 +1229,7 @@ export default function App() {
                 bags: '8 Bags',
                 running: '250 Km Per day',
                 allowance: 'Rs.500/=',
-                price: '₹22/km',
+                price: '₹32/km',
                 color: 'bg-[#1976D2]',
                 },
                  {
