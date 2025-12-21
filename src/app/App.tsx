@@ -693,7 +693,7 @@ export default function App() {
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h1>
-                <p className="text-xs text-[#FFC107] hidden sm:block">From Dreams to Destinations</p>
+                <p className="text-xs text-[#FFC107] hidden sm:block">COMFORT. SAFETY. RELIABILITY.</p>
               </div>
             </div>
             
