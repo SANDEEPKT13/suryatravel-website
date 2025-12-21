@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import Masonry from 'react-responsive-masonry';
 import {
@@ -84,7 +84,7 @@ import yatri from "../assets/images/yatri.png";
 //import corp2 from "../assets/images/corp2.png";
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import { PackageModal } from './components/PackageModal';
-import { GalleryModal } from './components/GalleryModal.tsx';
+const GalleryModal = React.lazy(() => import('./components/GalleryModal'));
 
 // Package data for all tours
 const packagesData = {
@@ -335,179 +335,8 @@ const packagesData = {
   },
 };
 
-// Gallery data for trusted associations
-const galleryData = {
-  cidShoot: {
-    title: 'CID TV Show Transportation',
-    description: 'We had the honor of being the official transportation partner for the renowned CID TV show. Our well-maintained fleet supported multiple shooting schedules across various locations in North India, ensuring timely pickups, smooth logistics, and dependable service for the cast and production crew. With professional drivers and coordinated operations, we contributed to seamless on-ground mobility throughout the production.',
-    images: [
-      {
-        url: cid1,
-        caption: 'Our luxury fleet provided for CID production crew',
-      },
-      {
-        url: cid2,
-        caption: 'Professional sedans for cast transportation',
-      },
-      {
-        url: cid4,
-        caption: 'SUVs for equipment and crew movement',
-      },
-      {
-        url: cid3,  
-        caption: 'On-location shoot support vehicles',
-      }
-    ],
-  },
-  weddings: {
-    title: 'Wedding Events Transportation',
-    description: 'Over 1000+ weddings successfully coordinated! We specialize in providing comprehensive transportation solutions for weddings, ensuring all guests, family members, and VIPs arrive on time and in comfort. From small intimate gatherings to grand celebrations.',
-    images: [
-      {
-        url: wedding1,
-        caption: 'Luxury cars for bride and groom transportation',
-      },
-      {
-        url: wedding2,
-        caption: 'Guest transportation with decorated vehicles',
-      },
-      {
-        url: wedding4,
-        caption: 'Family transportation in premium SUVs',
-      },
-      {
-        url: wedding5,
-        caption: 'Coordinated fleet for wedding events',
-      },
-      {
-        url: wedding6,
-        caption: 'Elegant wedding car decorations on vehicles',
-      },
-    ],
-  },
-  filmShoots: {
-    title: 'Film & Media Production',
-    description: 'Trusted by Bollywood and regional serials productions for on-location transportation. Our fleet has been part of numerous movie shoots, web series productions, and advertisement campaigns across India.',
-    images: [
-      {
-        url: film1,
-        caption: 'On-set transportation for film crews',
-      },
-      {
-        url: film2,
-        caption: 'Location scouting trips to scenic destinations',
-      },
-      {
-        url: film3,
-        caption: 'Luxury vehicles for lead actors',
-      },
-      {
-        url: film4,
-        caption: 'Crew mobility during shoots',
-      },
-      {
-        url: film5,
-        caption: 'Equipment transport with spacious SUVs', 
-      },
-      {
-        url: film6,
-        caption: 'Comfortable rides for long shooting schedules',
-      },
-      {
-        url: film7,
-        caption: 'Reliable transport for production teams',
-      },
+// Gallery data moved to `src/app/galleryData.ts` and is lazy-loaded when a user opens a gallery (reduces initial bundle size)
 
-    ],
-  },
-  corporate: {
-    title: 'Corporate Event Transportation',
-    description: 'Executive transportation services for Fortune 500 companies. We provide professional chauffeur services for business meetings, conferences, airport transfers, and corporate events with utmost punctuality and discretion.',
-    images: [
-      {
-        url: corp1,
-        caption: 'Executive luxury transportation',
-      },
-      // {
-      //   url: corp2,
-      //   caption: 'Professional chauffeur services',
-      // },
-    ],
-  },
-  yatra: {
-    title: 'Religious Yatra Group Tours',
-    description: 'Specialized in organizing transportation for religious pilgrimages including Chardham Yatra, Amarnath Yatra, Vaishno Devi, and other sacred destinations. Our experienced drivers ensure safe journey through challenging terrains.',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1712999533944-9200e6b20e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZW1wbGUlMjByZWxpZ2lvdXMlMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        caption: 'Temple pilgrimage group transportation',
-      },
-      {
-        url: 'https://images.unsplash.com/photo-1706186839147-0d708602587b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        caption: 'Kashi Vishwanath temple visits',
-      },
-      {
-        url: 'https://images.unsplash.com/photo-1663744616477-54978241a2ed?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        caption: 'Himalayan temple tours',
-      },
-      {
-        url: yatri,
-        caption: 'Devotees on spiritual journeys',
-      },
-      {
-        url: 'https://images.unsplash.com/photo-1662376107358-21296a9234f1?q=80&w=1226&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        caption: 'Worship at sacred sites',
-      }
-    ],
-  },
-  familyTours: {
-    title: 'Family Tour Memories',
-    description: 'Thousands of happy families have traveled with us across India. Creating beautiful memories, exploring new destinations, and experiencing comfort and safety on every journey.',
-    images: [
-      {
-        url: family1,
-        caption: 'Family vacations made comfortable',
-      },
-      {
-        url: family2,
-        caption: 'Exploring India together',
-      },
-      {        url: family4,
-        caption: 'Joyful family & friends road trips',
-      },
-      {
-        url: family3,
-        caption: 'Adventures in the mountains',
-      },
-      {
-        url: family5,
-        caption: 'Cherished moments on the road',
-      }
-    ],
-  },
-  international: {
-    title: 'International Tourist Services',
-    description: 'Welcoming tourists from over 50 countries! We provide guided tours with multilingual support, comfortable transportation, and curated itineraries showcasing the best of India.',
-    images: [
-      {
-          url: intourist,
-        caption: 'Welcoming international visitors',
-      },
-      {
-        url: 'https://images.unsplash.com/photo-1758797316117-8d133af25f8c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        caption: 'Cultural tours for international visitors',
-      },
-       {
-        url: 'https://plus.unsplash.com/premium_photo-1716999413626-19db20a0d2f0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        caption:'Guided tours for international travelers',
-      },
-      {
-        url: 'https://plus.unsplash.com/premium_photo-1664303009721-cdfb470fec5c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        caption: 'Exploring India\'s heritage sites',
-      },
-    ],
-  },
-};
 
 // Counter animation hook
 function useCounter(end: number, duration: number = 2000, shouldStart: boolean = false) {
@@ -541,8 +370,15 @@ function useCounter(end: number, duration: number = 2000, shouldStart: boolean =
 export default function App() {
   const [statsInView, setStatsInView] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<keyof typeof packagesData | null>(null);
-  const [selectedGallery, setSelectedGallery] = useState<keyof typeof galleryData | null>(null);
+  const [selectedGallery, setSelectedGallery] = useState<string | null>(null);
+  const [activeGalleryData, setActiveGalleryData] = useState<any | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const openGallery = async (key: string) => {
+    const mod = await import('./galleryData');
+    setActiveGalleryData((mod as any).galleryData[key]);
+    setSelectedGallery(key);
+  }; 
   const statsRef = useRef<HTMLDivElement>(null);
 
   // Travel memories: selected image modal + mobile auto-scroll control
@@ -675,12 +511,14 @@ export default function App() {
         />
       )}
       
-      {selectedGallery && (
-        <GalleryModal
-          isOpen={!!selectedGallery}
-          onClose={() => setSelectedGallery(null)}
-          galleryData={galleryData[selectedGallery]}
-        />
+      {selectedGallery && activeGalleryData && (
+        <React.Suspense fallback={<div />}> 
+          <GalleryModal
+            isOpen={!!selectedGallery}
+            onClose={() => { setSelectedGallery(null); setActiveGalleryData(null); }}
+            galleryData={activeGalleryData}
+          />
+        </React.Suspense>
       )}
 
       {/* Header */}
@@ -693,7 +531,7 @@ export default function App() {
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h1>
-                <p className="text-xs text-[#FFC107] hidden sm:block">COMFORT. SAFETY. RELIABILITY.</p>
+                <p className="text-xs text-[#FFC107] block mt-0.5">COMFORT SAFETY RELIABILITY</p>
               </div>
             </div>
             
@@ -1698,7 +1536,7 @@ export default function App() {
             ].map((association, index) => (
               <motion.button
                 key={index}
-                onClick={() => setSelectedGallery(association.key as keyof typeof galleryData)}
+                onClick={() => openGallery(association.key)}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -2042,7 +1880,7 @@ export default function App() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 flex items-center justify-center">
-                  <img src={logo1} alt="Surya Travels Logo" className="h-14 rounded-md w-auto object-contain"/>
+                  <img src={logo1} alt="Surya Travels Logo" loading="lazy" decoding="async" className="h-14 rounded-md w-auto object-contain"/>
                   </div>
                 <h3 className="text-3xl" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels

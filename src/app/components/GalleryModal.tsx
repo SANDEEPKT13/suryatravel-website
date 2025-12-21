@@ -147,3 +147,5 @@ export function GalleryModal({ isOpen, onClose, galleryData }: GalleryModalProps
     </AnimatePresence>
   );
 }
+
+export default GalleryModal;
