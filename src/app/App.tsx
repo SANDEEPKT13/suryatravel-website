@@ -199,9 +199,9 @@ const packagesData = {
     price: '₹19,599',
     overview: 'Experience the essence of India with our comprehensive Golden Triangle Tour covering Delhi, Agra, and Jaipur. This 6-day journey takes you through India\'s rich cultural heritage, magnificent monuments, colorful markets, and royal palaces. Perfect for first-time visitors to India!',
     carTypes: [
-      { name: 'A/C SEDAN', price: '₹10,599', seats: '4 Passengers' },
-      { name: 'A/C MUV'  , price: '₹11,599', seats: '6 Passengers' },
-      { name: 'A/C SUV'  , price: '₹14,599', seats: '6 Passengers' },
+      { name: 'A/C SEDAN', price: '₹19,599', seats: '4 Passengers' },
+      { name: 'A/C MUV'  , price: '₹26,599', seats: '6 Passengers' },
+      { name: 'A/C SUV'  , price: '₹28,599', seats: '6 Passengers' },
       { name: 'A/C Tempo Traveller', price: '₹29,999', seats: '12-30 Passengers' },
     ],
     pricing: [
@@ -531,7 +531,7 @@ export default function App() {
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
                 </h1>
-                <p className="text-xs text-[#FFC107] block mt-0.5">COMFORT SAFETY RELIABILITY</p>
+                <p className="text-xs text-[#FFC107] block mt-0.5">COMFORT. SAFETY. RELIABILITY.</p>
               </div>
             </div>
             
