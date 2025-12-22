@@ -1,6 +1,6 @@
 import cid1 from "../assets/images/cid1.png";
 import cid2 from "../assets/images/cid2.png";
-import cid3 from "../assets/images/cid3.png";
+import cid3 from "../assets/images/cid3.jpeg";
 import cid4 from "../assets/images/cid4.png";
 import wedding1 from "../assets/images/wedding1.png";
 import wedding2 from "../assets/images/wedding2.png";

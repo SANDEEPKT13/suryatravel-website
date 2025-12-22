@@ -40,7 +40,7 @@ import finallogo from "../assets/images/finallogo.png";
 import logo1 from "../assets/images/logo1.png";
 import cid1 from "../assets/images/cid1.png";
 import cid2 from "../assets/images/cid2.png";
-import cid3 from "../assets/images/cid3.png";
+import cid3 from "../assets/images/cid3.jpeg";
 import cid4 from "../assets/images/cid4.png";
 import wedding1 from "../assets/images/wedding1.png";
 import wedding2 from "../assets/images/wedding2.png";
@@ -302,7 +302,7 @@ const packagesData = {
     name: 'Chardham Yatra',
     image: 'https://images.unsplash.com/photo-1612438214708-f428a707dd4e?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     duration: '10 Days',
-    price: '₹49,999',
+    price: '₹41,999',
     overview: 'Embark on the sacred Chardham Yatra covering Yamunotri, Gangotri, Kedarnath, and Badrinath. This spiritual journey through the Himalayas is considered one of the most auspicious pilgrimages in Hinduism. Our experienced team ensures a safe, comfortable, and spiritually enriching experience.',
     carTypes: [
       { name: 'Sedan', price: '₹41,999', seats: '4 Passengers' },
