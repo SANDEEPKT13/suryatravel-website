@@ -513,7 +513,7 @@ export default function App() {
   const [formMessage, setFormMessage] = useState('');
 
   // Google Apps Script URL - Replace with your deployed script URL
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjcy0IAg1EMOFAYurS-9ZzQJlZoluB6dC_37aCQemL68miJ5Xhv3Y-iptzNc-HwFXrRA/exec';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOAiccy171HsX5LECDrUkCDo2-imolyzWRr9NmxHnsmEfH3XSVS-tLW3lypydUDW2jrg/exec';
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
