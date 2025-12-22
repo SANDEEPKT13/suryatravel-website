@@ -500,6 +500,85 @@ export default function App() {
   const customersCount = useCounter(10000, 2000, statsInView);
   const vehiclesCount = useCounter(25, 2000, statsInView);
 
+  // Form state management
+  const [formData, setFormData] = useState({
+    fullName: '',
+    mobile: '',
+    pickup: '',
+    drop: '',
+    carType: '',
+    date: ''
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formMessage, setFormMessage] = useState('');
+
+  // Google Apps Script URL - Replace with your deployed script URL
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjcy0IAg1EMOFAYurS-9ZzQJlZoluB6dC_37aCQemL68miJ5Xhv3Y-iptzNc-HwFXrRA/exec';
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validation
+    if (!formData.fullName || !formData.mobile || !formData.pickup || !formData.drop || !formData.carType || !formData.date) {
+      setFormStatus('error');
+      setFormMessage('Please fill in all fields');
+      setTimeout(() => setFormStatus('idle'), 3000);
+      return;
+    }
+
+    // Validate mobile number
+    const mobileRegex = /^[6-9]\d{9}$/;
+    if (!mobileRegex.test(formData.mobile)) {
+      setFormStatus('error');
+      setFormMessage('Please enter a valid 10-digit mobile number');
+      setTimeout(() => setFormStatus('idle'), 3000);
+      return;
+    }
+
+    setFormStatus('loading');
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      // With no-cors mode, we can't read the response, so assume success
+      setFormStatus('success');
+      setFormMessage('🎉 Booking request sent! We\'ll contact you within 45 minutes.');
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        mobile: '',
+        pickup: '',
+        drop: '',
+        carType: '',
+        date: ''
+      });
+
+      // Reset the visible date input
+      const visibleDateInput = document.getElementById('bookingDateVisible') as HTMLInputElement;
+      if (visibleDateInput) visibleDateInput.value = '';
+
+      setTimeout(() => setFormStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setFormStatus('error');
+      setFormMessage('Failed to send request. Please try calling us directly.');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FFFDF8] pt-12 md:pt-14 overflow-x-hidden">
       {/* Modals */}
@@ -701,25 +780,43 @@ export default function App() {
                 Quick Booking Form
               </h3>
               
-              <form className="space-y-4">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
                 <input
                   type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleFormChange}
                   placeholder="Your Name"
+                  required
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <input
                   type="tel"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleFormChange}
                   placeholder="Mobile Number"
+                  required
+                  pattern="[6-9]\d{9}"
+                  title="Please enter a valid 10-digit mobile number"
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <input
                   type="text"
+                  name="pickup"
+                  value={formData.pickup}
+                  onChange={handleFormChange}
                   placeholder="Pickup Location"
+                  required
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 <input
                   type="text"
+                  name="drop"
+                  value={formData.drop}
+                  onChange={handleFormChange}
                   placeholder="Drop Location"
+                  required
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 />
                 {/* <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
@@ -736,15 +833,21 @@ export default function App() {
                   placeholder="Number of Passengers"
                   className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
                 /> */}
-                <select className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm">
-                  <option>Select Car Type</option>
-                  <option>Dzire</option>
-                  <option>Sedan</option>
-                  <option>Ertiga</option>
-                  <option>Kia Carens</option>
-                  <option>Innova Crysta</option>
-                  <option>Bus</option>
-                  <option>Tempo Travellor</option>
+                <select 
+                  name="carType"
+                  value={formData.carType}
+                  onChange={handleFormChange}
+                  required
+                  className="w-full px-3 py-2 md:py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#FFC107] outline-none text-gray-800 text-sm"
+                >
+                  <option value="">Select Car Type</option>
+                  <option value="Dzire">Dzire</option>
+                  <option value="Sedan">Sedan</option>
+                  <option value="Ertiga">Ertiga</option>
+                  <option value="Kia Carens">Kia Carens</option>
+                  <option value="Innova Crysta">Innova Crysta</option>
+                  <option value="Bus">Bus</option>
+                  <option value="Tempo Travellor">Tempo Travellor</option>
                 </select>
                 <div className="relative">
                   <div className="flex items-center w-full">
@@ -820,6 +923,7 @@ export default function App() {
                   <input
                     id="bookingDateHidden"
                     type="date"
+                    name="date"
                     className="sr-only"
                     onChange={(e) => {
                       const val = e.currentTarget.value; // YYYY-MM-DD
@@ -831,16 +935,35 @@ export default function App() {
                       const d = parts[2];
                       const visible = document.getElementById('bookingDateVisible') as HTMLInputElement | null;
                       if (visible) visible.value = `${d}-${m}-${y}`;
+                      // Also update form data
+                      setFormData(prev => ({ ...prev, date: `${d}-${m}-${y}` }));
                     }}
                   />
                   
                 </div>
                 <button
-                  type="button"
-                  className="w-full bg-[#FFC107] text-[#0B3C5D] py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm hover:bg-[#FFD54F] transition-all hover:scale-105 shadow-lg"
+                  type="submit"
+                  disabled={formStatus === 'loading'}
+                  className={`w-full py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm transition-all hover:scale-105 shadow-lg ${
+                    formStatus === 'loading' 
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                      : 'bg-[#FFC107] text-[#0B3C5D] hover:bg-[#FFD54F]'
+                  }`}
                 >
-                  Book Your Cab Now →
+                  {formStatus === 'loading' ? 'Sending...' : 'Book Your Cab Now →'}
                 </button>
+
+                {/* Status Messages */}
+                {formStatus === 'success' && (
+                  <div className="bg-green-100 border-2 border-green-500 text-green-700 px-4 py-3 rounded-lg text-sm">
+                    {formMessage}
+                  </div>
+                )}
+                {formStatus === 'error' && (
+                  <div className="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded-lg text-sm">
+                    {formMessage}
+                  </div>
+                )}
               </form>
               
               <p className="text-center text-gray-500 text-sm md:text-base mt-4">
