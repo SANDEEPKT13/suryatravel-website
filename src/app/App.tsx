@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
+import { motion, MotionConfig } from 'motion/react';
 import Masonry from 'react-responsive-masonry';
 import {
   Car,
@@ -373,6 +373,8 @@ export default function App() {
   const [selectedGallery, setSelectedGallery] = useState<string | null>(null);
   const [activeGalleryData, setActiveGalleryData] = useState<any | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   const openGallery = async (key: string) => {
     const mod = await import('./galleryData');
@@ -381,68 +383,37 @@ export default function App() {
   }; 
   const statsRef = useRef<HTMLDivElement>(null);
 
-  // Travel memories: selected image modal + mobile auto-scroll control
+  // Travel memories: selected image modal
   const [selectedMemory, setSelectedMemory] = useState<string | null>(null);
   const memoryContainerRef = useRef<HTMLDivElement | null>(null);
-  const autoScrollTimerRef = useRef<number | null>(null);
-  const autoScrollRestartTimeoutRef = useRef<number | null>(null);
 
+  // Match media once and keep in state for conditional rendering without layout shifts
   useEffect(() => {
-    // Only activate mobile auto-scroll (slow) on small screens
-    if (typeof window === 'undefined') return;
-    if (window.innerWidth >= 640) return;
-    const el = memoryContainerRef.current;
-    if (!el) return;
+    const setupMedia = () => {
+      if (typeof window === 'undefined') return () => {};
+      const mobileQuery = window.matchMedia('(max-width: 639px)');
+      const tabletQuery = window.matchMedia('(max-width: 1023px)');
 
-    const startAutoScroll = () => {
-      if (autoScrollTimerRef.current) return;
-      autoScrollTimerRef.current = window.setInterval(() => {
-        if (!el) return;
-        const next = el.scrollLeft + Math.round(el.offsetWidth * 0.9);
-        if (next + 10 >= el.scrollWidth) {
-          el.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          el.scrollTo({ left: next, behavior: 'smooth' });
-        }
-      }, 4500); // slower: 4.5s per slide
+      const handleMobile = (event: MediaQueryListEvent) => setIsMobile(event.matches);
+      const handleTablet = (event: MediaQueryListEvent) => setIsTablet(event.matches);
+
+      setIsMobile(mobileQuery.matches);
+      setIsTablet(tabletQuery.matches);
+
+      mobileQuery.addEventListener('change', handleMobile);
+      tabletQuery.addEventListener('change', handleTablet);
+
+      return () => {
+        mobileQuery.removeEventListener('change', handleMobile);
+        tabletQuery.removeEventListener('change', handleTablet);
+      };
     };
 
-    const stopAutoScroll = () => {
-      if (autoScrollTimerRef.current) {
-        clearInterval(autoScrollTimerRef.current);
-        autoScrollTimerRef.current = null;
-      }
-      if (autoScrollRestartTimeoutRef.current) {
-        clearTimeout(autoScrollRestartTimeoutRef.current);
-        autoScrollRestartTimeoutRef.current = null;
-      }
-      autoScrollRestartTimeoutRef.current = window.setTimeout(() => {
-        startAutoScroll();
-      }, 6000); // restart after 6s of inactivity
-    };
-
-    startAutoScroll();
-
-    el.addEventListener('touchstart', stopAutoScroll, { passive: true });
-    el.addEventListener('mousedown', stopAutoScroll);
-
+    const cleanup = setupMedia();
     return () => {
-      if (autoScrollTimerRef.current) {
-        clearInterval(autoScrollTimerRef.current);
-        autoScrollTimerRef.current = null;
-      }
-      if (autoScrollRestartTimeoutRef.current) {
-        clearTimeout(autoScrollRestartTimeoutRef.current);
-        autoScrollRestartTimeoutRef.current = null;
-      }
-      el.removeEventListener('touchstart', stopAutoScroll);
-      el.removeEventListener('mousedown', stopAutoScroll);
+      if (typeof cleanup === 'function') cleanup();
     };
   }, []);
-
-  // Header show/hide on scroll (hide on scroll down, show on scroll up)
-  const [showHeader, setShowHeader] = useState(true);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -460,41 +431,6 @@ export default function App() {
 
     return () => observer.disconnect();
   }, []);
-
-  // Hide header when scrolling down, show when scrolling up
-  useEffect(() => {
-    let ticking = false;
-
-    function onScroll() {
-      const current = window.scrollY;
-
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (mobileMenuOpen) {
-            setShowHeader(true);
-          } else if (current <= 50) {
-            // near top
-            setShowHeader(true);
-          } else if (current > lastScrollY.current) {
-            // scrolling down
-            setShowHeader(false);
-          } else {
-            // scrolling up
-            setShowHeader(true);
-          }
-
-          lastScrollY.current = current;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, [mobileMenuOpen]);
 
   const yearsCount = useCounter(25, 2000, statsInView);
   const customersCount = useCounter(10000, 2000, statsInView);
@@ -580,7 +516,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF8] pt-12 md:pt-14 overflow-x-hidden">
+    // Global reduced motion trims JS-driven animations for better INP/LCP
+    <MotionConfig reducedMotion="always">
+      <div className="min-h-screen bg-[#FFFDF8] pt-12 md:pt-14 overflow-x-hidden">
+        {/* Skip link for accessibility */}
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white text-[#0B3C5D] px-3 py-2 rounded shadow">Skip to main content</a>
       {/* Modals */}
       {selectedPackage && (
         <PackageModal
@@ -601,7 +541,7 @@ export default function App() {
       )}
 
       {/* Header */}
-      <header className={`bg-[#0B3C5D] text-white py-2 md:py-1.5 fixed top-0 left-0 right-0 z-40 shadow-lg transform transition-transform duration-300 ${showHeader ? 'translate-y-0' : '-translate-y-full'}`} aria-hidden={!showHeader}>
+      <header className="bg-[#0B3C5D] text-white py-2 md:py-1.5 fixed top-0 left-0 right-0 z-40 shadow-lg" aria-label="Primary">
         <div className="container mx-auto px-3 site-container">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
@@ -635,12 +575,7 @@ export default function App() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 pb-4 space-y-3 max-w-full overflow-x-hidden"
-            >
+            <div className="lg:hidden mt-4 pb-4 space-y-3 max-w-full overflow-x-hidden" role="navigation" aria-label="Mobile">
               <a href="#services" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Services
               </a>
@@ -653,57 +588,49 @@ export default function App() {
               <a href="#booking" className="block bg-[#FFC107] text-[#0B3C5D] px-4 py-1.5 rounded-full font-semibold text-center text-sm" onClick={() => setMobileMenuOpen(false)}>
                 Book Now
               </a>
-            </motion.div>
+            </div>
           )}
         </div>
       </header>
 
+      <main id="main-content">
       {/* Hero Section */}
       {/* Floating Call Button */}
-      <motion.a
+      <a
         href="tel:+919412157562"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed ${mobileMenuOpen ? 'top-[10rem]' : 'top-32'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#16a34a] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#0f7a34] hover:shadow-amber-400/30 transition-all animate-pulse`}
+        className={`fixed ${mobileMenuOpen ? 'top-[10rem]' : 'top-32'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#16a34a] text-white shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#0f7a34] hover:shadow-amber-400/30 transition-colors`}
         aria-label="Call Surya Travels"
         role="button"
         title="Call Surya Travels"
       >
         <Phone className="h-5 w-5 " />
         <span className="hidden sm:inline font-semibold">Call Now</span>
-      </motion.a>
+      </a>
 
       {/* Floating Book Now Button */}
-      <motion.a
+      <a
         href="#booking"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.05 }}
-        className={`fixed ${mobileMenuOpen ? 'top-[13.5rem]' : 'top-48'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#FFC107] text-[#0B3C5D] shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#FFD54F] hover:shadow-yellow-400/30 transition-all animate-pulse`}
+        className={`fixed ${mobileMenuOpen ? 'top-[13.5rem]' : 'top-48'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 bg-[#FFC107] text-[#0B3C5D] shadow-2xl rounded-full px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2 hover:bg-[#FFD54F] hover:shadow-yellow-400/30 transition-colors`}
         aria-label="Book Now"
         role="button"
         title="Book Now"
       >
         <Calendar className="h-5 w-5" />
         <span className="hidden sm:inline font-semibold">Book Now</span>
-      </motion.a>
+      </a>
 
       {/* Floating WhatsApp Button */}
-      <motion.a
+      <a
         href="https://wa.me/919412157562"
         target="_blank"
         rel="noopener noreferrer"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className={`fixed ${mobileMenuOpen ? 'top-[17rem]' : 'top-64'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 shadow-2xl rounded-full hover:shadow-green-400/50 transition-all animate-pulse`}
+        className={`fixed ${mobileMenuOpen ? 'top-[17rem]' : 'top-64'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 shadow-2xl rounded-full hover:shadow-green-400/50 transition-transform`}
         aria-label="WhatsApp Surya Travels"
         role="button"
         title="WhatsApp Surya Travels"
       >
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/200px-WhatsApp.svg.png" alt="WhatsApp" loading="lazy" decoding="async" className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
-      </motion.a>
+      </a>
 
       <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-12 md:py-16 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -1697,31 +1624,11 @@ export default function App() {
           </motion.div>
 
           {/* On mobile use a horizontal slider; on larger screens keep Masonry */}
-          {window.innerWidth < 640 ? (
+          {isMobile ? (
             <div className="-mx-4 px-4 pb-4">
               <div
                 ref={memoryContainerRef}
                 className="flex gap-4 overflow-x-auto snap-x snap-mandatory touch-pan-x -mx-2 py-2"
-                onMouseEnter={() => {
-                  if (autoScrollTimerRef.current) {
-                    clearInterval(autoScrollTimerRef.current);
-                    autoScrollTimerRef.current = null;
-                  }
-                  if (autoScrollRestartTimeoutRef.current) {
-                    clearTimeout(autoScrollRestartTimeoutRef.current);
-                    autoScrollRestartTimeoutRef.current = null;
-                  }
-                  autoScrollRestartTimeoutRef.current = window.setTimeout(() => {
-                    const el = memoryContainerRef.current;
-                    if (!el) return;
-                    if (autoScrollTimerRef.current) return;
-                    autoScrollTimerRef.current = window.setInterval(() => {
-                      const next = el.scrollLeft + Math.round(el.offsetWidth * 0.9);
-                      if (next + 10 >= el.scrollWidth) el.scrollTo({ left: 0, behavior: 'smooth' });
-                      else el.scrollTo({ left: next, behavior: 'smooth' });
-                    }, 4500);
-                  }, 6000);
-                }}
               >
                 {[
                   { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
@@ -1785,7 +1692,7 @@ export default function App() {
               </div>
             </div>
           ) : (
-            <Masonry columnsCount={window.innerWidth < 1024 ? 2 : 3} gutter="0.5rem">
+            <Masonry columnsCount={isTablet ? 2 : 3} gutter="0.5rem">
               {[
                 { image: 'https://images.unsplash.com/photo-1716896427993-ddad7c7ec891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGFncmElMjBpbmRpYXxlbnwxfHx8fDE3NjU2NDcyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080', title: 'Taj Mahal Tour' },
                 { image: cid1, title: 'CID TV Show Shoot'},
@@ -2015,6 +1922,7 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <footer className="bg-[#0B3C5D] text-white py-12 md:py-16">
@@ -2106,5 +2014,6 @@ export default function App() {
         </div>
       </footer>
     </div>
+    </MotionConfig>
   );
 }
