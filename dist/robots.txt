@@ -1,0 +1,7 @@
+# robots.txt for suryatravel.in
+# Allow all crawlers and expose sitemap
+User-agent: *
+Allow: /
+
+Sitemap: https://suryatravel.in/sitemap.xml
+Host: suryatravel.in

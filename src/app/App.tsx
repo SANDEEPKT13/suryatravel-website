@@ -545,7 +545,7 @@ export default function App() {
         <div className="container mx-auto px-3 site-container">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 md:gap-3">
-            <img src={finallogo} alt="Main Logo" className="h-10 md:h-16 w-auto object-contain [mix-blend-mode:screen]" />
+            <img src={finallogo} alt="Main Logo" className="h-10 md:h-16 w-auto object-contain [mix-blend-mode:screen]" loading="eager" decoding="async" fetchpriority="high" />
               <div>
                 <h1 className="text-xl md:text-2xl font-bold" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   Surya Travels
@@ -629,7 +629,7 @@ export default function App() {
         role="button"
         title="WhatsApp Surya Travels"
       >
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/200px-WhatsApp.svg.png" alt="WhatsApp" loading="lazy" decoding="async" className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
+        <img src={whatsapp} alt="WhatsApp" loading="lazy" decoding="async" width={64} height={64} className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
       </a>
 
       <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-12 md:py-16 lg:py-20 overflow-hidden">
