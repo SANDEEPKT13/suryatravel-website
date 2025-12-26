@@ -554,15 +554,15 @@ export default function App() {
               </div>
             </div>
             
-            {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center gap-6 text-base">
+            {/* Desktop Menu (semantic nav for SEO/AX) */}
+            <nav className="hidden lg:flex items-center gap-6 text-base" aria-label="Primary">
               <a href="#services" className="hover:text-[#FFC107] transition-colors">Services</a>
               <a href="#fleet" className="hover:text-[#FFC107] transition-colors">Fleet</a>
               <a href="#packages" className="hover:text-[#FFC107] transition-colors">Tour Packages</a>
               <a href="#booking" className="bg-[#FFC107] text-[#0B3C5D] px-3 py-1.5 rounded-full font-semibold hover:bg-[#FFD54F] transition-all text-xs">
                 Book Now
               </a>
-            </div>
+            </nav>
 
             {/* Mobile Menu Button */}
             <button 
@@ -633,10 +633,11 @@ export default function App() {
       </a>
 
       <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-12 md:py-16 lg:py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-20" aria-hidden="true">
+          {/* Decorative BG image: hidden from AT; keeps layout unchanged */}
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Hero Background"
+            alt=""
             className="w-full h-full object-cover"
           />
         </div>
