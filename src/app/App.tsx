@@ -416,19 +416,19 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!statsRef.current) return undefined;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setStatsInView(true);
+          if (statsRef.current) observer.unobserve(statsRef.current);
         }
       },
       { threshold: 0.5 }
     );
 
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
+    observer.observe(statsRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -566,8 +566,12 @@ export default function App() {
 
             {/* Mobile Menu Button */}
             <button 
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -575,7 +579,7 @@ export default function App() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden mt-4 pb-4 space-y-3 max-w-full overflow-x-hidden" role="navigation" aria-label="Mobile">
+            <div id="mobile-menu" className="lg:hidden mt-4 pb-4 space-y-3 max-w-full overflow-x-hidden" role="navigation" aria-label="Mobile">
               <a href="#services" className="block py-1.5 hover:text-[#FFC107] transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
                 Services
               </a>
@@ -593,7 +597,7 @@ export default function App() {
         </div>
       </header>
 
-      <main id="main-content">
+      <main id="main-content" role="main" tabIndex={-1}>
       {/* Hero Section */}
       {/* Floating Call Button */}
       <a
@@ -667,7 +671,7 @@ export default function App() {
                 </span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-                25+ Years | Safe & Affordable |Best Cars & Luxury Buses Experienced Drivers (25+ Years) | Friendly, Safe & Comfortable Service | On-Time Every Time | Easy Booking |
+                25+ Years | Safe & Affordable | Best Cars & Luxury Buses | Experienced Drivers (25+ Years) | Friendly, Safe & Comfortable Service | On-Time Every Time | Easy Booking | Agra and beyond.
                 <span className="ml-2 inline-flex items-center gap-2">
                   <span className="text-white/80">Owner:</span>
                   <span className="uppercase tracking-wide font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] via-[#FFD54F] to-white drop-shadow-[0_2px_12px_rgba(255,193,7,0.35)]">
