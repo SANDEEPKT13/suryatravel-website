@@ -643,6 +643,9 @@ export default function App() {
             src="https://images.unsplash.com/photo-1614295334477-885b757c8ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YXhpJTIwY2FyJTIwcmVudGFsJTIwaW5kaWF8ZW58MXx8fHwxNzY1NjQ3MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
             alt=""
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
           />
         </div>
         
@@ -1632,7 +1635,6 @@ export default function App() {
           {isMobile ? (
             <div className="-mx-4 px-4 pb-4">
               <div
-                ref={memoryContainerRef}
                 className="flex gap-4 overflow-x-auto snap-x snap-mandatory touch-pan-x -mx-2 py-2"
               >
                 {[
@@ -1664,6 +1666,9 @@ export default function App() {
                       src={item.image}
                       alt={item.title}
                       className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-3">
@@ -1690,7 +1695,7 @@ export default function App() {
                       >
                         <X className="h-5 w-5 text-[#0B3C5D]" />
                       </button>
-                      <img src={selectedMemory} alt="Travel memory" loading="lazy" decoding="async" className="rounded-lg shadow-lg object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto" />
+                      <img src={selectedMemory} alt="Travel memory" loading="lazy" decoding="async" width={1200} height={800} className="rounded-lg shadow-lg object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto" />
                     </div>
                   </div>
                 )}
@@ -1729,6 +1734,9 @@ export default function App() {
                     src={item.image}
                     alt={item.title}
                     className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
@@ -1850,6 +1858,9 @@ export default function App() {
       src={post1}
       alt="My image"
       className="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
     />
   </div>
 
@@ -1858,6 +1869,9 @@ export default function App() {
       src={post2}
       alt="Premium Cars"
       className="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
     />
   </div>
 </div>
