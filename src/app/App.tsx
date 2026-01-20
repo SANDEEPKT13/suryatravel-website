@@ -73,7 +73,6 @@ import ertiga from "../assets/images/ertiga.png";
 import carens from "../assets/images/carens.png";
 import urbania from "../assets/images/urbania.png";
 import traveller from "../assets/images/traveller.png";
-import whatsapp from "../assets/images/whatsapp.png";
 import intourist from "../assets/images/intourist.png";
 import family1 from "../assets/images/family1.png";
 import family2 from "../assets/images/family2.png";
@@ -628,12 +627,12 @@ export default function App() {
         href="https://wa.me/919412157562"
         target="_blank"
         rel="noopener noreferrer"
-        className={`fixed ${mobileMenuOpen ? 'top-[17rem]' : 'top-64'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 shadow-2xl rounded-full hover:shadow-green-400/50 transition-transform`}
+        className={`fixed ${mobileMenuOpen ? 'top-[17rem]' : 'top-64'} right-4 sm:right-8 md:right-8 lg:right-20 z-50 rounded-full bg-[#25D366] text-white p-2.5 md:p-3 shadow-xl ring-2 ring-white/10 hover:shadow-green-400/40 hover:scale-105 transition-transform transition-shadow`}
         aria-label="WhatsApp Surya Travels"
         role="button"
         title="WhatsApp Surya Travels"
       >
-        <img src={whatsapp} alt="WhatsApp" loading="lazy" decoding="async" width={64} height={64} className="h-14 w-14 md:h-16 md:w-16 hover:scale-110 transition-transform drop-shadow-lg" />
+        <MessageCircle className="h-10 w-10 md:h-11 md:w-11 drop-shadow" aria-hidden="true" />
       </a>
 
       <section className="relative bg-gradient-to-br from-[#0B3C5D] via-[#1565C0] to-[#0B3C5D] text-white py-12 md:py-16 lg:py-20 overflow-hidden">
