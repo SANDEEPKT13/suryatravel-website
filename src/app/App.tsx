@@ -2028,6 +2028,30 @@ export default function App() {
                 <a href="#" className="text-gray-300 hover:text-[#FFC107] transition-colors">Cancellation Policy</a>
               </div>
             </div>
+            
+            {/* Attribution Line */}
+            <div className="mt-6 pt-6 border-t border-white/10 text-center">
+              <p className="text-sm md:text-base text-gray-300" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                Built & Managed by{' '}
+                <a 
+                  href="https://wa.me/919519531166" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#FFC107] hover:text-white hover:underline transition-all duration-200"
+                >
+                  Saurabh Kashyap
+                </a>
+                {' '}&{' '}
+                <a 
+                  href="https://wa.me/918318250102" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#FFC107] hover:text-white hover:underline transition-all duration-200"
+                >
+                  Sandeep Kumar
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>
